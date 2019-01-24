@@ -40,6 +40,8 @@ cmake-build-*/
 
 # File-based project format
 *.iws
+*.iml
+*.ipr
 
 # IntelliJ
 out/
@@ -80,6 +82,7 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
+.vscode/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
