@@ -23,7 +23,8 @@ public class TorqueLift extends Subsystem {
     private TalonSRX motorB = new TalonSRX(RobotMap.mLeftB);
     private TalonSRX motorC = new TalonSRX(RobotMap.mRightA);
     private TalonSRX motorD = new TalonSRX(RobotMap.mRightB);
-	private TalonSRX motorE = new TalonSRX(RobotMap.mLift);
+	private TalonSRX motorE = new TalonSRX(RobotMap.mLiftA);
+    private TalonSRX motorF = new TalonSRX(RobotMap.mLiftB);
 	
     public TorqueLift() {
     	super("TorqueLift");

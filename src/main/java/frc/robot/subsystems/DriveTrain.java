@@ -74,7 +74,6 @@ public class DriveTrain extends Subsystem {
      * @param speed the speed of the motors in percentage form
      */
     private void moveLeftMotorStack(double speed) {
-        speed = speed*-1.0;
         firstLeftMotor.set(ControlMode.PercentOutput, speed);
         secondLeftMotor.set(ControlMode.PercentOutput, speed);
     }

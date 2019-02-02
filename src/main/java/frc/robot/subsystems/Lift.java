@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Lift extends Subsystem {
 
-	private TalonSRX liftMotor = new TalonSRX(RobotMap.mLift);
+	private TalonSRX firstLiftMotor = new TalonSRX(RobotMap.mLiftA);
+	private TalonSRX secondLiftMotor = new TalonSRX(RobotMap.mLiftB);
 
 	private Encoder liftEncoder = new Encoder(RobotMap.eLiftA, RobotMap.eLiftB);
 
@@ -68,14 +69,16 @@ public class Lift extends Subsystem {
 	 * @param speed the speed of the motors in percentage form
 	 */
 	private void moveLiftMotorStack(double speed) {
-		liftMotor.set(ControlMode.PercentOutput, speed);
+		firstLiftMotor.set(ControlMode.PercentOutput, speed);
+        secondLiftMotor.set(ControlMode.PercentOutput, speed);
 	}
 
 	/**
 	 * Stops the lift motor
 	 */
 	public void stop() {
-		liftMotor.set(ControlMode.PercentOutput, 0.0);
+		firstLiftMotor.set(ControlMode.PercentOutput, 0.0);
+        secondLiftMotor.set(ControlMode.PercentOutput, 0.0);
 	}
 
 	/**

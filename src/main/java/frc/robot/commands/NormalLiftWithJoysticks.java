@@ -21,12 +21,7 @@ public class NormalLiftWithJoysticks extends GlobalCommand {
         } else {
         	// The commands here will occur normally, when the TorqueLift is
         	// not activated.
-        	if (limitswitch.getReadyState()) {
-            	torquelift.sSet();
-            	lift.moveLift(oi.getLiftSpeed());
-    		} else {
-    			lift.moveLift(oi.getLiftYUpSpeed());
-    		}
+            lift.moveLift(oi.getLiftSpeed());
         }
     }
 
