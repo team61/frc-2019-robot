@@ -13,10 +13,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * The DriveTrain Subsystem
  */
 public class DriveTrain extends Subsystem {
-	private Encoder leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, EncodingType.k4X);
-	private Encoder rightEncoder = new Encoder(RobotMap.eRightA, RobotMap.eRightB, false, EncodingType.k4X);
-
-	private AnalogGyro mainGyro = new AnalogGyro(RobotMap.mainGyro);
+//	private Encoder leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, EncodingType.k4X);
+//	private Encoder rightEncoder = new Encoder(RobotMap.eRightA, RobotMap.eRightB, false, EncodingType.k4X);
+//
+//	private AnalogGyro mainGyro = new AnalogGyro(RobotMap.mainGyro);
 
     private TalonSRX firstLeftMotor = new TalonSRX(RobotMap.mLeftA);
     private TalonSRX secondLeftMotor = new TalonSRX(RobotMap.mLeftB);
@@ -32,8 +32,8 @@ public class DriveTrain extends Subsystem {
     public DriveTrain() {
     	super("DriveTrain");
         final double distancePerPulse = Math.PI * WHEEL_DIAMETER / PULSE_PER_REVOLUTION / ENCODER_GEAR_RATIO / GEAR_RATIO * FUDGE_FACTOR;
-    	leftEncoder.setDistancePerPulse(distancePerPulse);
-    	rightEncoder.setDistancePerPulse(distancePerPulse);
+//    	leftEncoder.setDistancePerPulse(distancePerPulse);
+//    	rightEncoder.setDistancePerPulse(distancePerPulse);
         System.out.println("DriveTrain Initiated");
     }
 
@@ -102,7 +102,7 @@ public class DriveTrain extends Subsystem {
      * @author Team 61 Programming
      */
     public void resetGyro(){
-        mainGyro.reset();
+//        mainGyro.reset();
     }
     
     /**
@@ -111,7 +111,8 @@ public class DriveTrain extends Subsystem {
      * @return scaled angle in degrees
      */
     public double getGyroAngle(){
-        return mainGyro.getAngle();
+//      return mainGyro.getAngle();
+        return 0;
     }
 
     /**
@@ -119,7 +120,8 @@ public class DriveTrain extends Subsystem {
      * @return the rate of rotation of the Gyro
      */
     public double getGyroRate(){
-        return mainGyro.getRate();
+//      return mainGyro.getRate();
+        return 0;
     }
 
     /**
@@ -127,7 +129,8 @@ public class DriveTrain extends Subsystem {
      * @return the distance the robot has driven since the last reset
      */
     public double getLeftEncoder() {
-    	return leftEncoder.getDistance();
+//    	return leftEncoder.getDistance();
+        return 0;
     }
 
     /**
@@ -135,21 +138,22 @@ public class DriveTrain extends Subsystem {
      * @return the distance the robot has driven since the last reset
      */
     public double getRightEncoder() {
-        return rightEncoder.getDistance();
+//      return rightEncoder.getDistance();
+        return 0;
     }
 
     /**
      * Reset the left motor encoder distance to zero
      */
     public void resetLeftEncoder() {
-    	leftEncoder.reset();
+//    	leftEncoder.reset();
     }
 
     /**
      * Reset the right motor encoder distance to zero
      */
     public void resetRightEncoder() {
-    	rightEncoder.reset();
+//    	rightEncoder.reset();
     }
 }
 

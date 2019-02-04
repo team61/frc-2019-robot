@@ -2,15 +2,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import frc.robot.commands.AutoGroup;
 import frc.robot.commands.GlobalCommand;
 import frc.robot.subsystems.DriveTrain;
 
@@ -21,8 +16,7 @@ public class Robot extends TimedRobot {
 
 	private static OI oi;
 	
-    private final String teamNo = "   61";
-    private final String versionNo = "1-24-2019";
+
 
 	private Command autonomousCommand;
 
@@ -31,6 +25,8 @@ public class Robot extends TimedRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
+		final String teamNo = "   61";
+		final String versionNo = "2-4-2019";
 		oi = new OI();
 		
 	    // Initialize all subsystems
@@ -64,7 +60,7 @@ public class Robot extends TimedRobot {
 	 */
 	public void autonomousInit() {
         // instantiate the command used for the autonomous period (the chooser on the smart dashboard will pick this)
-		autonomousCommand = new AutoGroup();
+//		autonomousCommand = new AutoGroup();
 		
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null) autonomousCommand.start();

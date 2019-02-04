@@ -1,7 +1,7 @@
 package frc.robot.commands;
 
 import frc.robot.OI;
-import frc.robot.subsystems.Claw;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.TorqueLift;
@@ -16,7 +16,7 @@ public abstract class GlobalCommand extends Command {
     
 	public static final DriveTrain drivetrain = new DriveTrain();
 	public static final Lift lift = new Lift();
-	public static final Claw claw = new Claw();
+	public static final Arm arm = new Arm();
 	public static final TorqueLift torquelift = new TorqueLift();
 	public static final Switch limitSwitchFrontA = new LimitSwitchFrontA();
     public static final Switch limitSwitchFrontB = new LimitSwitchFrontB();

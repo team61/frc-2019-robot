@@ -16,15 +16,15 @@ public class TorqueLift extends Subsystem {
      * Definition of Solenoids
      * Solenoids in this program will have the 's' prefix
      */
-	private Solenoid sSwapA = new Solenoid(RobotMap.pcmModule, RobotMap.sLiftSwapA);
-	private Solenoid sSwapB = new Solenoid(RobotMap.pcmModule, RobotMap.sLiftSwapB);
-
-    private TalonSRX motorA = new TalonSRX(RobotMap.mLeftA);
-    private TalonSRX motorB = new TalonSRX(RobotMap.mLeftB);
-    private TalonSRX motorC = new TalonSRX(RobotMap.mRightA);
-    private TalonSRX motorD = new TalonSRX(RobotMap.mRightB);
-	private TalonSRX motorE = new TalonSRX(RobotMap.mLiftA);
-    private TalonSRX motorF = new TalonSRX(RobotMap.mLiftB);
+//	private Solenoid sSwapA = new Solenoid(RobotMap.pcmModule, RobotMap.sLiftSwapA);
+//	private Solenoid sSwapB = new Solenoid(RobotMap.pcmModule, RobotMap.sLiftSwapB);
+//
+//    private TalonSRX motorA = new TalonSRX(RobotMap.mLeftA);
+//    private TalonSRX motorB = new TalonSRX(RobotMap.mLeftB);
+//    private TalonSRX motorC = new TalonSRX(RobotMap.mRightA);
+//    private TalonSRX motorD = new TalonSRX(RobotMap.mRightB);
+//	private TalonSRX motorE = new TalonSRX(RobotMap.mLiftA);
+//    private TalonSRX motorF = new TalonSRX(RobotMap.mLiftB);
 	
     public TorqueLift() {
     	super("TorqueLift");
@@ -46,11 +46,11 @@ public class TorqueLift extends Subsystem {
      * @param speed the speed of the motors in percentage form
      */
     public void moveAllMotors(double speed) {
-    	motorA.set(ControlMode.PercentOutput, -speed);
-    	motorB.set(ControlMode.PercentOutput, -speed);
-    	motorC.set(ControlMode.PercentOutput, speed);
-    	motorD.set(ControlMode.PercentOutput, speed);
-    	motorE.set(ControlMode.PercentOutput, speed);
+//    	motorA.set(ControlMode.PercentOutput, -speed);
+//    	motorB.set(ControlMode.PercentOutput, -speed);
+//    	motorC.set(ControlMode.PercentOutput, speed);
+//    	motorD.set(ControlMode.PercentOutput, speed);
+//    	motorE.set(ControlMode.PercentOutput, speed);
     }
 
     /**
@@ -58,8 +58,8 @@ public class TorqueLift extends Subsystem {
      */
     public void shift() {
     	// swaps the solonoids
-    	sSwapA.set(true);
-    	sSwapB.set(false);
+//    	sSwapA.set(true);
+//    	sSwapB.set(false);
     }
 
     /**
@@ -67,7 +67,7 @@ public class TorqueLift extends Subsystem {
      */
     public void sSet() {
     	// the standard position of our solonoids
-    	sSwapA.set(false);
-    	sSwapB.set(true);
+//    	sSwapA.set(false);
+//    	sSwapB.set(true);
     }
 }

@@ -13,16 +13,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Controls the system that lifts and lowers the claw
  */
 public class Lift extends Subsystem {
-
-	private TalonSRX firstLiftMotor = new TalonSRX(RobotMap.mLiftA);
-	private TalonSRX secondLiftMotor = new TalonSRX(RobotMap.mLiftB);
-
-	private Encoder liftEncoder = new Encoder(RobotMap.eLiftA, RobotMap.eLiftB);
+//
+//	private TalonSRX firstLiftMotor = new TalonSRX(RobotMap.mLiftA);
+//	private TalonSRX secondLiftMotor = new TalonSRX(RobotMap.mLiftB);
+//
+//	private Encoder liftEncoder = new Encoder(RobotMap.eLiftA, RobotMap.eLiftB);
 
 	public Lift() {
 		super("Lift");
 		System.out.println("Lift Initiated");
-		liftEncoder.setDistancePerPulse(1.0);
+//		liftEncoder.setDistancePerPulse(1.0);
 	}
 
 	/**
@@ -69,16 +69,16 @@ public class Lift extends Subsystem {
 	 * @param speed the speed of the motors in percentage form
 	 */
 	private void moveLiftMotorStack(double speed) {
-		firstLiftMotor.set(ControlMode.PercentOutput, speed);
-        secondLiftMotor.set(ControlMode.PercentOutput, speed);
+//		firstLiftMotor.set(ControlMode.PercentOutput, speed);
+//      secondLiftMotor.set(ControlMode.PercentOutput, speed);
 	}
 
 	/**
 	 * Stops the lift motor
 	 */
 	public void stop() {
-		firstLiftMotor.set(ControlMode.PercentOutput, 0.0);
-        secondLiftMotor.set(ControlMode.PercentOutput, 0.0);
+//		firstLiftMotor.set(ControlMode.PercentOutput, 0.0);
+//      secondLiftMotor.set(ControlMode.PercentOutput, 0.0);
 	}
 
 	/**
@@ -86,13 +86,14 @@ public class Lift extends Subsystem {
 	 * @return the distance the lift has driven since the last reset
 	 */
 	public double getLiftEncoder(){
-		return liftEncoder.getDistance();
+//		return liftEncoder.getDistance();
+		return 0;
 	}
 
 	/**
 	 * Reset the lift encoder distance to zero
 	 */
 	public void resetEncoder(){
-		liftEncoder.reset();
+//		liftEncoder.reset();
 	}
 }
