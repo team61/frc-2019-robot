@@ -14,10 +14,10 @@ public class RobotMap {
 	public static int clawStick = 3;
 
 	//Motor Ports
-	public static int mLeftA = 1;
-	public static int mLeftB = 2;
-	public static int mRightA = 3;
-	public static int mRightB = 4;
+	public static int mLeftA = 5;
+	public static int mLeftB = 6;
+	public static int mRightA = 1;
+	public static int mRightB = 2;
 	public static int mLiftA = 5;
 	public static int mLiftB = 6;
 	
@@ -30,21 +30,17 @@ public class RobotMap {
 	public static int eLiftB= 4;
 	
 	//Solonoids 
-	public static int pcmModule = 11;
-	public static int sClawLifterChannelA = 0;
-	public static int sClawLifterChannelB = 1;
-	public static int sClawChannelA = 2;
-	public static int sClawChannelB = 3;
-	public static int sLiftSwapA = 4;
-	public static int sLiftSwapB = 5;
-	
+	public static int pcmModule = 7;
+	public static int sPTOA = 0;
+	public static int sPTOB = 1;
+
 	//Limit Switches
-	public static int limitSwitchFrontA = 0;
-	public static int limitSwitchFrontB = 0;
-	public static int limitSwitchFrontC = 0;
+	public static int limitSwitchFrontA = 3;
+	public static int limitSwitchFrontB = 4;
+	public static int limitSwitchFrontC = 5;
 	public static int limitSwitchRearA = 0;
-	public static int limitSwitchRearB = 0;
-	public static int limitSwitchRearC = 0;
+	public static int limitSwitchRearB = 1;
+	public static int limitSwitchRearC = 2;
 
 	//Misc.
 	public static int barToggleButton = 10;

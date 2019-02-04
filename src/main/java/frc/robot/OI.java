@@ -1,6 +1,6 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.commands.*;
 import frc.robot.joysticks.*;
 
 /**
@@ -16,7 +16,12 @@ public class OI {
     public Stick jClaw = new ClawStick();
 
 	public OI() {
-		
+		jLift.getButton7().whenPressed(new LowerFrontAndRearSixInch());
+		jLift.getButton8().whenPressed(new LowerFrontAndRearGroup());
+		jLift.getButton9().whenPressed(new RaiseFrontSixInch());
+		jLift.getButton10().whenPressed(new RaiseFrontSixInch());
+		jLift.getButton11().whenPressed(new RaiseRearSixInch());
+		jLift.getButton12().whenPressed(new RaiseRearSixInch());
 	}
 
     /** 

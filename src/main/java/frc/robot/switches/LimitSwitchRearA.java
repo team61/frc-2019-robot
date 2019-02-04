@@ -11,6 +11,6 @@ public class LimitSwitchRearA extends Switch {
     }
 
     public boolean isSwitchSet() {
-        return limitSwitchRearA.get();
+        return !limitSwitchRearA.get();
     }
 }

@@ -1,47 +1,49 @@
 package frc.robot.commands;
 
-/**
- *
- */
-public class TorqueLiftWithJoysticks extends GlobalCommand {
+public class RaiseFrontSixInch extends GlobalCommand {
+    private boolean frontAActivated;
 
-    public TorqueLiftWithJoysticks() {
+    public RaiseFrontSixInch() {
         // Use requires() here to declare subsystem dependencies
         requires(torquelift);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        frontAActivated = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	oi.jLeft.updateToggleTrigger();
-        if(oi.jLeft.toggleOn){
-        	// The commands here will occur if the TorqueLift toggle switch
-        	// is activated. All code here will only run after the button
-        	// has been toggled.
-            torquelift.disengagePTO();
-        } else {
-            // The commands here will occur normally, when the TorqueLift is
-            // not activated.
-            torquelift.shiftPTO();
+        System.out.println("Front Limit Switch: " + limitSwitchFrontA.isSwitchSet());
+        if (limitSwitchFrontA.isSwitchSet()) {
+            frontAActivated = true;
         }
+
+        torquelift.shiftPTO();
+
+        if (!frontAActivated) {
+            torquelift.moveFrontUp(.75);
+        }
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return frontAActivated;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	lift.stop();
+        System.out.println("ended");
+        torquelift.disengagePTO();
+        torquelift.stopFront();
+        torquelift.stopRear();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
+        end();
     }
 }

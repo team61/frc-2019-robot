@@ -14,7 +14,7 @@ public class NormalLiftWithJoysticks extends GlobalCommand {
 
     protected void execute() {
     	oi.jRight.updateToggleTrigger();
-        if(oi.jRight.toggleOn){
+        if(oi.jLeft.toggleOn){
         	// The commands here will occur if the TorqueLift toggle switch
         	// is activated. All code here will only run after the button
         	// has been toggled.

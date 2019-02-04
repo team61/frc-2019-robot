@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveWithJoysticks;
 import edu.wpi.first.wpilibj.AnalogGyro;
@@ -67,13 +68,15 @@ public class DriveTrain extends Subsystem {
         moveRightMotorStack(right);
         moveLeftMotorStack(left);
     }
-    
+
+    // when joysticks are negative, robot is moved up
+
     /**
      * Moves the multiple motors on the left side.
      * @author Team 61 Programming
      * @param speed the speed of the motors in percentage form
      */
-    private void moveLeftMotorStack(double speed) {
+    public void moveLeftMotorStack(double speed) {
         firstLeftMotor.set(ControlMode.PercentOutput, speed);
         secondLeftMotor.set(ControlMode.PercentOutput, speed);
     }
@@ -83,7 +86,7 @@ public class DriveTrain extends Subsystem {
      * @author Team 61 Programming
      * @param speed the speed of the motors in percentage form
      */
-    private void moveRightMotorStack(double speed) {
+    public void moveRightMotorStack(double speed) {
         firstRightMotor.set(ControlMode.PercentOutput, -speed);
         secondRightMotor.set(ControlMode.PercentOutput, -speed);
     }

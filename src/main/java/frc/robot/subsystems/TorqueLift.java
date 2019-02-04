@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import frc.robot.RobotMap;
+import frc.robot.commands.GlobalCommand;
 import frc.robot.commands.TorqueLiftWithJoysticks;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -16,6 +17,8 @@ public class TorqueLift extends Subsystem {
      * Definition of Solenoids
      * Solenoids in this program will have the 's' prefix
      */
+    private Solenoid sPTOA = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOA);
+    private Solenoid sPTOB = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOB);
 //	private Solenoid sSwapA = new Solenoid(RobotMap.pcmModule, RobotMap.sLiftSwapA);
 //	private Solenoid sSwapB = new Solenoid(RobotMap.pcmModule, RobotMap.sLiftSwapB);
 //
@@ -52,6 +55,41 @@ public class TorqueLift extends Subsystem {
 //    	motorD.set(ControlMode.PercentOutput, speed);
 //    	motorE.set(ControlMode.PercentOutput, speed);
     }
+
+    public void shiftPTO() {
+        sPTOA.set(true);
+        sPTOB.set(false);
+    }
+
+    public void disengagePTO() {
+        sPTOA.set(false);
+        sPTOB.set(true);
+    }
+
+    public void moveRearDown(double speed) {
+        GlobalCommand.drivetrain.moveRightMotorStack(speed);
+    }
+
+    public void moveFrontDown(double speed) {
+        GlobalCommand.drivetrain.moveLeftMotorStack(speed);
+    }
+
+    public void moveRearUp(double speed) {
+        GlobalCommand.drivetrain.moveRightMotorStack(-speed);
+    }
+
+    public void moveFrontUp(double speed) {
+        GlobalCommand.drivetrain.moveLeftMotorStack(-speed);
+    }
+
+    public void stopFront() {
+        GlobalCommand.drivetrain.moveLeftMotorStack(0.0);
+    }
+
+    public void stopRear() {
+        GlobalCommand.drivetrain.moveRightMotorStack(0.0);
+    }
+
 
     /**
      * Shifts the robot from torque lift to normal lift, and vice versa

@@ -10,6 +10,6 @@ public class LimitSwitchFrontA extends Switch {
         limitSwitchFrontA = new DigitalInput(RobotMap.limitSwitchFrontA);
     }
     public boolean isSwitchSet() {
-        return limitSwitchFrontA.get();
+        return !limitSwitchFrontA.get();
     }
 }
