@@ -43,18 +43,7 @@ public class TorqueLift extends Subsystem {
         setDefaultCommand(new TorqueLiftWithJoysticks());
     }
 
-    /**
-     * Moves all motors on the robot
-     * @author Team 61 Programming
-     * @param speed the speed of the motors in percentage form
-     */
-    public void moveAllMotors(double speed) {
-//    	motorA.set(ControlMode.PercentOutput, -speed);
-//    	motorB.set(ControlMode.PercentOutput, -speed);
-//    	motorC.set(ControlMode.PercentOutput, speed);
-//    	motorD.set(ControlMode.PercentOutput, speed);
-//    	motorE.set(ControlMode.PercentOutput, speed);
-    }
+
 
     public void shiftPTO() {
         sPTOA.set(true);
@@ -90,6 +79,9 @@ public class TorqueLift extends Subsystem {
         GlobalCommand.drivetrain.moveRightMotorStack(0.0);
     }
 
+    public void liftDrive(double front, double rear) {
+        GlobalCommand.drivetrain.tankDrive(front, rear);
+    }
 
     /**
      * Shifts the robot from torque lift to normal lift, and vice versa

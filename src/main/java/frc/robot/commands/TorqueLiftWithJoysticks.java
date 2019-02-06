@@ -18,14 +18,22 @@ public class TorqueLiftWithJoysticks extends GlobalCommand {
     protected void execute() {
     	oi.jLeft.updateToggleTrigger();
         if(oi.jLeft.toggleOn){
+            System.out.println("lift enabled");
         	// The commands here will occur if the TorqueLift toggle switch
         	// is activated. All code here will only run after the button
         	// has been toggled.
-            torquelift.disengagePTO();
+            torquelift.shiftPTO(); // TODO: ensure that shiftPTO enables the lift, rather than the drive wheels
+            if (!(limitSwitchFrontA.isSwitchSet() || limitSwitchFrontC.isSwitchSet())) {
+                torquelift.liftDrive(oi.getLeftSpeed(), 0.0); // front, rear
+            }
+            if (!(limitSwitchRearA.isSwitchSet() || limitSwitchRearC.isSwitchSet())) {
+                torquelift.liftDrive(0.0, oi.getRightSpeed()); // front, rear
+            }
         } else {
+            System.out.println("lift disabled, motors should be driving now");
             // The commands here will occur normally, when the TorqueLift is
             // not activated.
-            torquelift.shiftPTO();
+            torquelift.disengagePTO();
         }
     }
 

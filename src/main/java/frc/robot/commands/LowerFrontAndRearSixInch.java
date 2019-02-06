@@ -27,6 +27,17 @@ public class LowerFrontAndRearSixInch extends GlobalCommand {
             rearBActivated = true;
         }
 
+        // the following two if statements are for safety purposes, as if the B
+        // limit switches are already passed, we don't want it to keep going beyond the
+        // C  limit switches point
+        if (limitSwitchFrontC.isSwitchSet()) {
+            frontBActivated = true;
+        }
+
+        if (limitSwitchRearC.isSwitchSet()) {
+            rearBActivated = true;
+        }
+
         torquelift.shiftPTO();
         if (!rearBActivated) {
             torquelift.moveRearDown(.75);
