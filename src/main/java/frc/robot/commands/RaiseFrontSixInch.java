@@ -20,7 +20,7 @@ public class RaiseFrontSixInch extends GlobalCommand {
             frontAActivated = true;
         }
 
-        torquelift.shiftPTO();
+        torquelift.setPTOState(true);
 
         if (!frontAActivated) {
             torquelift.moveFrontUp(.75);
@@ -36,7 +36,7 @@ public class RaiseFrontSixInch extends GlobalCommand {
     // Called once after isFinished returns true
     protected void end() {
         System.out.println("ended");
-        torquelift.disengagePTO();
+        torquelift.setPTOState(true);
         torquelift.stopFront();
         torquelift.stopRear();
     }

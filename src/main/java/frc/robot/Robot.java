@@ -1,6 +1,7 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -26,13 +27,14 @@ public class Robot extends TimedRobot {
 	 */
 	public void robotInit() {
 		final String teamNo = "   61";
-		final String versionNo = "2-4-2019";
+		final String versionNo = "2-8-2019";
 		oi = new OI();
 		
 	    // Initialize all subsystems
 	    GlobalCommand.init();
-		
-        CameraServer.getInstance().startAutomaticCapture();
+
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		camera.setResolution(680, 480);
 
         System.out.println("+----------------------------------------------+");
         System.out.println("| Team "+teamNo+" - Software Version: "+versionNo+" |");

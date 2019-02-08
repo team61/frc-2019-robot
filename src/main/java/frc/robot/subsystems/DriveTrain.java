@@ -23,6 +23,7 @@ public class DriveTrain extends Subsystem {
     private TalonSRX secondLeftMotor = new TalonSRX(RobotMap.mLeftB);
     private TalonSRX firstRightMotor = new TalonSRX(RobotMap.mRightA);
     private TalonSRX secondRightMotor = new TalonSRX(RobotMap.mRightB);
+    private TalonSRX liftWheelsMotor = new TalonSRX(RobotMap.mLiftWheels);
     
 	private static final double WHEEL_DIAMETER = 8;
 	private static final double PULSE_PER_REVOLUTION = 1440;
@@ -32,7 +33,7 @@ public class DriveTrain extends Subsystem {
 
     public DriveTrain() {
     	super("DriveTrain");
-        final double distancePerPulse = Math.PI * WHEEL_DIAMETER / PULSE_PER_REVOLUTION / ENCODER_GEAR_RATIO / GEAR_RATIO * FUDGE_FACTOR;
+//        final double distancePerPulse = Math.PI * WHEEL_DIAMETER / PULSE_PER_REVOLUTION / ENCODER_GEAR_RATIO / GEAR_RATIO * FUDGE_FACTOR;
 //    	leftEncoder.setDistancePerPulse(distancePerPulse);
 //    	rightEncoder.setDistancePerPulse(distancePerPulse);
         System.out.println("DriveTrain Initiated");
@@ -89,6 +90,10 @@ public class DriveTrain extends Subsystem {
     public void moveRightMotorStack(double speed) {
         firstRightMotor.set(ControlMode.PercentOutput, -speed);
         secondRightMotor.set(ControlMode.PercentOutput, -speed);
+    }
+
+    public void moveLiftWheelsMotor(double speed) {
+        liftWheelsMotor.set(ControlMode.PercentOutput, speed);
     }
     
     /**

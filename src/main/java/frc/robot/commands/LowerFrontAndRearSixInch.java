@@ -38,12 +38,12 @@ public class LowerFrontAndRearSixInch extends GlobalCommand {
             rearBActivated = true;
         }
 
-        torquelift.shiftPTO();
+        torquelift.setPTOState(true);
         if (!rearBActivated) {
-            torquelift.moveRearDown(.75);
+            torquelift.moveRearDown(.30);
         }
         if (!frontBActivated) {
-            torquelift.moveFrontDown(1);
+            torquelift.moveFrontDown(.40);
         }
 
     }
@@ -60,7 +60,7 @@ public class LowerFrontAndRearSixInch extends GlobalCommand {
     // Called once after isFinished returns true
     protected void end() {
         System.out.println("ended");
-        torquelift.disengagePTO();
+        torquelift.setPTOState(true);
         torquelift.stopFront();
         torquelift.stopRear();
     }

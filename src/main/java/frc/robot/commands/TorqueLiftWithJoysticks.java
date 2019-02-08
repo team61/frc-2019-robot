@@ -22,18 +22,36 @@ public class TorqueLiftWithJoysticks extends GlobalCommand {
         	// The commands here will occur if the TorqueLift toggle switch
         	// is activated. All code here will only run after the button
         	// has been toggled.
-            torquelift.shiftPTO(); // TODO: ensure that shiftPTO enables the lift, rather than the drive wheels
-            if (!(limitSwitchFrontA.isSwitchSet() || limitSwitchFrontC.isSwitchSet())) {
-                torquelift.liftDrive(oi.getLeftSpeed(), 0.0); // front, rear
-            }
-            if (!(limitSwitchRearA.isSwitchSet() || limitSwitchRearC.isSwitchSet())) {
-                torquelift.liftDrive(0.0, oi.getRightSpeed()); // front, rear
+            torquelift.setPTOState(true); // TODO: ensure that shiftPTO enables the lift, rather than the drive wheels
+            if (limitSwitchFrontA.isSwitchSet() || limitSwitchFrontC.isSwitchSet() ||
+                    limitSwitchRearA.isSwitchSet() || limitSwitchRearC.isSwitchSet()) {
+                if (limitSwitchFrontA.isSwitchSet() || limitSwitchFrontC.isSwitchSet()) {
+                    if (limitSwitchFrontA.isSwitchSet()) {
+                        torquelift.frontLiftDrive(oi.getLeftPositiveSpeed());
+                    } else {
+                        torquelift.frontLiftDrive(oi.getLeftNegativeSpeed());
+                    }
+                } else {
+                    torquelift.frontLiftDrive(oi.getLeftSpeed());
+                }
+
+                if (limitSwitchRearA.isSwitchSet() || limitSwitchRearC.isSwitchSet()) {
+                    if (limitSwitchRearA.isSwitchSet()) {
+                        torquelift.rearLiftDrive(oi.getRightPositiveSpeed());
+                    } else {
+                        torquelift.rearLiftDrive(oi.getRightNegativeSpeed());
+                    }
+                } else {
+                    torquelift.rearLiftDrive(oi.getRightSpeed());
+                }
+            } else {
+                torquelift.liftDrive(oi.getLeftSpeed(), oi.getRightSpeed());
             }
         } else {
-            System.out.println("lift disabled, motors should be driving now");
+            System.out.println("lift disabled");
             // The commands here will occur normally, when the TorqueLift is
             // not activated.
-            torquelift.disengagePTO();
+            torquelift.setPTOState(false);
         }
     }
 

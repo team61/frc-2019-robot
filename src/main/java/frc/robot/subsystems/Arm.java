@@ -1,7 +1,9 @@
 package frc.robot.subsystems;
 
-import frc.robot.RobotMap;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
+import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.UseArmWithJoysticks;
 
@@ -15,12 +17,10 @@ public class Arm extends Subsystem {
      * Definition of Solenoids
      * Solenoids in this program will have the 's' prefix
      */
-//	private Solenoid sClawLifterA = new Solenoid(RobotMap.pcmModule, RobotMap.sClawLifterChannelA);
-//	private Solenoid sClawLifterB = new Solenoid(RobotMap.pcmModule, RobotMap.sClawLifterChannelB);
-//	private Solenoid sClawA = new Solenoid(RobotMap.pcmModule, RobotMap.sClawChannelA);
-//	private Solenoid sClawB = new Solenoid(RobotMap.pcmModule, RobotMap.sClawChannelB);
-//	private Solenoid sCatchA = new Solenoid(RobotMap.pcmModule, 6);
-//	private Solenoid sCatchB = new Solenoid(RobotMap.pcmModule, 7);
+    private Solenoid sArmA = new Solenoid(RobotMap.pcmModule, RobotMap.sArmA);
+    private Solenoid sArmB = new Solenoid(RobotMap.pcmModule, RobotMap.sArmB);
+
+    private TalonSRX armMotor = new TalonSRX(RobotMap.mArm);
 
     public Arm() {
     	super("Arm");
@@ -37,28 +37,22 @@ public class Arm extends Subsystem {
     }
     
     /**
-     * Punches with the arm, used to put the hatch panel on the velcro hatch
+     * Sets the state of the punching arm
+     * if true, it punches arm outwards. if false, it retracts arm inwards.
      * @author Team 61 Programming
      */
-    public void punchArm() {
-        //TODO: Implement punchArm method
+    public void setArmState(boolean bool) {
+        // TODO: confirm states of true and false
+        sArmA.set(bool);
+        sArmB.set(!bool);
     }
     
     /**
-     * retracts the arm
+     * Moves the arm.
      * @author Team 61 Programming
      */
-    public void retractArm() {
-        //TODO: Implement retractArm method
-    }
-    
-    /**
-     * Lowers the arm. Primarily used when hatch panel
-     * is attached and arm must be retracted
-     * @author Team 61 Programming
-     */
-    public void lowerArm() {
-        //TODO: Implement lowerArm method
+    public void moveArm(double speed) {
+        armMotor.set(ControlMode.PercentOutput, -speed);
     }
 }
 

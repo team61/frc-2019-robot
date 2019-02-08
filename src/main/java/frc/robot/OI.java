@@ -9,11 +9,14 @@ import frc.robot.joysticks.*;
  */
 public class OI {
 
+	private final double UPPER_JOYSTICK_BUFFER = .05;
+    private final double LOWER_JOYSTICK_BUFFER = .05;
+
     // Declare Joysticks
     public Stick jLeft = new LeftStick();
     public Stick jRight = new RightStick();
     public Stick jLift = new LiftStick();
-    public Stick jClaw = new ClawStick();
+    public Stick jArm = new ArmStick();
 
 	public OI() {
 		jLift.getButton7().whenPressed(new LowerFrontAndRearSixInch());
@@ -29,30 +32,10 @@ public class OI {
      * @return joystick value scaled -1 to 1
      */
 	public double getLiftSpeed() {
-        return (jLift.getY()); 
-	}
-
-    /**
-     * Gets the position of the jElev Y Axis
-     * @return joystick value scaled 0 to 1
-     */
-	public double getLiftYUpSpeed() {
-		if (getLiftSpeed() < 0) {
-			return (jLift.getY());
+		if ((jLift.getY() < UPPER_JOYSTICK_BUFFER) && (jLift.getY() > LOWER_JOYSTICK_BUFFER)) {
+			return 0;
 		} else {
-			return 0;		
-		}
-	}
-
-    /**
-     * Gets the position of the jElev Y Axis
-     * @return joystick value scaled -1 to 0
-     */
-	public double getLiftYDownSpeed() {
-		if (getLiftSpeed() > 0) {
 			return (jLift.getY());
-		} else {
-			return 0;		
 		}
 	}
 	
@@ -61,22 +44,67 @@ public class OI {
      * @return joystick value scaled -1 to 1
      */
 	public double getLeftSpeed() {
-        return (jLeft.getY()); 
+        if ((jLeft.getY() < UPPER_JOYSTICK_BUFFER) && (jLeft.getY() > LOWER_JOYSTICK_BUFFER)) {
+            return 0;
+        } else {
+            return (jLeft.getY());
+        }
 	}
+
+	//reverse joystick brings robot up in air
+	public double getLeftPositiveSpeed() {
+	    if (getLeftSpeed() > 0) {
+	        return getLeftSpeed();
+        } else {
+	        return 0;
+        }
+    }
+
+    public double getLeftNegativeSpeed() {
+        if (getLeftSpeed() < 0) {
+            return getLeftSpeed();
+        } else {
+            return 0;
+        }
+    }
 	
     /** 
      * Gets the position of the jLeft Y Axis
      * @return joystick value scaled -1 to 1
      */
 	public double getRightSpeed() {
-        return (jRight.getY()); 
+        if ((jRight.getY() < UPPER_JOYSTICK_BUFFER) && (jRight.getY() > LOWER_JOYSTICK_BUFFER)) {
+            return 0;
+        } else {
+            return (jRight.getY());
+        }
 	}
+
+    public double getRightPositiveSpeed() {
+        if (getRightSpeed() > 0) {
+            return getRightSpeed();
+        } else {
+            return 0;
+        }
+    }
+
+    public double getRightNegativeSpeed() {
+        if (getRightSpeed() < 0) {
+            return getRightSpeed();
+        } else {
+            return 0;
+        }
+    }
 	
     /** 
      * Gets the position of the jClaw Y Axis
      * @return joystick value scaled -1 to 1
      */
-	public double getClawSpeed() {
-        return (jClaw.getY()); 
+	public double getArmSpeed() {
+        if ((jArm.getY() < UPPER_JOYSTICK_BUFFER) && (jArm.getY() > LOWER_JOYSTICK_BUFFER)) {
+            return 0;
+        } else {
+            return (jArm.getY());
+        }
 	}
 }

@@ -3,10 +3,10 @@ package frc.robot.joysticks;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.RobotMap;
 
-public class ClawStick extends Stick{
+public class ArmStick extends Stick{
     private Joystick jClaw;
-    public ClawStick() {
-        jClaw = new Joystick(RobotMap.clawStick);
+    public ArmStick() {
+        jClaw = new Joystick(RobotMap.armStick);
     }
 
     public double getY() {
@@ -28,12 +28,9 @@ public class ClawStick extends Stick{
         }
     }
 
-    /**
-     * releases catch for other robots
-     */
     public void updateToggleButton()
     {
-        if(jClaw.getRawButton(RobotMap.barToggleButton)){
+        if(jClaw.getRawButton(RobotMap.armReleaseButton)){
             if(!togglePressedButton){
                 toggleOnButton = !toggleOnButton;
                 togglePressedButton = true;

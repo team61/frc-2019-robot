@@ -14,14 +14,17 @@ public class UseArmWithJoysticks extends GlobalCommand {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         oi.jLeft.updateToggleTrigger();
+        oi.jArm.updateToggleButton();
         if(oi.jLeft.toggleOn){
             // commands to occur when torque toggle is pressed
             // we only want the moveAllMotors command in TorqueLift to
             // run so we will do nothing here
-            return;
+            arm.moveArm(oi.getArmSpeed());
+            arm.setArmState(oi.jArm.toggleOnButton);
         } else {
             //the commands here will be what normally runs
-
+            arm.moveArm(oi.getArmSpeed());
+            arm.setArmState(oi.jArm.toggleOnButton);
         }
     }
 

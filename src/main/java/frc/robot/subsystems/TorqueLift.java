@@ -19,15 +19,6 @@ public class TorqueLift extends Subsystem {
      */
     private Solenoid sPTOA = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOA);
     private Solenoid sPTOB = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOB);
-//	private Solenoid sSwapA = new Solenoid(RobotMap.pcmModule, RobotMap.sLiftSwapA);
-//	private Solenoid sSwapB = new Solenoid(RobotMap.pcmModule, RobotMap.sLiftSwapB);
-//
-//    private TalonSRX motorA = new TalonSRX(RobotMap.mLeftA);
-//    private TalonSRX motorB = new TalonSRX(RobotMap.mLeftB);
-//    private TalonSRX motorC = new TalonSRX(RobotMap.mRightA);
-//    private TalonSRX motorD = new TalonSRX(RobotMap.mRightB);
-//	private TalonSRX motorE = new TalonSRX(RobotMap.mLiftA);
-//    private TalonSRX motorF = new TalonSRX(RobotMap.mLiftB);
 	
     public TorqueLift() {
     	super("TorqueLift");
@@ -44,15 +35,14 @@ public class TorqueLift extends Subsystem {
     }
 
 
-
-    public void shiftPTO() {
-        sPTOA.set(true);
-        sPTOB.set(false);
-    }
-
-    public void disengagePTO() {
-        sPTOA.set(false);
-        sPTOB.set(true);
+    /**
+     * Sets the state of the PTO
+     * if true, the lift is enabled, if false, the drive mechanism is enabled
+     * @author Team 61 Programming
+     */
+    public void setPTOState(boolean bool) {
+        sPTOA.set(bool);
+        sPTOB.set(!bool);
     }
 
     public void moveRearDown(double speed) {
@@ -81,6 +71,14 @@ public class TorqueLift extends Subsystem {
 
     public void liftDrive(double front, double rear) {
         GlobalCommand.drivetrain.tankDrive(front, rear);
+    }
+
+    public void frontLiftDrive(double speed) {
+        GlobalCommand.drivetrain.moveLeftMotorStack(speed);
+    }
+
+    public void rearLiftDrive(double speed) {
+        GlobalCommand.drivetrain.moveRightMotorStack(speed);
     }
 
     /**

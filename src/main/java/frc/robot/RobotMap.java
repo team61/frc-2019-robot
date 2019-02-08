@@ -11,15 +11,15 @@ public class RobotMap {
 	public static int leftStick = 0;
 	public static int rightStick = 1;
 	public static int liftStick = 2;
-	public static int clawStick = 3;
+	public static int armStick = 3;
 
 	//Motor Ports
 	public static int mLeftA = 5;
 	public static int mLeftB = 6;
 	public static int mRightA = 1;
 	public static int mRightB = 2;
-	public static int mLiftA = 5;
-	public static int mLiftB = 6;
+	public static int mArm = 4;
+	public static int mLiftWheels = 3;
 	
 	//Encoder Ports
 	public static int eLeftA = 1;
@@ -33,6 +33,8 @@ public class RobotMap {
 	public static int pcmModule = 7;
 	public static int sPTOA = 0;
 	public static int sPTOB = 1;
+	public static int sArmA = 2;
+	public static int sArmB = 3;
 
 	//Limit Switches
 	public static int limitSwitchFrontA = 3;
@@ -41,9 +43,13 @@ public class RobotMap {
 	public static int limitSwitchRearA = 0;
 	public static int limitSwitchRearB = 1;
 	public static int limitSwitchRearC = 2;
+	public static int limitSwitchArmA = 0;
+	public static int limitSwitchArmB = 0;
+	public static int limitSwitchArmC = 0;
+
 
 	//Misc.
-	public static int barToggleButton = 10;
+	public static int armReleaseButton = 5;
 	public static int mainGyro = 0;
 	public static int chooserSwitchA = 6;
 	public static int chooserSwitchB = 5;

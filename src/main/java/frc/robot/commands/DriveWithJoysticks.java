@@ -20,9 +20,11 @@ public class DriveWithJoysticks extends GlobalCommand {
     	oi.jLeft.updateToggleTrigger();
         if(oi.jLeft.toggleOn){
         	// commands to occur when torque toggle is pressed
+            drivetrain.moveLiftWheelsMotor(oi.getLiftSpeed());
         } else {
         	//the commands here will be what normally runs
         	drivetrain.tankDrive(oi.getLeftSpeed(), oi.getRightSpeed());
+            drivetrain.moveLiftWheelsMotor(oi.getLiftSpeed());
         }
     }
 

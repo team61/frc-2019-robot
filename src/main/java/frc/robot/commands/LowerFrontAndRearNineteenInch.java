@@ -27,12 +27,12 @@ public class LowerFrontAndRearNineteenInch extends GlobalCommand {
             rearCActivated = true;
         }
 
-        torquelift.shiftPTO();
+        torquelift.setPTOState(true);
         if (!rearCActivated) {
-            torquelift.moveRearDown(.75);
+            torquelift.moveRearDown(.30);
         }
         if (!frontCActivated) {
-            torquelift.moveFrontDown(1);
+            torquelift.moveFrontDown(.40);
         }
 
     }
@@ -49,7 +49,7 @@ public class LowerFrontAndRearNineteenInch extends GlobalCommand {
     // Called once after isFinished returns true
     protected void end() {
         System.out.println("ended");
-        torquelift.disengagePTO();
+        torquelift.setPTOState(true);
         torquelift.stopFront();
         torquelift.stopRear();
     }
