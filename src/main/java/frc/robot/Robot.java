@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
+import frc.robot.commands.AutoGroup;
 import frc.robot.commands.GlobalCommand;
 import frc.robot.subsystems.DriveTrain;
 
@@ -19,7 +20,7 @@ public class Robot extends TimedRobot {
 	
 
 
-	private Command autonomousCommand;
+	private Command autonomousCommand = new AutoGroup();
 
 	/**
 	 * This function is run when the robot is first started up and should be
