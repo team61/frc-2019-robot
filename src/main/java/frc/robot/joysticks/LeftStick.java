@@ -7,8 +7,8 @@ import frc.robot.RobotMap;
 
 public class LeftStick extends Stick {
     private Joystick jLeft;
-    public LeftStick() {
-        jLeft = new Joystick(RobotMap.leftStick);
+    public LeftStick(int port) {
+        jLeft = new Joystick(port);
     }
 
     public double getY() {

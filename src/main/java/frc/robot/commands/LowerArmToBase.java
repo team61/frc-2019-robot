@@ -1,34 +1,33 @@
 package frc.robot.commands;
 
-public class LowerArmToC extends GlobalCommand {
-    private boolean armCActivated;
+public class LowerArmToBase extends GlobalCommand {
+    private boolean armBaseActivated;
 
-    public LowerArmToC() {
+    public LowerArmToBase() {
         // Use requires() here to declare subsystem dependencies
         requires(arm);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        armCActivated = false;
+        armBaseActivated = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("Arm C Limit Switch: " + limitSwitchArmC.isSwitchSet());
-        if (limitSwitchArmC.isSwitchSet()) {
-            armCActivated = true;
+        System.out.println("Arm A Limit Switch: " + limitSwitchArmBase.isSwitchSet());
+        if (limitSwitchArmBase.isSwitchSet()) {
+            armBaseActivated = true;
         }
 
-        if (!armCActivated) {
-            arm.moveArm(.30);
+        if (!armBaseActivated) {
+            arm.moveArm(.50);
         }
-
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return armCActivated;
+        return armBaseActivated;
     }
 
     // Called once after isFinished returns true

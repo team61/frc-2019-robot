@@ -24,10 +24,11 @@ public abstract class GlobalCommand extends Command {
     public static final Switch limitSwitchRearA = new LimitSwitchRearA();
     public static final Switch limitSwitchRearB = new LimitSwitchRearB();
     public static final Switch limitSwitchRearC = new LimitSwitchRearC();
-//    public static final Switch limitSwitchArmA = new LimitSwitchArmA();
-//    public static final Switch limitSwitchArmB = new LimitSwitchArmB();
-//    public static final Switch limitSwitchArmC = new LimitSwitchArmC();
-	
+    public static final Switch limitSwitchArmA = new LimitSwitchArmA();
+    public static final Switch limitSwitchArmB = new LimitSwitchArmB();
+    public static final Switch limitSwitchArmC = new LimitSwitchArmC();
+    public static final Switch limitSwitchArmBase = new LimitSwitchArmBase();
+
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from

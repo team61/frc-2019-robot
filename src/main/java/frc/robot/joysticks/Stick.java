@@ -1,6 +1,7 @@
 package frc.robot.joysticks;
 
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 
 /**
  * Abstract joystick class
@@ -13,6 +14,9 @@ public abstract class Stick {
     public boolean toggleOnButton = false;
     public boolean togglePressedButton = false;
 
+    private Button trigger;
+
+    private Button button5;
     private Button button7;
     private Button button8;
     private Button button9;
@@ -37,6 +41,12 @@ public abstract class Stick {
         toggleOnButton = false;
         togglePressedButton = false;
     }
+
+    public Button getTrigger() {
+        return trigger;
+    }
+
+    public Button getButton5() { return button5; }
 
     public Button getButton7() {
         return button7;

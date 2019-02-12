@@ -15,8 +15,8 @@ public class LiftStick extends Stick {
     private Button button11;
     private Button button12;
 
-    public LiftStick() {
-        jLift = new Joystick(RobotMap.liftStick);
+    public LiftStick(int port) {
+        jLift = new Joystick(port);
         button7 = new JoystickButton(jLift, 7);
         button8 = new JoystickButton(jLift, 8);
         button9 = new JoystickButton(jLift, 9);
@@ -45,9 +45,7 @@ public class LiftStick extends Stick {
         return button10;
     }
 
-    public Button getButton11() {
-        return button11;
-    }
+    public Button getButton11() { return button11; }
 
     public Button getButton12() {
         return button12;

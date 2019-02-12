@@ -43,14 +43,12 @@ public class RobotMap {
 	public static int limitSwitchRearA = 0;
 	public static int limitSwitchRearB = 1;
 	public static int limitSwitchRearC = 2;
-	public static int limitSwitchArmA = 0;
-	public static int limitSwitchArmB = 0;
-	public static int limitSwitchArmC = 0;
+	public static int limitSwitchArmA = 8;
+	public static int limitSwitchArmB = 7;
+	public static int limitSwitchArmC = 6;
+	public static int limitSwitchArmBase = 9;
 
 
 	//Misc.
 	public static int armReleaseButton = 5;
-	public static int mainGyro = 0;
-	public static int chooserSwitchA = 6;
-	public static int chooserSwitchB = 5;
 }

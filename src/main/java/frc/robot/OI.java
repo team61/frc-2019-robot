@@ -13,10 +13,10 @@ public class OI {
     private final double LOWER_JOYSTICK_BUFFER = .05;
 
     // Declare Joysticks
-    public Stick jLeft = new LeftStick();
-    public Stick jRight = new RightStick();
-    public Stick jLift = new LiftStick();
-    public Stick jArm = new ArmStick();
+    public Stick jLeft = new LeftStick(RobotMap.leftStick);
+    public Stick jRight = new RightStick(RobotMap.rightStick);
+    public Stick jLift = new LiftStick(RobotMap.liftStick);
+    public Stick jArm = new ArmStick(RobotMap.armStick);
 
 	public OI() {
 		jLift.getButton7().whenPressed(new LowerFrontAndRearSixInch());
@@ -25,6 +25,14 @@ public class OI {
 		jLift.getButton10().whenPressed(new RaiseFrontSixInch());
 		jLift.getButton11().whenPressed(new RaiseRearSixInch());
 		jLift.getButton12().whenPressed(new RaiseRearSixInch());
+
+        jArm.getButton7().whenPressed(new RaiseArmToA());
+        jArm.getButton9().whenPressed(new RaiseArmToB());
+        jArm.getButton11().whenPressed(new RaiseArmToC());
+        jRight.getButton5().whenPressed(new LowerArmToBase());
+        jRight.getTrigger().whenPressed(new LowerArmToBase());
+
+        // TODO: implement trigger class that extends button, and allows the trigger to funtion like a button in OI
 	}
 
     /** 
@@ -38,7 +46,7 @@ public class OI {
 			return (jLift.getY());
 		}
 	}
-	
+
     /** 
      * Gets the position of the jLeft Y Axis
      * @return joystick value scaled -1 to 1
@@ -107,4 +115,20 @@ public class OI {
             return (jArm.getY());
         }
 	}
+
+    public double getArmPositiveSpeed() {
+        if (getArmSpeed() > 0) {
+            return getArmSpeed();
+        } else {
+            return 0;
+        }
+    }
+
+    public double getArmNegativeSpeed() {
+        if (getArmSpeed() < 0) {
+            return getArmSpeed();
+        } else {
+            return 0;
+        }
+    }
 }
