@@ -54,5 +54,10 @@ public class Arm extends Subsystem {
     public void moveArm(double speed) {
         armMotor.set(ControlMode.PercentOutput, -speed);
     }
+
+    public void stop() {
+        moveArm(0.0);
+    }
+
 }
 

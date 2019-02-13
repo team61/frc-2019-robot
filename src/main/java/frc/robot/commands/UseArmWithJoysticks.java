@@ -20,17 +20,17 @@ public class UseArmWithJoysticks extends GlobalCommand {
             // we only want the moveAllMotors command in TorqueLift to
             // run so we will do nothing here
             if(limitSwitchArmBase.isSwitchSet()) {
-                arm.moveArm(oi.getArmNegativeSpeed());
+                arm.moveArm(-oi.getArmPositiveSpeed());
             } else {
-                arm.moveArm(oi.getArmSpeed());
+                arm.moveArm(-oi.getArmSpeed());
             }
             arm.setArmState(oi.jArm.toggleOnButton);
         } else {
             //the commands here will be what normally runs
             if(limitSwitchArmBase.isSwitchSet()) {
-                arm.moveArm(oi.getArmNegativeSpeed());
+                arm.moveArm(-oi.getArmPositiveSpeed());
             } else {
-                arm.moveArm(oi.getArmSpeed());
+                arm.moveArm(-oi.getArmSpeed());
             }
             arm.setArmState(oi.jArm.toggleOnButton);
         }

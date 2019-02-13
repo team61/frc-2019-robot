@@ -43,14 +43,16 @@ public class LowerFrontAndRearSixInch extends GlobalCommand {
             torquelift.moveRearDown(.30);
         }
         if (!frontBActivated) {
-            torquelift.moveFrontDown(.40);
+            torquelift.moveFrontDown(.42);
         }
 
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (frontBActivated && rearBActivated) {
+        if ((frontBActivated && rearBActivated) || oi.jArm.getButton4().get()
+                || (Math.abs(oi.getLeftSpeed()) > .2)
+                || (Math.abs(oi.getRightSpeed()) > .2)) {
             return true;
         } else {
             return false;

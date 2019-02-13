@@ -32,14 +32,18 @@ public class LowerFrontAndRearNineteenInch extends GlobalCommand {
             torquelift.moveRearDown(.30);
         }
         if (!frontCActivated) {
-            torquelift.moveFrontDown(.40);
+            torquelift.moveFrontDown(.42);
         }
 
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (frontCActivated && rearCActivated) {
+        if ((frontCActivated && rearCActivated) || oi.jArm.getButton4().get()
+                || (Math.abs(oi.getLeftSpeed()) > .2)
+                || (Math.abs(oi.getRightSpeed()) > .2)) {
+            // command should be killed when button 4 on arm stick is pressed or when
+            // left or right joysticks are moved
             return true;
         } else {
             return false;
