@@ -45,6 +45,7 @@ public class LowerFrontAndRearSixInch extends GlobalCommand {
             torquelift.moveRearDown(.30 + rearSpeedFactor);
         }
         if (!frontBActivated) {
+
             torquelift.moveFrontDown(.40 + frontSpeedFactor);
         }
 
@@ -54,7 +55,7 @@ public class LowerFrontAndRearSixInch extends GlobalCommand {
             rearSpeedFactor = 0.0;
         }
 
-        if(torquelift.getGyroPitch() < 10) {
+        if(torquelift.getGyroPitch() < -10) {
             frontSpeedFactor = .05;
         } else {
             frontSpeedFactor = 0.0;
@@ -64,7 +65,9 @@ public class LowerFrontAndRearSixInch extends GlobalCommand {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (frontBActivated && rearBActivated) {
+        if ((frontBActivated && rearBActivated) || oi.jArm.getButton4().get()
+                || (Math.abs(oi.getLeftSpeed()) > .2)
+                || (Math.abs(oi.getRightSpeed()) > .2)) {
             return true;
         } else {
             return false;

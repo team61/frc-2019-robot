@@ -16,6 +16,8 @@ public abstract class Stick {
 
     private Button trigger;
 
+    private Button button3;
+    private Button button4;
     private Button button5;
     private Button button7;
     private Button button8;
@@ -44,6 +46,15 @@ public abstract class Stick {
 
     public Button getTrigger() {
         return trigger;
+    }
+
+
+    public Button getButton3() {
+        return button3;
+    }
+
+    public Button getButton4() {
+        return button4;
     }
 
     public Button getButton5() { return button5; }

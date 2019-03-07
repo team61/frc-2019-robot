@@ -8,6 +8,7 @@ import frc.robot.RobotMap;
 public class ArmStick extends Stick{
     private Joystick jArm;
 
+    private Button button4;
     private Button button7;
     private Button button8;
     private Button button9;
@@ -17,6 +18,7 @@ public class ArmStick extends Stick{
 
     public ArmStick(int port) {
         jArm = new Joystick(port);
+        button4 = new JoystickButton(jArm, 4);
         button7 = new JoystickButton(jArm, 7);
         button8 = new JoystickButton(jArm, 8);
         button9 = new JoystickButton(jArm, 9);
@@ -28,6 +30,8 @@ public class ArmStick extends Stick{
     public double getY() {
         return jArm.getY();
     }
+
+    public Button getButton4() { return button4; }
 
     public Button getButton7() {
         return button7;
