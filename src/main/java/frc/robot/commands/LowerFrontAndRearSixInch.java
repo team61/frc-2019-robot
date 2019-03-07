@@ -3,6 +3,8 @@ package frc.robot.commands;
 public class LowerFrontAndRearSixInch extends GlobalCommand {
     private boolean frontBActivated;
     private boolean rearBActivated;
+    private double frontSpeedFactor = 0.0;
+    private double rearSpeedFactor = 0.0;
 
     public LowerFrontAndRearSixInch() {
         // Use requires() here to declare subsystem dependencies
@@ -40,10 +42,22 @@ public class LowerFrontAndRearSixInch extends GlobalCommand {
 
         torquelift.setPTOState(true);
         if (!rearBActivated) {
-            torquelift.moveRearDown(.30);
+            torquelift.moveRearDown(.30 + rearSpeedFactor);
         }
         if (!frontBActivated) {
-            torquelift.moveFrontDown(.40);
+            torquelift.moveFrontDown(.40 + frontSpeedFactor);
+        }
+
+        if(torquelift.getGyroPitch() > 10) {
+            rearSpeedFactor = .05;
+        } else {
+            rearSpeedFactor = 0.0;
+        }
+
+        if(torquelift.getGyroPitch() < 10) {
+            frontSpeedFactor = .05;
+        } else {
+            frontSpeedFactor = 0.0;
         }
 
     }

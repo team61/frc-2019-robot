@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 import frc.robot.RobotMap;
 import frc.robot.commands.GlobalCommand;
 import frc.robot.commands.TorqueLiftWithJoysticks;
@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * Doumentation for the gyro is here: https://www.kauailabs.com/public_files/navx-mxp/apidocs/java/com/kauailabs/navx/frc/AHRS.html
  */
 public class TorqueLift extends Subsystem {
 
@@ -19,9 +19,14 @@ public class TorqueLift extends Subsystem {
      */
     private Solenoid sPTOA = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOA);
     private Solenoid sPTOB = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOB);
+    private Boolean isFrontDipping = false;
+    private Boolean isRearDipping = false;
+    private AHRS ahrs;
 	
     public TorqueLift() {
     	super("TorqueLift");
+    	ahrs = new AHRS(SPI.Port.kMXP);
+        ahrs.reset();
         System.out.println("TorqueLift Initiated");
     }
 
@@ -81,6 +86,21 @@ public class TorqueLift extends Subsystem {
         GlobalCommand.drivetrain.moveRightMotorStack(speed);
     }
 
+    public void resetGyro() {
+        ahrs.reset();
+    }
+
+    public double getGyroYaw() {
+        return ahrs.getYaw();
+    }
+
+    public double getGyroRoll() {
+        return ahrs.getRoll();
+    }
+
+    public double getGyroPitch() {
+        return ahrs.getPitch();
+    }
     /**
      * Shifts the robot from torque lift to normal lift, and vice versa
      */

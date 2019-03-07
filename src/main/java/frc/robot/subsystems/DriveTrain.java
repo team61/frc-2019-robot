@@ -104,33 +104,6 @@ public class DriveTrain extends Subsystem {
     	moveLeftMotorStack(0.0);
     	moveRightMotorStack(0.0);
     }
-    
-    /**
-     * Resets Gyro to 0
-     * @author Team 61 Programming
-     */
-    public void resetGyro(){
-//        mainGyro.reset();
-    }
-    
-    /**
-     * Get Gyro Angle
-     * Positive is clockwise
-     * @return scaled angle in degrees
-     */
-    public double getGyroAngle(){
-//      return mainGyro.getAngle();
-        return 0;
-    }
-
-    /**
-     * Get Gyro Rate
-     * @return the rate of rotation of the Gyro
-     */
-    public double getGyroRate(){
-//      return mainGyro.getRate();
-        return 0;
-    }
 
     /**
      * Get Distance Traveled
