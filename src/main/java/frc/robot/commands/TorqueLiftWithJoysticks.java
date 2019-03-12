@@ -4,7 +4,8 @@ package frc.robot.commands;
  *
  */
 public class TorqueLiftWithJoysticks extends GlobalCommand {
-
+    private double frontSpeedFactor = 0.0;
+    private double rearSpeedFactor = 0.0;
     public TorqueLiftWithJoysticks() {
         // Use requires() here to declare subsystem dependencies
         requires(torquelift);
@@ -17,6 +18,7 @@ public class TorqueLiftWithJoysticks extends GlobalCommand {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	oi.jLeft.updateToggleTrigger();
+        oi.jLeft.updateToggleButton();
         if(oi.jLeft.toggleOn){
             System.out.println("lift enabled");
         	// The commands here will occur if the TorqueLift toggle switch
@@ -47,6 +49,22 @@ public class TorqueLiftWithJoysticks extends GlobalCommand {
             } else {
                 torquelift.liftDrive(oi.getLeftSpeed(), oi.getRightSpeed());
             }
+
+            if(!oi.jLeft.toggleOnButton) {
+                // correction
+                if (torquelift.getGyroRoll() < -1) {
+                    torquelift.rearLiftDrive(.45);
+                } else {
+                    rearSpeedFactor = 0.0;
+                }
+
+                if (torquelift.getGyroRoll() > 1) {
+                    torquelift.frontLiftDrive(.45);
+                } else {
+                    frontSpeedFactor = 0.0;
+                }
+            }
+            System.out.println(torquelift.getGyroRoll());
         } else {
             System.out.println("lift disabled");
             // The commands here will occur normally, when the TorqueLift is

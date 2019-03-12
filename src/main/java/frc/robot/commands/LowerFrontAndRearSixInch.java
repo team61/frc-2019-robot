@@ -48,18 +48,19 @@ public class LowerFrontAndRearSixInch extends GlobalCommand {
 
             torquelift.moveFrontDown(.40 + frontSpeedFactor);
         }
-
-        if(torquelift.getGyroPitch() > 10) {
-            rearSpeedFactor = .05;
+        // when roll is negative, the robots front is up
+        if(torquelift.getGyroRoll() < -1) {
+            rearSpeedFactor = .2;
         } else {
             rearSpeedFactor = 0.0;
         }
 
-        if(torquelift.getGyroPitch() < -10) {
-            frontSpeedFactor = .05;
+        if(torquelift.getGyroRoll() > 1) {
+            frontSpeedFactor = .2;
         } else {
             frontSpeedFactor = 0.0;
         }
+        System.out.println(torquelift.getGyroRoll());
 
     }
 

@@ -66,7 +66,7 @@ public class Robot extends TimedRobot {
 //		autonomousCommand = new AutoGroup();
 		
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null) autonomousCommand.start();
+//		if (autonomousCommand != null) autonomousCommand.start();
 		System.out.println("Autonomous Initiated");
 	}
 

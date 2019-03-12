@@ -3,6 +3,8 @@ package frc.robot.commands;
 public class LowerFrontAndRearNineteenInch extends GlobalCommand {
     private boolean frontCActivated;
     private boolean rearCActivated;
+    private double frontSpeedFactor = 0.0;
+    private double rearSpeedFactor = 0.0;
 
     public LowerFrontAndRearNineteenInch() {
         // Use requires() here to declare subsystem dependencies
@@ -29,12 +31,24 @@ public class LowerFrontAndRearNineteenInch extends GlobalCommand {
 
         torquelift.setPTOState(true);
         if (!rearCActivated) {
-            torquelift.moveRearDown(.30);
+            torquelift.moveRearDown(.30 + rearSpeedFactor);
         }
         if (!frontCActivated) {
-            torquelift.moveFrontDown(.42);
+            torquelift.moveFrontDown(.42 + frontSpeedFactor);
+        }
+        // when roll is negative, the robots front is up
+        if(torquelift.getGyroRoll() < -1) {
+            rearSpeedFactor = .2;
+        } else {
+            rearSpeedFactor = 0.0;
         }
 
+        if(torquelift.getGyroRoll() > 1) {
+            frontSpeedFactor = .2;
+        } else {
+            frontSpeedFactor = 0.0;
+        }
+        System.out.println(torquelift.getGyroRoll());
     }
 
     // Make this return true when this Command no longer needs to run execute()
