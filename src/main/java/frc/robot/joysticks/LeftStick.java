@@ -8,10 +8,12 @@ import frc.robot.RobotMap;
 public class LeftStick extends Stick {
     private Joystick jLeft;
     private Button button5;
+    private Button button11;
 
     public LeftStick(int port) {
         jLeft = new Joystick(port);
         button5 = new JoystickButton(jLeft, 5);
+        button11 = new JoystickButton(jLeft, 11);
     }
 
     public double getY() {
@@ -22,7 +24,9 @@ public class LeftStick extends Stick {
         return button5;
     }
 
-
+    public Button getButton11() {
+        return button11;
+    }
 
     public void updateToggleTrigger() {
         if (jLeft.getTrigger()) {
@@ -36,7 +40,7 @@ public class LeftStick extends Stick {
     }
 
     public void updateToggleButton() {
-        if (getButton5().get()) {
+        if (getButton11().get()) {
             if (!togglePressedButton) {
                 toggleOnButton = !toggleOnButton;
                 togglePressedButton = true;

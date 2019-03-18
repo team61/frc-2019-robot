@@ -23,7 +23,7 @@ public class RaiseFrontSixInch extends GlobalCommand {
         torquelift.setPTOState(true);
 
         if (!frontAActivated) {
-            torquelift.moveFrontUp(.75);
+            torquelift.moveFrontUp(.4);
         }
 
     }

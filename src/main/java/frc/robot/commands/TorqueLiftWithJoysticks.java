@@ -1,5 +1,7 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Relay;
+
 /**
  *
  */
@@ -52,6 +54,8 @@ public class TorqueLiftWithJoysticks extends GlobalCommand {
 
             if(!oi.jLeft.toggleOnButton) {
                 // correction
+                torquelift.gyroEnabledLight.set(Relay.Value.kOn);
+                System.out.println("GYRO ACTIVATED");
                 if (torquelift.getGyroRoll() < -1) {
                     torquelift.rearLiftDrive(.45);
                 } else {
@@ -63,8 +67,10 @@ public class TorqueLiftWithJoysticks extends GlobalCommand {
                 } else {
                     frontSpeedFactor = 0.0;
                 }
+            } else {
+                torquelift.gyroEnabledLight.set(Relay.Value.kOff);
             }
-            System.out.println(torquelift.getGyroRoll());
+//            System.out.println(torquelift.getGyroRoll());
         } else {
             System.out.println("lift disabled");
             // The commands here will occur normally, when the TorqueLift is

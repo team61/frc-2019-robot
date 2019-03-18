@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SPI;
 import frc.robot.RobotMap;
 import frc.robot.commands.GlobalCommand;
@@ -22,6 +23,7 @@ public class TorqueLift extends Subsystem {
     private Boolean isFrontDipping = false;
     private Boolean isRearDipping = false;
     private AHRS ahrs;
+    public Relay gyroEnabledLight = new Relay(0);
 	
     public TorqueLift() {
     	super("TorqueLift");
