@@ -35,7 +35,7 @@ public class Robot extends TimedRobot {
 	    GlobalCommand.init();
 
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-		camera.setResolution(320, 240);
+		camera.setResolution(160, 120);
 
         System.out.println("+----------------------------------------------+");
         System.out.println("| Team "+teamNo+" - Software Version: "+versionNo+" |");

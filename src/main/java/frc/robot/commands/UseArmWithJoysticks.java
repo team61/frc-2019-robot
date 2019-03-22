@@ -17,18 +17,34 @@ public class UseArmWithJoysticks extends GlobalCommand {
         oi.jArm.updateToggleButton();
         if(oi.jLeft.toggleOn){
             // commands to occur when torque toggle is pressed
-            // we only want the moveAllMotors command in TorqueLift to
-            // run so we will do nothing here
-            if(limitSwitchArmBase.isSwitchSet()) {
-                arm.moveArm(-oi.getArmPositiveSpeed());
+            if(limitSwitchArmBase.isSwitchSet() || limitSwitchArmC.isSwitchSet()) {
+                if(limitSwitchArmBase.isSwitchSet()) {
+                    arm.moveArm(-oi.getArmPositiveSpeed());
+                }
+
+                if (limitSwitchArmC.isSwitchSet()){
+                    arm.moveArm(-oi.getArmNegativeSpeed());
+                }
             } else {
                 arm.moveArm(-oi.getArmSpeed());
             }
             arm.setArmState(oi.jArm.toggleOnButton);
         } else {
             //the commands here will be what normally runs
-            if(limitSwitchArmBase.isSwitchSet()) {
-                arm.moveArm(-oi.getArmPositiveSpeed());
+//            if(limitSwitchArmBase.isSwitchSet()) {
+//                arm.moveArm(-oi.getArmPositiveSpeed());
+//            } else {
+//                arm.moveArm(-oi.getArmSpeed());
+//            }
+//            arm.setArmState(oi.jArm.toggleOnButton);
+            if(limitSwitchArmBase.isSwitchSet() || limitSwitchArmC.isSwitchSet()) {
+                if(limitSwitchArmBase.isSwitchSet()) {
+                    arm.moveArm(-oi.getArmPositiveSpeed());
+                }
+
+                if (limitSwitchArmC.isSwitchSet()){
+                    arm.moveArm(-oi.getArmNegativeSpeed());
+                }
             } else {
                 arm.moveArm(-oi.getArmSpeed());
             }

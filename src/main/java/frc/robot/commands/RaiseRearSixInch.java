@@ -23,7 +23,7 @@ public class RaiseRearSixInch extends GlobalCommand {
         torquelift.setPTOState(true);
 
         if (!rearAActivated) {
-            torquelift.moveRearUp(.4);
+            torquelift.moveRearUp(.5);
         }
 
     }
