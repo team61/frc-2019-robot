@@ -22,7 +22,6 @@ public class TorqueLiftWithJoysticks extends GlobalCommand {
     	oi.jLeft.updateToggleTrigger();
         oi.jLeft.updateToggleButton();
         if(oi.jLeft.toggleOn){
-            System.out.println("lift enabled");
         	// The commands here will occur if the TorqueLift toggle switch
         	// is activated. All code here will only run after the button
         	// has been toggled.
@@ -55,7 +54,6 @@ public class TorqueLiftWithJoysticks extends GlobalCommand {
             if(!oi.jLeft.toggleOnButton) {
                 // correction
                 torquelift.gyroEnabledLight.set(Relay.Value.kOn);
-                System.out.println("GYRO ACTIVATED");
                 if (torquelift.getGyroRoll() < -1) {
                     torquelift.rearLiftDrive(.45);
                 } else {
@@ -72,7 +70,6 @@ public class TorqueLiftWithJoysticks extends GlobalCommand {
             }
 //            System.out.println(torquelift.getGyroRoll());
         } else {
-            System.out.println("lift disabled");
             // The commands here will occur normally, when the TorqueLift is
             // not activated.
             torquelift.setPTOState(false);
