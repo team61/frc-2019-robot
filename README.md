@@ -7,7 +7,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+The items required to use this project:
 
 1. FRC 2019 Update Suite (http://www.ni.com/download/first-robotics-software-2017/7904/en/)
 2. Java SE Development Kit 8 (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
