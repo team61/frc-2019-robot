@@ -42,7 +42,6 @@ public class Arm extends Subsystem {
      * @author Team 61 Programming
      */
     public void setArmState(boolean bool) {
-        // TODO: confirm states of true and false
         sArmA.set(!bool);
         sArmB.set(bool);
     }

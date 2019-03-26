@@ -42,11 +42,11 @@ public class LowerFrontAndRearSixInch extends GlobalCommand {
 
         torquelift.setPTOState(true);
         if (!rearBActivated) {
-            torquelift.moveRearDown(.30 + rearSpeedFactor);
+            torquelift.moveRearDown(.8 + rearSpeedFactor); //.3
         }
         if (!frontBActivated) {
 
-            torquelift.moveFrontDown(.40 + frontSpeedFactor);
+            torquelift.moveFrontDown(.8 + frontSpeedFactor); //.4
         }
         // when roll is negative, the robots front is up
         if(torquelift.getGyroRoll() < -1) {

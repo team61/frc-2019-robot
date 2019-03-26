@@ -31,8 +31,6 @@ public class OI {
         jArm.getButton11().whenPressed(new RaiseArmToC());
         jRight.getButton3().whenPressed(new LowerArmToBase());
         jRight.getTrigger().whenPressed(new LowerArmThreeInch());
-
-        // TODO: implement trigger class that extends button, and allows the trigger to funtion like a button in OI
 	}
 
     /** 

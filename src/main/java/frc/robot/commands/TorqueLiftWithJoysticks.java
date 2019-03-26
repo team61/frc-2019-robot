@@ -25,7 +25,7 @@ public class TorqueLiftWithJoysticks extends GlobalCommand {
         	// The commands here will occur if the TorqueLift toggle switch
         	// is activated. All code here will only run after the button
         	// has been toggled.
-            torquelift.setPTOState(true); // TODO: ensure that shiftPTO enables the lift, rather than the drive wheels
+            torquelift.setPTOState(true); // enables the lift
             if (limitSwitchFrontA.isSwitchSet() || limitSwitchFrontC.isSwitchSet() ||
                     limitSwitchRearA.isSwitchSet() || limitSwitchRearC.isSwitchSet()) {
                 if (limitSwitchFrontA.isSwitchSet() || limitSwitchFrontC.isSwitchSet()) {
@@ -72,7 +72,7 @@ public class TorqueLiftWithJoysticks extends GlobalCommand {
         } else {
             // The commands here will occur normally, when the TorqueLift is
             // not activated.
-            torquelift.setPTOState(false);
+            torquelift.setPTOState(false); // disables the lift
         }
     }
 
