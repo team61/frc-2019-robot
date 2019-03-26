@@ -1,9 +1,5 @@
 # 2019 First Robotics Robot
 
-FIRST Robotics Competition is the ultimate Sport for the MindTM, where imagination and innovation come together! By combining the excitement of sport and beauty of art with the rigors of science and technology, teams of high school students (ages 14 - 18/grades 9 - 12) are challenged to design a team “brand,” hone teamwork skills, and build and program robots to perform tasks against a field of competitors.
-
-Teams work together to build, program and test robots with the guidance of adult mentors. Teams then compete with their robots as family and friends cheer from the stands at more than 160 events worldwide – all leading up to the 2018 FIRST Championship, April 18 - 21 in Houston, TX and April 25 - 28 in Detroit, MI.
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
