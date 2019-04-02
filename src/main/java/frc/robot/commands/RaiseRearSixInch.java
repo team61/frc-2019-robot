@@ -30,7 +30,11 @@ public class RaiseRearSixInch extends GlobalCommand {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return rearAActivated;
+        return (rearAActivated || oi.jArm.getButton4().get()
+                || (Math.abs(oi.getLeftSpeed()) > .2)
+                || (Math.abs(oi.getRightSpeed()) > .2));
+        // command should be killed when button 4 on arm stick is pressed or when
+        // left or right joysticks are moved
     }
 
     // Called once after isFinished returns true

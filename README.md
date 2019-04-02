@@ -70,7 +70,7 @@ Since the season is close to over, we will most likely archive this project from
 
 * **Thomas Buckley** - *Programmer and Author of Documentation* - [thomasbuckley](https://github.com/thomasabuckley)
 * **Kevin Downing** - *Shadowed Programmers* - [KevinDowning](https://github.com/KevinDowning)
-* **Jacob Gray** - *Shadowed Programmers*
+* **Jacob Gray** - *Shadowed Programmers* - [JGray2020](https://github.com/JGray2020)
 * **Adam Dickey** - *Shadowed Programmers* - [adamdickey](https://github.com/adamdickey)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
