@@ -23,11 +23,13 @@ public class M_I2C {
         //and adds it as a new element in the array
         PixyPacket pkt = new PixyPacket();  //creates a new packet to hold the data
         if(info[0].equals("none") || info[0].equals("")){//checks to make sure there is data
+//            System.out.println("NO DATA FROM ARDIUNO");
             pkt.x = -1;//the x val will never be -1 so we can text later in code to make sure
             //there is data
             pkt.y = -1;
             pkt.area = -1;
         }else if(info.length == 3){//if there is an x, y, and area value the length equals 3
+//            System.out.println("DATA FROM ARDUINO");
             pkt.x = Double.parseDouble(info[0]);//set x
             pkt.y = Double.parseDouble(info[1]);//set y
             pkt.area = Double.parseDouble(info[2]);//set area

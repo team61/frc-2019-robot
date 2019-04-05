@@ -1,5 +1,7 @@
 package frc.robot.commands;
 
+import frc.robot.Robot;
+
 /**
  *
  */
@@ -17,6 +19,7 @@ public class DriveWithJoysticks extends GlobalCommand {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        Robot.test.centerOnObject();
     	oi.jLeft.updateToggleTrigger();
         if(oi.jLeft.toggleOn){
         	// commands to occur when torque toggle is pressed

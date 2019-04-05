@@ -31,6 +31,7 @@ public class OI {
         jArm.getButton11().whenPressed(new RaiseArmToC());
         jRight.getButton3().whenPressed(new LowerArmToBase());
         jRight.getTrigger().whenPressed(new LowerArmThreeInch());
+        jRight.getButton2().whenPressed(new TurnWithPixy());
 	}
 
     /** 

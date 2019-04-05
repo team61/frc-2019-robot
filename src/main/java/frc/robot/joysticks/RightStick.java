@@ -9,12 +9,14 @@ import frc.robot.RobotMap;
 public class RightStick extends Stick {
     private Joystick jRight;
     private Button trigger;
+    private Button button2;
     private Button button3;
     private Button button5;
 
     public RightStick(int port) {
         jRight = new Joystick(port);
         trigger = new TriggerButton(jRight);
+        button2 = new JoystickButton(jRight, 2);
         button3 = new JoystickButton(jRight, 3);
         button5 = new JoystickButton(jRight, 5);
 
@@ -27,6 +29,8 @@ public class RightStick extends Stick {
     public Button getTrigger() {
         return trigger;
     }
+
+    public Button getButton2() { return button2; }
 
     public Button getButton3() {
         return button3;

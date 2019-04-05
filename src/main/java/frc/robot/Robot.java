@@ -16,7 +16,7 @@ import frc.robot.commands.GlobalCommand;
 public class Robot extends TimedRobot {
 
     private static OI oi;
-
+    public static PixyTest test;
 
 
     private Command autonomousCommand = new AutoGroup();
@@ -27,8 +27,9 @@ public class Robot extends TimedRobot {
      */
     public void robotInit() {
         final String teamNo = "   61";
-        final String versionNo = "3-25-2019";
+        final String versionNo = "4-5-2019";
         oi = new OI();
+        test = new PixyTest();
 
         // Initialize all subsystems
         GlobalCommand.init();
