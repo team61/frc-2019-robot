@@ -5,7 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.UseArmWithJoysticks;
+import frc.robot.commands.NormalArmWithJoysticks;
 
 /**
  * The Arm subsystem
@@ -33,7 +33,7 @@ public class Arm extends Subsystem {
      * required the system completes).
      */
     public void initDefaultCommand() {
-    	setDefaultCommand(new UseArmWithJoysticks());
+    	setDefaultCommand(new NormalArmWithJoysticks());
     }
     
     /**

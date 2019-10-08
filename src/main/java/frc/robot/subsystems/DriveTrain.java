@@ -2,13 +2,9 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.RobotMap;
-import frc.robot.commands.DriveWithJoysticks;
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.NormalDriveWithJoysticks;
 
 /**
  * The DriveTrain Subsystem
@@ -45,7 +41,7 @@ public class DriveTrain extends Subsystem {
      * required the system completes).
      */
     public void initDefaultCommand() {
-    	setDefaultCommand(new DriveWithJoysticks());
+    	setDefaultCommand(new NormalDriveWithJoysticks());
     }
     
     /**

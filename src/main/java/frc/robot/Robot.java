@@ -4,10 +4,8 @@ package frc.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
-import frc.robot.commands.AutoGroup;
 import frc.robot.commands.GlobalCommand;
 
 /**
@@ -16,10 +14,6 @@ import frc.robot.commands.GlobalCommand;
 public class Robot extends TimedRobot {
 
     private static OI oi;
-    public static PixyTest test;
-
-
-    private Command autonomousCommand = new AutoGroup();
 
     /**
      * This function is run when the robot is first started up and should be
@@ -29,7 +23,6 @@ public class Robot extends TimedRobot {
         final String teamNo = "   61";
         final String versionNo = "4-5-2019";
         oi = new OI();
-        test = new PixyTest();
 
         // Initialize all subsystems
         GlobalCommand.init();
@@ -82,7 +75,6 @@ public class Robot extends TimedRobot {
      */
     public void teleopInit() {
         // stop the autonomous as soon as teleop starts
-        if (autonomousCommand != null) autonomousCommand.cancel();
         System.out.println("Teleop Initiated");
     }
 

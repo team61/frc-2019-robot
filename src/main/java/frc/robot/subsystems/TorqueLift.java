@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SPI;
 import frc.robot.RobotMap;
 import frc.robot.commands.GlobalCommand;
-import frc.robot.commands.TorqueLiftWithJoysticks;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -38,7 +37,7 @@ public class TorqueLift extends Subsystem {
      * required the system completes).
      */
     public void initDefaultCommand() {
-        setDefaultCommand(new TorqueLiftWithJoysticks());
+        //setDefaultCommand(new TorqueLiftWithJoysticks());
     }
 
 

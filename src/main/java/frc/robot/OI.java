@@ -1,7 +1,7 @@
 package frc.robot;
 
 import frc.robot.commands.*;
-import frc.robot.joysticks.*;
+import frc.robot.LogitechJoystick;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -13,25 +13,13 @@ public class OI {
     private final double LOWER_JOYSTICK_BUFFER = .05;
 
     // Declare Joysticks
-    public Stick jLeft = new LeftStick(RobotMap.leftStick);
-    public Stick jRight = new RightStick(RobotMap.rightStick);
-    public Stick jLift = new LiftStick(RobotMap.liftStick);
-    public Stick jArm = new ArmStick(RobotMap.armStick);
+    public LogitechJoystick jLeft = new LogitechJoystick(RobotMap.leftStick);
+    public LogitechJoystick jRight = new LogitechJoystick(RobotMap.rightStick);
+    public LogitechJoystick jLift = new LogitechJoystick(RobotMap.liftStick);
+    public LogitechJoystick jArm = new LogitechJoystick(RobotMap.armStick);
 
 	public OI() {
-		jLift.getButton7().whenPressed(new LowerFrontAndRearSixInch());
-		jLift.getButton8().whenPressed(new LowerFrontAndRearGroup());
-		jLift.getButton9().whenPressed(new RaiseFrontSixInch());
-		jLift.getButton10().whenPressed(new RaiseFrontSixInch());
-		jLift.getButton11().whenPressed(new RaiseRearSixInch());
-		jLift.getButton12().whenPressed(new RaiseRearSixInch());
 
-        jArm.getButton7().whenPressed(new RaiseArmToA());
-        jArm.getButton9().whenPressed(new RaiseArmToB());
-        jArm.getButton11().whenPressed(new RaiseArmToC());
-        jRight.getButton3().whenPressed(new LowerArmToBase());
-        jRight.getTrigger().whenPressed(new LowerArmThreeInch());
-        jRight.getButton2().whenPressed(new TurnWithPixy());
 	}
 
     /** 

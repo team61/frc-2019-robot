@@ -45,21 +45,31 @@ void loop(){
     {
       xValues[i] = pixy.ccc.blocks[i].m_x;
       yValues[i] = pixy.ccc.blocks[i].m_y;
+      Widths[i] = pixy.ccc.blocks[i].m_width;
     }
-    Serial.print("Center: ");
+
     xCenter = (abs(xValues[1] + xValues[0]))/2;
     yCenter = (abs(yValues[1] + yValues[0]))/2;
+    Width = abs(xValues[1] - yValue[0]) + (Widths[1] + Widths[0])/2;
+
+    Serial.print("xCenter: ");
     Serial.println(xCenter);
+
+    Serial.print("yCenter: ");
+    Serial.println(yCenter);
+
+    Serial.println("Width: ");
+    Serial.println(Width);
     Serial.println("TWO BLOCKS DETECTED");
     
     output = String(xCenter);
     output += "|";
     output += String(yCenter);
-    output += "|";          
-    output += String(yCenter); 
+    output += "|";
+    output += String(Width);
     
   } else {
-    output = "none"; //if no blocks tell roborio there are none 
+    output = "none"; //if no blocks tell roborio there are none
     Serial.println("no blocks");
   }
   
