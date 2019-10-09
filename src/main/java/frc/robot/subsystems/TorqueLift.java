@@ -1,17 +1,18 @@
 package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SPI;
-import frc.robot.RobotMap;
-import frc.robot.commands.GlobalCommand;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.LimitSwitch;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.Solenoid;
+import frc.robot.commands.NormalTorqueliftWithJoysticks;
 
 /**
- * Doumentation for the gyro is here: https://www.kauailabs.com/public_files/navx-mxp/apidocs/java/com/kauailabs/navx/frc/AHRS.html
+ * Documentation for the gyro is here: https://www.kauailabs.com/public_files/navx-mxp/apidocs/java/com/kauailabs/navx/frc/AHRS.html
  */
-public class TorqueLift extends Subsystem {
+public class Torquelift extends Subsystem {
 
     /**
      * Definition of Solenoids
@@ -19,16 +20,23 @@ public class TorqueLift extends Subsystem {
      */
     private Solenoid sPTOA = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOA);
     private Solenoid sPTOB = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOB);
-    private Boolean isFrontDipping = false;
-    private Boolean isRearDipping = false;
     private AHRS ahrs;
-    public Relay gyroEnabledLight = new Relay(0);
-	
-    public TorqueLift() {
+
+    public LimitSwitch[] LSFront = new LimitSwitch[4];
+    public LimitSwitch[] LSRear = new LimitSwitch[4];
+
+    private double output = 0;
+    public Torquelift() {
     	super("TorqueLift");
     	ahrs = new AHRS(SPI.Port.kMXP);
         ahrs.reset();
         System.out.println("TorqueLift Initiated");
+        for (int i = 0; i < LSFront.length; i++) {
+            LSFront[i] = new LimitSwitch(RobotMap.LSFront[i]);
+        }
+        for (int i = 0; i < LSRear.length; i++) {
+            LSRear[i] = new LimitSwitch(RobotMap.LSRear[i]);
+        }
     }
 
     /**
@@ -37,9 +45,8 @@ public class TorqueLift extends Subsystem {
      * required the system completes).
      */
     public void initDefaultCommand() {
-        //setDefaultCommand(new TorqueLiftWithJoysticks());
+        setDefaultCommand(new NormalTorqueliftWithJoysticks());
     }
-
 
     /**
      * Sets the state of the PTO
@@ -51,41 +58,19 @@ public class TorqueLift extends Subsystem {
         sPTOB.set(!bool);
     }
 
-    public void moveRearDown(double speed) {
-        GlobalCommand.drivetrain.moveRightMotorStack(speed);
+    public void moveFront(double speed) {
+        Robot.drivetrain.moveLeftMotorStack(-speed);
     }
 
-    public void moveFrontDown(double speed) {
-        GlobalCommand.drivetrain.moveLeftMotorStack(speed);
-    }
-
-    public void moveRearUp(double speed) {
-        GlobalCommand.drivetrain.moveRightMotorStack(-speed);
-    }
-
-    public void moveFrontUp(double speed) {
-        GlobalCommand.drivetrain.moveLeftMotorStack(-speed);
+    public void moveRear(double speed) {
+        Robot.drivetrain.moveRightMotorStack(-speed);
     }
 
     public void stopFront() {
-        GlobalCommand.drivetrain.moveLeftMotorStack(0.0);
+        Robot.drivetrain.moveLeftMotorStack(0.0);
     }
 
-    public void stopRear() {
-        GlobalCommand.drivetrain.moveRightMotorStack(0.0);
-    }
-
-    public void liftDrive(double front, double rear) {
-        GlobalCommand.drivetrain.tankDrive(front, rear);
-    }
-
-    public void frontLiftDrive(double speed) {
-        GlobalCommand.drivetrain.moveLeftMotorStack(speed);
-    }
-
-    public void rearLiftDrive(double speed) {
-        GlobalCommand.drivetrain.moveRightMotorStack(speed);
-    }
+    public void stopRear() { Robot.drivetrain.moveRightMotorStack(0.0); }
 
     public void resetGyro() {
         ahrs.reset();
@@ -101,22 +86,5 @@ public class TorqueLift extends Subsystem {
 
     public double getGyroPitch() {
         return ahrs.getPitch();
-    }
-    /**
-     * Shifts the robot from torque lift to normal lift, and vice versa
-     */
-    public void shift() {
-    	// swaps the solonoids
-//    	sSwapA.set(true);
-//    	sSwapB.set(false);
-    }
-
-    /**
-     * Sets the solenoids in their standard poitions
-     */
-    public void sSet() {
-    	// the standard position of our solonoids
-//    	sSwapA.set(false);
-//    	sSwapB.set(true);
     }
 }

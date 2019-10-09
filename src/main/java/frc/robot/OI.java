@@ -19,7 +19,6 @@ public class OI {
     public LogitechJoystick jArm = new LogitechJoystick(RobotMap.armStick);
 
 	public OI() {
-
 	}
 
     /** 

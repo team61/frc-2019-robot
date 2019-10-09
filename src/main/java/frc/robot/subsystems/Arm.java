@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
+import frc.robot.LimitSwitch;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.NormalArmWithJoysticks;
@@ -19,12 +20,15 @@ public class Arm extends Subsystem {
      */
     private Solenoid sArmA = new Solenoid(RobotMap.pcmModule, RobotMap.sArmA);
     private Solenoid sArmB = new Solenoid(RobotMap.pcmModule, RobotMap.sArmB);
-
     private TalonSRX armMotor = new TalonSRX(RobotMap.mArm);
+    public LimitSwitch[] LSArm = new LimitSwitch[4];
 
     public Arm() {
     	super("Arm");
         System.out.println("Arm Initiated");
+        for (int i = 0; i < LSArm.length; i++) {
+            LSArm[i] = new LimitSwitch(RobotMap.LSArm[i]);
+        }
     }
 
     /**
@@ -54,9 +58,8 @@ public class Arm extends Subsystem {
         armMotor.set(ControlMode.PercentOutput, -speed);
     }
 
-    public void stop() {
+    public void stopArm() {
         moveArm(0.0);
     }
-
 }
 

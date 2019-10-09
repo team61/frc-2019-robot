@@ -9,7 +9,7 @@ import frc.robot.commands.NormalDriveWithJoysticks;
 /**
  * The DriveTrain Subsystem
  */
-public class DriveTrain extends Subsystem {
+public class Drivetrain extends Subsystem {
 //	private Encoder leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, EncodingType.k4X);
 //	private Encoder rightEncoder = new Encoder(RobotMap.eRightA, RobotMap.eRightB, false, EncodingType.k4X);
 //
@@ -27,11 +27,8 @@ public class DriveTrain extends Subsystem {
 	private static final double GEAR_RATIO = 5 / 3;
 	private static final double FUDGE_FACTOR = 2.8; // this is changed to accurately get a measure from our encoder
 
-    public DriveTrain() {
-    	super("DriveTrain");
-//        final double distancePerPulse = Math.PI * WHEEL_DIAMETER / PULSE_PER_REVOLUTION / ENCODER_GEAR_RATIO / GEAR_RATIO * FUDGE_FACTOR;
-//    	leftEncoder.setDistancePerPulse(distancePerPulse);
-//    	rightEncoder.setDistancePerPulse(distancePerPulse);
+    public Drivetrain() {
+    	super("Drivetrain");
         System.out.println("DriveTrain Initiated");
     }
 
@@ -43,7 +40,7 @@ public class DriveTrain extends Subsystem {
     public void initDefaultCommand() {
     	setDefaultCommand(new NormalDriveWithJoysticks());
     }
-    
+
     /**
      * Tank-drive controls.
      * @author Team 61 Programming

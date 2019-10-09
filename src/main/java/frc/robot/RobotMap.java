@@ -37,16 +37,10 @@ public class RobotMap {
 	public static int sArmB = 3;
 
 	//Limit Switches
-	public static int limitSwitchFrontA = 3;
-	public static int limitSwitchFrontB = 4;
-	public static int limitSwitchFrontC = 5;
-	public static int limitSwitchRearA = 0;
-	public static int limitSwitchRearB = 1;
-	public static int limitSwitchRearC = 2;
-	public static int limitSwitchArmA = 8;
-	public static int limitSwitchArmB = 7;
-	public static int limitSwitchArmC = 6;
-	public static int limitSwitchArmBase = 9;
+
+	public final static int[] LSFront = {3, 4, 5}; // Levels 0 (lowest) to 2 (highest)
+	public final static int[] LSRear = {0, 1, 2}; // Levels 0 (lowest) to 2 (highest)
+	public final static int[] LSArm = {9, 8, 7, 6}; // Levels 0 (lowest) to 3 (highest)
 
 
 	//Misc.

@@ -5,15 +5,21 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-
-import frc.robot.commands.GlobalCommand;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Lift;
+import frc.robot.subsystems.Torquelift;
 
 /**
  * Main Robot class
  */
 public class Robot extends TimedRobot {
 
-    private static OI oi;
+    public static OI oi;
+    public static Drivetrain drivetrain = new Drivetrain();
+    public static Lift lift;
+    public static Arm arm = new Arm();
+    public static Torquelift torquelift = new Torquelift();
 
     /**
      * This function is run when the robot is first started up and should be
@@ -23,9 +29,10 @@ public class Robot extends TimedRobot {
         final String teamNo = "   61";
         final String versionNo = "4-5-2019";
         oi = new OI();
-
-        // Initialize all subsystems
-        GlobalCommand.init();
+        drivetrain = new Drivetrain();
+        lift = new Lift();
+        arm = new Arm();
+        torquelift = new Torquelift();
 
         UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
         camera.setResolution(160, 120);
