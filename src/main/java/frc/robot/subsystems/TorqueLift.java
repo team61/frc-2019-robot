@@ -7,7 +7,7 @@ import frc.robot.LimitSwitch;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Solenoid;
-import frc.robot.commands.NormalTorqueliftWithJoysticks;
+import frc.robot.commands.TorqueLift.NormalTorqueliftWithJoysticks;
 
 /**
  * Documentation for the gyro is here: https://www.kauailabs.com/public_files/navx-mxp/apidocs/java/com/kauailabs/navx/frc/AHRS.html

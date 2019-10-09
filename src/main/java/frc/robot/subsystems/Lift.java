@@ -3,7 +3,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import frc.robot.RobotMap;
-import frc.robot.commands.NormalLiftWithJoysticks;
+import frc.robot.commands.Lift.NormalLiftWithJoysticks;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 

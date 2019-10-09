@@ -15,6 +15,7 @@ import frc.robot.subsystems.Torquelift;
  */
 public class Robot extends TimedRobot {
 
+    // Establishes all major subsystems and OI to provide basic functions to the robot
     public static OI oi;
     public static Drivetrain drivetrain = new Drivetrain();
     public static Lift lift;
@@ -62,11 +63,7 @@ public class Robot extends TimedRobot {
      * This function is called initially when autonomous starts
      */
     public void autonomousInit() {
-        // instantiate the command used for the autonomous period (the chooser on the smart dashboard will pick this)
-//		autonomousCommand = new AutoGroup();
-
-        // schedule the autonomous command (example)
-//		if (autonomousCommand != null) autonomousCommand.start();
+        /*No autonomous period in the 2019 DEEP SPACE game*/
         System.out.println("Autonomous Initiated");
     }
 

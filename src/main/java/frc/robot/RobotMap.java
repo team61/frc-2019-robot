@@ -7,6 +7,7 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
+
 	//Stick Ports
 	public static int leftStick = 0;
 	public static int rightStick = 1;
@@ -37,11 +38,9 @@ public class RobotMap {
 	public static int sArmB = 3;
 
 	//Limit Switches
-
 	public final static int[] LSFront = {3, 4, 5}; // Levels 0 (lowest) to 2 (highest)
 	public final static int[] LSRear = {0, 1, 2}; // Levels 0 (lowest) to 2 (highest)
 	public final static int[] LSArm = {9, 8, 7, 6}; // Levels 0 (lowest) to 3 (highest)
-
 
 	//Misc.
 	public static int armReleaseButton = 5;

@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.LimitSwitch;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.NormalArmWithJoysticks;
+import frc.robot.commands.Arm.NormalUseArmWithJoysticks;
 
 /**
  * The Arm subsystem
@@ -37,7 +37,7 @@ public class Arm extends Subsystem {
      * required the system completes).
      */
     public void initDefaultCommand() {
-    	setDefaultCommand(new NormalArmWithJoysticks());
+    	setDefaultCommand(new NormalUseArmWithJoysticks());
     }
     
     /**
