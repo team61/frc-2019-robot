@@ -12,7 +12,7 @@ import frc.robot.commands.TorqueLift.NormalTorqueliftWithJoysticks;
 /**
  * Documentation for the gyro is here: https://www.kauailabs.com/public_files/navx-mxp/apidocs/java/com/kauailabs/navx/frc/AHRS.html
  */
-public class Torquelift extends Subsystem {
+public class TorqueLift extends Subsystem {
 
     /**
      * Definition of Solenoids
@@ -26,7 +26,7 @@ public class Torquelift extends Subsystem {
     public LimitSwitch[] LSRear = new LimitSwitch[4];
 
     private double output = 0;
-    public Torquelift() {
+    public TorqueLift() {
     	super("TorqueLift");
     	ahrs = new AHRS(SPI.Port.kMXP);
         ahrs.reset();

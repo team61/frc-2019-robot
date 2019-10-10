@@ -14,10 +14,10 @@ public class Robot extends TimedRobot {
 
     // Establishes all major subsystems and OI to provide basic functions to the robot
     public static OI oi;
-    public static Drivetrain drivetrain;
+    public static DriveTrain drivetrain;
     public static Lift lift;
     public static Arm arm;
-    public static Torquelift torquelift;
+    public static TorqueLift torquelift;
     public static VisionCam visioncam;
 
     /**
@@ -28,10 +28,10 @@ public class Robot extends TimedRobot {
         final String teamNo = "   61";
         final String versionNo = "4-5-2019";
         oi = new OI();
-        drivetrain = new Drivetrain();
+        drivetrain = new DriveTrain();
         lift = new Lift();
         arm = new Arm();
-        torquelift = new Torquelift();
+        torquelift = new TorqueLift();
         visioncam = new VisionCam();
 
         UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();

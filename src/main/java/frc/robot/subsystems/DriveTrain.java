@@ -11,7 +11,7 @@ import frc.robot.commands.Drivetrain.NormalDriveWithJoysticks;
 /**
  * The DriveTrain Subsystem
  */
-public class Drivetrain extends Subsystem {
+public class DriveTrain extends Subsystem {
 //	private Encoder leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, EncodingType.k4X);
 //	private Encoder rightEncoder = new Encoder(RobotMap.eRightA, RobotMap.eRightB, false, EncodingType.k4X);
 //
@@ -29,7 +29,7 @@ public class Drivetrain extends Subsystem {
 	private static final double GEAR_RATIO = 5 / 3;
 	private static final double FUDGE_FACTOR = 2.8; // this is changed to accurately get a measure from our encoder
 
-    public Drivetrain() {
+    public DriveTrain() {
     	super("Drivetrain");
         System.out.println("DriveTrain Initiated");
     }
