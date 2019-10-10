@@ -5,21 +5,20 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Lift;
-import frc.robot.subsystems.Torquelift;
+import frc.robot.subsystems.*;
 
 /**
  * Main Robot class
  */
 public class Robot extends TimedRobot {
 
+    // Establishes all major subsystems and OI to provide basic functions to the robot
     public static OI oi;
-    public static Drivetrain drivetrain = new Drivetrain();
+    public static Drivetrain drivetrain;
     public static Lift lift;
-    public static Arm arm = new Arm();
-    public static Torquelift torquelift = new Torquelift();
+    public static Arm arm;
+    public static Torquelift torquelift;
+    public static VisionCam visioncam;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -33,6 +32,7 @@ public class Robot extends TimedRobot {
         lift = new Lift();
         arm = new Arm();
         torquelift = new Torquelift();
+        visioncam = new VisionCam();
 
         UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
         camera.setResolution(160, 120);
@@ -62,11 +62,7 @@ public class Robot extends TimedRobot {
      * This function is called initially when autonomous starts
      */
     public void autonomousInit() {
-        // instantiate the command used for the autonomous period (the chooser on the smart dashboard will pick this)
-//		autonomousCommand = new AutoGroup();
-
-        // schedule the autonomous command (example)
-//		if (autonomousCommand != null) autonomousCommand.start();
+        /*No autonomous period in the 2019 DEEP SPACE game*/
         System.out.println("Autonomous Initiated");
     }
 
