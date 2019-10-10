@@ -1,37 +1,32 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+public class PunchArm extends GlobalCommand {
 
-import static frc.robot.Robot.drivetrain;
-import static frc.robot.Robot.oi;
+    private boolean finished = false;
 
-public class NormalDriveWithJoysticks extends Command {
-
-    public NormalDriveWithJoysticks() {
+    public PunchArm() {
         // Use requires() here to declare subsystem dependencies
-        requires(drivetrain);
+        requires(arm);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        System.out.println("NormalDriveWithJoysticks is ON");
+        arm.setArmState(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-            drivetrain.tankDrive(oi.getLeftSpeed(), oi.getRightSpeed());
-            drivetrain.moveLiftWheelsMotor(oi.getLiftSpeed());
+        System.out.println("Arm on");
+        finished = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return finished;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        System.out.println("NormalDriveWithJoysticks is OFF");
-        drivetrain.stop();
     }
 
     // Called when another command which requires one or more of the same
@@ -40,3 +35,4 @@ public class NormalDriveWithJoysticks extends Command {
         end();
     }
 }
+

@@ -1,26 +1,34 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
-import static frc.robot.Robot.drivetrain;
-import static frc.robot.Robot.oi;
+/**
+ *
+ */
+public class DriveWithJoysticks extends GlobalCommand {
 
-public class NormalDriveWithJoysticks extends Command {
-
-    public NormalDriveWithJoysticks() {
+    public DriveWithJoysticks() {
         // Use requires() here to declare subsystem dependencies
         requires(drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        System.out.println("NormalDriveWithJoysticks is ON");
+    	System.out.println("Driving");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-            drivetrain.tankDrive(oi.getLeftSpeed(), oi.getRightSpeed());
+        Robot.test.centerOnObject();
+    	oi.jLeft.updateToggleTrigger();
+        if(oi.jLeft.toggleOn){
+        	// commands to occur when torque toggle is pressed
             drivetrain.moveLiftWheelsMotor(oi.getLiftSpeed());
+        } else {
+        	//the commands here will be what normally runs
+        	drivetrain.tankDrive(oi.getLeftSpeed(), oi.getRightSpeed());
+            drivetrain.moveLiftWheelsMotor(oi.getLiftSpeed());
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -30,13 +38,12 @@ public class NormalDriveWithJoysticks extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-        System.out.println("NormalDriveWithJoysticks is OFF");
-        drivetrain.stop();
+    	drivetrain.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        end();
+    	end();
     }
 }

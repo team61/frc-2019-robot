@@ -1,17 +1,11 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-
-import static frc.robot.Robot.lift;
-import static frc.robot.Robot.oi;
-
-public class NormalLiftWithJoysticks extends Command {
+public class NormalLiftWithJoysticks extends GlobalCommand {
     public NormalLiftWithJoysticks() {
         requires(lift);
     }
 
     protected void initialize() {
-        System.out.println("NormalLiftWithJoysticks is ON");
         lift.resetEncoder(); // this will have to be removed so that the encoder does not reset after autonomous is complete
     }
 
@@ -26,7 +20,6 @@ public class NormalLiftWithJoysticks extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-        System.out.println("NormalLiftWithJoysticks is OFF");
         lift.stop();
     }
 

@@ -1,37 +1,37 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+public class LowerArmThreeInch extends GlobalCommand {
+    private double initTime;
+    private double timeMillis = 150;
 
-import static frc.robot.Robot.drivetrain;
-import static frc.robot.Robot.oi;
-
-public class NormalDriveWithJoysticks extends Command {
-
-    public NormalDriveWithJoysticks() {
+    public LowerArmThreeInch() {
         // Use requires() here to declare subsystem dependencies
-        requires(drivetrain);
+        requires(arm);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        System.out.println("NormalDriveWithJoysticks is ON");
+        initTime = System.currentTimeMillis();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-            drivetrain.tankDrive(oi.getLeftSpeed(), oi.getRightSpeed());
-            drivetrain.moveLiftWheelsMotor(oi.getLiftSpeed());
+        arm.moveArm(.3);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        if ((System.currentTimeMillis() - initTime > timeMillis) || limitSwitchArmBase.isSwitchSet()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        System.out.println("NormalDriveWithJoysticks is OFF");
-        drivetrain.stop();
+        System.out.println("ended");
+        arm.stop();
     }
 
     // Called when another command which requires one or more of the same

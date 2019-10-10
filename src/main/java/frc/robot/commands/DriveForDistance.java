@@ -1,15 +1,14 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-
-import static frc.robot.Robot.drivetrain;
 
 /**
  *
  */
-public class DriveForDistance extends Command {
+public class DriveForDistance extends GlobalCommand {
 
-    private static final double FUDGE_FACTOR = .94; //FUDGE_FACTOR affects the left side and adjusts for friction
+    private static final double FUDGE_FACTOR = .94; //FUDGE_FACTOR affecs the left side
 	private double target = 1;
     private double speed = .5;
     private double threshold = .25;

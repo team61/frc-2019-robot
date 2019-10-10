@@ -2,18 +2,15 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import static frc.robot.Robot.drivetrain;
-
 /**
  *
  */
-public class DriveForDistance extends Command {
+public class ReverseDriveForDistance extends GlobalCommand {
 
-    private static final double FUDGE_FACTOR = .94; //FUDGE_FACTOR affects the left side and adjusts for friction
+    private static final double FUDGE_FACTOR = .94; //FUDGE_FACTOR affecs the left side
 	private double target = 1;
     private double speed = .5;
     private double threshold = .25;
-    private double timeout = 5;
     private boolean finishedLeft = false;
     private boolean finishedRight = false;
 //    public double travelled = 0;
@@ -21,12 +18,10 @@ public class DriveForDistance extends Command {
     public double travelledRight = 0;
     
 
-	public DriveForDistance(double target, double speed, double timeout) {
+	public ReverseDriveForDistance(double target, double speed) {
     	requires(drivetrain);
     	this.target = target;
     	this.speed = -speed;
-    	this.timeout = timeout;
-    	setTimeout(timeout);
     }
 
     // Called just before this Command runs the first time
@@ -45,9 +40,9 @@ public class DriveForDistance extends Command {
     	double speedRight = speed;
     	travelledLeft = drivetrain.getLeftEncoder();
     	travelledRight = drivetrain.getRightEncoder();
-    	if (target - travelledLeft < threshold) { finishedLeft = true; }
-    	if (target - travelledRight < threshold) { finishedRight = true; }
-    	drivetrain.tankDrive(speedLeft, speedRight);
+    	if (target + travelledLeft < threshold) { finishedLeft = true; }
+    	if (target + travelledRight < threshold) { finishedRight = true; }
+    	drivetrain.tankDrive(-speedLeft, -speedRight);
     	System.out.println("TravelledLeft: " + travelledLeft + " SpeedLeft: " + speedLeft);
     	System.out.println("TravelledRight: " + travelledRight + " SpeedRight: " + speedRight);
     	
@@ -56,7 +51,7 @@ public class DriveForDistance extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
 //        return (target - travelled) < threshold;
-        return (finishedRight) || isTimedOut();
+        return (finishedRight);
 //        return (finishedRight && finishedLeft);
     }
 

@@ -1,5 +1,8 @@
 package frc.robot;
 
+import frc.robot.commands.*;
+import frc.robot.LogitechJoystick;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -10,10 +13,10 @@ public class OI {
     private final double LOWER_JOYSTICK_BUFFER = .05;
 
     // Declare Joysticks
-    private LogitechJoystick jLeft = new LogitechJoystick(RobotMap.leftStick);
-    private LogitechJoystick jRight = new LogitechJoystick(RobotMap.rightStick);
-    private LogitechJoystick jLift = new LogitechJoystick(RobotMap.liftStick);
-    private LogitechJoystick jArm = new LogitechJoystick(RobotMap.armStick);
+    public LogitechJoystick jLeft = new LogitechJoystick(RobotMap.leftStick);
+    public LogitechJoystick jRight = new LogitechJoystick(RobotMap.rightStick);
+    public LogitechJoystick jLift = new LogitechJoystick(RobotMap.liftStick);
+    public LogitechJoystick jArm = new LogitechJoystick(RobotMap.armStick);
 
 	public OI() {
 	}
@@ -41,6 +44,23 @@ public class OI {
             return (jLeft.getY());
         }
 	}
+
+	//reverse joystick brings robot up in air
+	public double getLeftPositiveSpeed() {
+	    if (getLeftSpeed() > 0) {
+	        return getLeftSpeed();
+        } else {
+	        return 0;
+        }
+    }
+
+    public double getLeftNegativeSpeed() {
+        if (getLeftSpeed() < 0) {
+            return getLeftSpeed();
+        } else {
+            return 0;
+        }
+    }
 	
     /** 
      * Gets the position of the jLeft Y Axis
@@ -53,6 +73,22 @@ public class OI {
             return (jRight.getY());
         }
 	}
+
+    public double getRightPositiveSpeed() {
+        if (getRightSpeed() > 0) {
+            return getRightSpeed();
+        } else {
+            return 0;
+        }
+    }
+
+    public double getRightNegativeSpeed() {
+        if (getRightSpeed() < 0) {
+            return getRightSpeed();
+        } else {
+            return 0;
+        }
+    }
 	
     /** 
      * Gets the position of the jClaw Y Axis
@@ -65,4 +101,20 @@ public class OI {
             return (jArm.getY());
         }
 	}
+
+    public double getArmPositiveSpeed() {
+        if (getArmSpeed() > 0) {
+            return getArmSpeed();
+        } else {
+            return 0;
+        }
+    }
+
+    public double getArmNegativeSpeed() {
+        if (getArmSpeed() < 0) {
+            return getArmSpeed();
+        } else {
+            return 0;
+        }
+    }
 }

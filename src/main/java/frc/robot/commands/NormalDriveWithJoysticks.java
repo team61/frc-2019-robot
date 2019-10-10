@@ -1,11 +1,6 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-
-import static frc.robot.Robot.drivetrain;
-import static frc.robot.Robot.oi;
-
-public class NormalDriveWithJoysticks extends Command {
+public class NormalDriveWithJoysticks extends GlobalCommand {
 
     public NormalDriveWithJoysticks() {
         // Use requires() here to declare subsystem dependencies
@@ -14,7 +9,7 @@ public class NormalDriveWithJoysticks extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        System.out.println("NormalDriveWithJoysticks is ON");
+        System.out.println("Driving");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,7 +25,6 @@ public class NormalDriveWithJoysticks extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-        System.out.println("NormalDriveWithJoysticks is OFF");
         drivetrain.stop();
     }
 
