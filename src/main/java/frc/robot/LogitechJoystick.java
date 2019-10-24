@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 
 public class LogitechJoystick extends Joystick {
 
@@ -22,5 +23,5 @@ public class LogitechJoystick extends Joystick {
     public Button btn_10 = new JoystickButton(this, 10);
     public Button btn_11 = new JoystickButton(this, 11);
     public Button btn_12 = new JoystickButton(this, 12);
-
+    //public Trigger trigger = new TriggerButton();
 }

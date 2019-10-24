@@ -10,7 +10,6 @@ public class MoveArm extends Command {
     private double speed;
     public MoveArm(int level, double speed) {
         // Use requires() here to declare subsystem dependencies
-        requires(arm);
         this.speed = speed;
         this.level = level;
     }
@@ -22,13 +21,15 @@ public class MoveArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+
         System.out.println(arm.LSArm[level] + ": " + arm.LSArm[level].isSwitchSet());
-        int sign = (speed > 0) ? 1:-1;
-        for (int i = 0; i < arm.LSArm.length - level; i++) {
-            if (arm.LSArm[level + i * sign].isSwitchSet()) {
+        //int sign = (speed > 0) ? 1:-1;
+        //for (int i = 0; i < arm.LSArm.length - level; i++) {
+            if (arm.LSArm[level].isSwitchSet()) {
                 LimitSwitchState = true;
             }
-        }
+
+       // }
 
         if (!LimitSwitchState) {
             arm.moveArm(speed);

@@ -22,8 +22,8 @@ public class TorqueLift extends Subsystem {
     private Solenoid sPTOB = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOB);
     private AHRS ahrs;
 
-    public LimitSwitch[] LSFront = new LimitSwitch[4];
-    public LimitSwitch[] LSRear = new LimitSwitch[4];
+    public LimitSwitch[] LSFront = new LimitSwitch[3];
+    public LimitSwitch[] LSRear = new LimitSwitch[3];
 
     private double output = 0;
     public TorqueLift() {
