@@ -1,6 +1,7 @@
 package frc.robot;
 
 import frc.robot.commands.Arm.MoveArm;
+import frc.robot.commands.Test;
 import frc.robot.commands.TorqueLift.MoveFrontAndRear;
 
 /**
@@ -23,8 +24,9 @@ public class OI {
         jArm.btn_9.whenPressed(new MoveArm(2, -0.4));
         jArm.btn_11.whenPressed(new MoveArm(3, -0.4));
         jRight.btn_3.whenPressed(new MoveArm(0, 0.4));
-
+        jArm.btn_1.whenPressed(new Test());
         jLift.btn_7.whenPressed(new MoveFrontAndRear(1, -0.4));
+        jRight.btn_5.whenPressed(new Test());
 	}
 
     /** 

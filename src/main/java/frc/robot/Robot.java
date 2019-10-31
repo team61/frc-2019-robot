@@ -13,12 +13,13 @@ import frc.robot.subsystems.*;
 public class Robot extends TimedRobot {
 
     // Establishes all major subsystems and OI to provide basic functions to the robot
+    public static DriveTrain drivetrain = new DriveTrain();
+    public static Lift lift = new Lift();
+    public static Arm arm = new Arm();
+    public static TorqueLift torquelift = new TorqueLift();
+    public static VisionCam visioncam = new VisionCam();
+
     public static OI oi;
-    public static DriveTrain drivetrain;
-    public static Lift lift;
-    public static Arm arm;
-    public static TorqueLift torquelift;
-    public static VisionCam visioncam;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -28,11 +29,6 @@ public class Robot extends TimedRobot {
         final String teamNo = "   61";
         final String versionNo = "4-5-2019";
         oi = new OI();
-        drivetrain = new DriveTrain();
-        lift = new Lift();
-        arm = new Arm();
-        torquelift = new TorqueLift();
-        visioncam = new VisionCam();
 
         UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
         camera.setResolution(160, 120);
