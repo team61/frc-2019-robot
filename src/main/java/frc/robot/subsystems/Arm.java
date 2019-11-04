@@ -22,10 +22,12 @@ public class Arm extends Subsystem {
     private Solenoid sArmB = new Solenoid(RobotMap.pcmModule, RobotMap.sArmB);
     private TalonSRX armMotor = new TalonSRX(RobotMap.mArm);
     public LimitSwitch[] LSArm = new LimitSwitch[4];
+    private int location;
 
     public Arm() {
     	super("Arm");
         System.out.println("Arm Initiated");
+        location = 0;
         for (int i = 0; i < LSArm.length; i++) {
             LSArm[i] = new LimitSwitch(RobotMap.LSArm[i]);
         }
@@ -61,5 +63,13 @@ public class Arm extends Subsystem {
     public void stopArm() {
         moveArm(0.0);
     }
+
+    public void setArmToOrigin() {
+
+    }
+
+    public void setLocation(int location) { this.location = location; }
+
+    public int getLocation() { return location; }
 }
 

@@ -25,8 +25,10 @@ public class NormalUseArmWithJoysticks extends Command {
             }
         }
 
-        // If bottom or top limit switch is NOT pressed, allow controls
-        if (!(arm.LSArm[0].isSwitchSet() || arm.LSArm[arm.LSArm.length - 1].isSwitchSet())) {
+        // If the bottom or top limit switches are pressed, reverse speed to prevent damage
+        if (arm.LSArm[0].isSwitchSet() || arm.LSArm[arm.LSArm.length - 1].isSwitchSet()) {
+            arm.moveArm(oi.getArmSpeed());
+        } else {
             arm.moveArm(-oi.getArmSpeed());
         }
     }
