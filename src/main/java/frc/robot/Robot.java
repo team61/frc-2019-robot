@@ -28,7 +28,6 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         final String teamNo = "   61";
         final String versionNo = "4-5-2019";
-        torquelift.setPTOState(false);
         oi = new OI();
 
         UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();

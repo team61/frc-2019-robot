@@ -30,6 +30,7 @@ public class TorqueLift extends Subsystem {
     	super("TorqueLift");
     	ahrs = new AHRS(SPI.Port.kMXP);
         ahrs.reset();
+        setPTOState(false);
         System.out.println("TorqueLift Initiated");
         for (int i = 0; i < LSFront.length; i++) {
             LSFront[i] = new LimitSwitch(RobotMap.LSFront[i]);
