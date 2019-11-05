@@ -9,8 +9,8 @@ import frc.robot.commands.TorqueLift.MoveFrontAndRear;
  */
 public class OI {
 
-	private final double UPPER_JOYSTICK_BUFFER = .05;
-    private final double LOWER_JOYSTICK_BUFFER = .05;
+	private final double UPPER_JOYSTICK_BUFFER = .07;
+    private final double LOWER_JOYSTICK_BUFFER = .07;
 
     // Declare Joysticks
     private LogitechJoystick jLeft = new LogitechJoystick(RobotMap.leftStick);
@@ -19,11 +19,10 @@ public class OI {
     private LogitechJoystick jArm = new LogitechJoystick(RobotMap.armStick);
 
 	public OI() {
-        jArm.btn_7.whenPressed(new MoveArm(1, -0.4));
-        jArm.btn_9.whenPressed(new MoveArm(2, -0.4));
-        jArm.btn_11.whenPressed(new MoveArm(3, -0.4));
-        jRight.btn_3.whenPressed(new MoveArm(0, 0.4));
-        jLift.btn_7.whenPressed(new MoveFrontAndRear(1, -0.4));
+        jArm.btn_7.whenPressed(new MoveArm(1));
+        jArm.btn_9.whenPressed(new MoveArm(2));
+        jArm.btn_11.whenPressed(new MoveArm(3));
+        jRight.btn_3.whenPressed(new MoveArm(0));
 	}
 
     /** 

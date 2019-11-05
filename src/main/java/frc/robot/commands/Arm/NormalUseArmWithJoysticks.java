@@ -1,5 +1,6 @@
 package frc.robot.commands.Arm;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 import static frc.robot.Robot.arm;
@@ -28,8 +29,12 @@ public class NormalUseArmWithJoysticks extends Command {
         // If the bottom or top limit switches are pressed, reverse speed to prevent damage
         if (arm.LSArm[0].isSwitchSet()) {
             arm.moveArm(0.3);
+            Timer.delay(0.2);
+            arm.stopArm();
         } else if (arm.LSArm[arm.LSArm.length - 1].isSwitchSet()) {
-            arm.moveArm(-0.3);
+            arm.moveArm(0.3);
+            Timer.delay(0.2);
+            arm.stopArm();
         } else {
             arm.moveArm(oi.getArmSpeed());
         }
