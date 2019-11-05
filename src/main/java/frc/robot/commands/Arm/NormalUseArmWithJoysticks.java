@@ -19,26 +19,7 @@ public class NormalUseArmWithJoysticks extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        // Called to print out whenever a limit switch is passed
-        for (int i = 0; i < arm.LSArm.length; i++) {
-            if (arm.LSArm[i].isSwitchSet()) {
-                System.out.println("Limit Switch Arm Level: " + i + arm.LSArm[i].isSwitchSet());
-            }
-        }
-
-        // If the bottom or top limit switches are pressed, reverse speed to prevent damage
-        if (arm.LSArm[0].isSwitchSet()) {
-            arm.moveArm(0.3);
-            Timer.delay(0.2);
-            arm.stopArm();
-        } else if (arm.LSArm[arm.LSArm.length - 1].isSwitchSet()) {
-            arm.moveArm(0.3);
-            Timer.delay(0.2);
-            arm.stopArm();
-        } else {
-            arm.moveArm(oi.getArmSpeed());
-        }
-
+        arm.moveArm(oi.getArmSpeed());
     }
 
     // Make this return true when this Command no longer needs to run execute()

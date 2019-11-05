@@ -22,24 +22,13 @@ public class MoveArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
         arm.checkLocation();
-        if (arm.LSArm[0].isSwitchSet()) {
-            arm.moveArm(0.3);
-            Timer.delay(0.2);
-            arm.stopArm();
-        } else if (arm.LSArm[arm.LSArm.length - 1].isSwitchSet()) {
-            arm.moveArm(0.3);
-            Timer.delay(0.2);
-            arm.stopArm();
+        if (arm.getLocation() < destination) {
+            arm.moveArm(speed);
+        } else if (arm.getLocation() > destination) {
+            arm.moveArm(-speed);
         } else {
-            if (arm.getLocation() < destination) {
-                arm.moveArm(speed);
-            } else if (arm.getLocation() > destination) {
-                arm.moveArm(-speed);
-            } else {
-                reachedDestination = true;
-            }
+            reachedDestination = true;
         }
     }
 
