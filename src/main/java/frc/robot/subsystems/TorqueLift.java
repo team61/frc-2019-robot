@@ -45,7 +45,7 @@ public class TorqueLift extends Subsystem {
      * required the system completes).
      */
     public void initDefaultCommand() {
-        setDefaultCommand(new NormalTorqueliftWithJoysticks());
+
     }
 
     /**

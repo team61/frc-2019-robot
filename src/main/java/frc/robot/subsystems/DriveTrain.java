@@ -34,54 +34,23 @@ public class DriveTrain extends Subsystem {
         System.out.println("DriveTrain Initiated");
     }
 
-    /**
-     * The default command that the subsystem reverts to
-     * when the subsystem is idle (the command currently
-     * required the system completes).
-     */
+
     public void initDefaultCommand() {
     	setDefaultCommand(new NormalDriveWithJoysticks());
     }
 
-    /**
-     * Tank-drive controls.
-     * @author Team 61 Programming
-     * @param left Left motor value or motor stack value
-     * @param right Right motor value or motor stack value
-     */
+
     public void tankDrive(double left, double right) {
         moveLeftMotorStack(left);
         moveRightMotorStack(right);
     }
-    
-    /**
-     * Reversed tank-drive controls.
-     * @author Team 61 Programming
-     * @param left Left motor value or motor stack value
-     * @param right Right motor value or motor stack value
-     */
-    public void reverseTankDrive(double right, double left) {
-        moveRightMotorStack(right);
-        moveLeftMotorStack(left);
-    }
 
-    // when joysticks are negative, robot is moved up
-
-    /**
-     * Moves the multiple motors on the left side.
-     * @author Team 61 Programming
-     * @param speed the speed of the motors in percentage form
-     */
     public void moveLeftMotorStack(double speed) {
         firstLeftMotor.set(ControlMode.PercentOutput, speed);
         secondLeftMotor.set(ControlMode.PercentOutput, speed);
     }
     
-    /**
-     * Moves the multiple motors on the right side.
-     * @author Team 61 Programming
-     * @param speed the speed of the motors in percentage form
-     */
+
     public void moveRightMotorStack(double speed) {
         firstRightMotor.set(ControlMode.PercentOutput, -speed);
         secondRightMotor.set(ControlMode.PercentOutput, -speed);
@@ -91,43 +60,28 @@ public class DriveTrain extends Subsystem {
         liftWheelsMotor.set(ControlMode.PercentOutput, speed);
     }
     
-    /**
-     * Stops the left and right motor stacks.
-     * @author Team 61 Programming
-     */
+
     public void stop() {
     	moveLeftMotorStack(0.0);
     	moveRightMotorStack(0.0);
     }
 
-    /**
-     * Get Distance Traveled
-     * @return the distance the robot has driven since the last reset
-     */
+
     public double getLeftEncoder() {
 //    	return leftEncoder.getDistance();
         return 0;
     }
 
-    /**
-     * Get Distance Traveled
-     * @return the distance the robot has driven since the last reset
-     */
+
     public double getRightEncoder() {
 //      return rightEncoder.getDistance();
         return 0;
     }
 
-    /**
-     * Reset the left motor encoder distance to zero
-     */
     public void resetLeftEncoder() {
 //    	leftEncoder.reset();
     }
 
-    /**
-     * Reset the right motor encoder distance to zero
-     */
     public void resetRightEncoder() {
 //    	rightEncoder.reset();
     }

@@ -57,16 +57,22 @@ public class Arm extends Subsystem {
      * @author Team 61 Programming
      */
     public void moveArm(double speed) {
-        armMotor.set(ControlMode.PercentOutput, -speed);
+        armMotor.set(ControlMode.PercentOutput, speed);
     }
 
     public void stopArm() {
         moveArm(0.0);
     }
 
-    public void setArmToOrigin() {
-
+    // Monitors the location of the arm by checking each limit switch
+    public void checkLocation() {
+        for (int i = 0; i < LSArm.length; i++) {
+            if (LSArm[i].isSwitchSet()) {
+                setLocation(i);
+            }
+        }
     }
+
 
     public void setLocation(int location) { this.location = location; }
 

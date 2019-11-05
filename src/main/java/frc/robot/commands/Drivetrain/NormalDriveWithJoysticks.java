@@ -20,8 +20,6 @@ public class NormalDriveWithJoysticks extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
             drivetrain.tankDrive(oi.getLeftSpeed(), oi.getRightSpeed());
-        System.out.println("Left Speed: " + oi.getLeftSpeed());
-        System.out.println("Right Speed: " + oi.getRightSpeed());
             drivetrain.moveLiftWheelsMotor(oi.getLiftSpeed());
     }
 
