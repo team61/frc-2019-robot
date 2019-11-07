@@ -23,7 +23,7 @@ public class MoveToTarget extends Command {
         // Use requires() here to declare subsystem dependencies
         requires(visioncam);
         requires(drivetrain);
-
+        driveSpeed = 0.5;
         /**
          * Turn PID implementation - calculates error of turning
          * using filtered vision camera data as imput for the PID
@@ -32,7 +32,7 @@ public class MoveToTarget extends Command {
          * override of the PIDOutput() abstract class, which solely
          * assigns the output of the PIDController loop to an object.
          */
-        TurnPID = new PIDController(0.00633, 0, 0, new PIDSource() {
+        TurnPID = new PIDController(100000, 1000, 1000, new PIDSource() {
 
             PIDSourceType pidSource;
             public void setPIDSourceType(PIDSourceType pidSource) {
@@ -73,13 +73,13 @@ public class MoveToTarget extends Command {
         TurnPID.setAbsoluteTolerance(0.05);
         SlowDownPID.setAbsoluteTolerance(0.05);
 
-        TurnPID.setInputRange(0, 316);
+        TurnPID.setInputRange(0, 158);
         SlowDownPID.setInputRange(100, 200);
 
         TurnPID.setOutputRange(-1, 1);
         SlowDownPID.setOutputRange(-1, 1);
 
-        TurnPID.setSetpoint(CENTER);
+        TurnPID.setSetpoint(0);
         SlowDownPID.setSetpoint(155);
     }
 
@@ -92,9 +92,14 @@ public class MoveToTarget extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         // drives robot based on PID values calculated from analysis of vision cam
-        double speedLeft = driveSpeed + turnSpeed;
-        double speedRight = driveSpeed - turnSpeed;
-        drivetrain.tankDrive(speedLeft, speedRight);
+        //System.out.println(CENTER - visioncam.getPixy().getX());
+        //System.out.println(visioncam.getPixy().getX());
+        //System.out.println(visioncam.getPixy().getWidth());
+        TurnPID.pidWrite(2);
+        System.out.println(turnSpeed);
+        double speedLeft = turnSpeed;
+        double speedRight = - turnSpeed;
+        //drivetrain.tankDrive(speedLeft, speedRight);
     }
 
     // Make this return true when this Command no longer needs to run execute()

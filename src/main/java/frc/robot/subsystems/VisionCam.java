@@ -8,19 +8,14 @@ import frc.robot.vision.PixyPacket;
 
 public class VisionCam extends Subsystem {
 
-    private M_I2C i2c;
-    private PixyPacket pkt;
-
     public VisionCam() {
         super("VisionCam");
-        i2c = new M_I2C();
-        pkt = i2c.getPixy();
     }
 
     protected void initDefaultCommand() {
     }
 
     public PixyPacket getPixy() {
-        return pkt;
+        return new M_I2C().getPixy();
     }
 }

@@ -22,22 +22,15 @@ public class TorqueLift extends Subsystem {
     private Solenoid sPTOB = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOB);
     private AHRS ahrs;
 
-    public LimitSwitch[] LSFront = new LimitSwitch[3];
-    public LimitSwitch[] LSRear = new LimitSwitch[3];
+    public static FrontLift frontlift = new FrontLift();
+    public static RearLift rearlift = new RearLift();
 
-    private double output = 0;
     public TorqueLift() {
     	super("TorqueLift");
     	ahrs = new AHRS(SPI.Port.kMXP);
         ahrs.reset();
         setPTOState(false);
         System.out.println("TorqueLift Initiated");
-        for (int i = 0; i < LSFront.length; i++) {
-            LSFront[i] = new LimitSwitch(RobotMap.LSFront[i]);
-        }
-        for (int i = 0; i < LSRear.length; i++) {
-            LSRear[i] = new LimitSwitch(RobotMap.LSRear[i]);
-        }
     }
 
     /**
@@ -46,7 +39,6 @@ public class TorqueLift extends Subsystem {
      * required the system completes).
      */
     public void initDefaultCommand() {
-
     }
 
     /**
@@ -60,19 +52,35 @@ public class TorqueLift extends Subsystem {
     }
 
     public void moveFront(double speed) {
-        Robot.drivetrain.moveLeftMotorStack(-speed);
+        frontlift.move(speed);
     }
 
     public void moveRear(double speed) {
-        Robot.drivetrain.moveRightMotorStack(-speed);
+        rearlift.move(speed);
+    }
+
+    public void move(double frontSpeed, double rearSpeed) {
+        moveFront(frontSpeed);
+        moveRear(rearSpeed);
+    }
+
+    public void move(double speed) {
+        moveFront(speed);
+        moveRear(speed);
     }
 
     public void stopFront() {
-        Robot.drivetrain.moveLeftMotorStack(0.0);
+        frontlift.stop();
     }
 
-    public void stopRear() { Robot.drivetrain.moveRightMotorStack(0.0); }
+    public void stopRear() {
+        rearlift.stop();
+    }
 
+    public void stop() {
+        stopFront();
+        stopRear();
+    }
     public void resetGyro() {
         ahrs.reset();
     }

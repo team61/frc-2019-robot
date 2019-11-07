@@ -19,7 +19,7 @@ public class NormalUseArmWithJoysticks extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        arm.moveArm(oi.getArmSpeed());
+        arm.move(oi.getArmSpeed());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -30,7 +30,7 @@ public class NormalUseArmWithJoysticks extends Command {
     // Called once after isFinished returns true
     protected void end() {
         System.out.println("NormalUseArmWithJoysticks is OFF");
-        arm.stopArm();
+        arm.stop();
     }
 
     // Called when another command which requires one or more of the same

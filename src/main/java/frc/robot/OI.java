@@ -1,7 +1,10 @@
 package frc.robot;
 
 import frc.robot.commands.Arm.MoveArm;
+import frc.robot.commands.Drivetrain.MoveToTarget;
+import frc.robot.commands.Drivetrain.Test;
 import frc.robot.commands.TorqueLift.MoveFrontAndRear;
+import frc.robot.commands.TorqueLift.NormalTorqueliftWithJoysticks;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -23,6 +26,7 @@ public class OI {
         jArm.btn_9.whenPressed(new MoveArm(2));
         jArm.btn_11.whenPressed(new MoveArm(3));
         jRight.btn_3.whenPressed(new MoveArm(0));
+        jRight.btn_1.toggleWhenPressed(new NormalTorqueliftWithJoysticks());
 	}
 
     /** 

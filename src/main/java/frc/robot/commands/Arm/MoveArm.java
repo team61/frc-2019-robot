@@ -1,51 +1,13 @@
 package frc.robot.commands.Arm;
 
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.commands.MoveWithLimitSwitches;
 
 import static frc.robot.Robot.arm;
 
-public class MoveArm extends Command {
-    private boolean reachedDestination;
-    private int destination;
-    private final double speed = 0.5;
+public class MoveArm extends MoveWithLimitSwitches {
     public MoveArm(int destination) {
-        requires(arm);
-        reachedDestination = false;
-        this.destination = destination;
-    }
-
-    // Called just before this Command runs the first time
-    protected void initialize() {
-        reachedDestination = false;
-    }
-
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-        arm.checkLocation();
-        if (arm.getLocation() < destination) {
-            arm.moveArm(speed);
-        } else if (arm.getLocation() > destination) {
-            arm.moveArm(-speed);
-        } else {
-            reachedDestination = true;
-        }
-    }
-
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return reachedDestination;
-    }
-
-    // Called once after isFinished returns true
-    protected void end() {
-        System.out.println("ended");
-        arm.stopArm();
-    }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-        end();
+        super(destination);
+        requires(arm); // requires has to be declared here, if declared in it's abstract class then requires will read null
+        m_lslevelsubsystem = arm;
     }
 }
