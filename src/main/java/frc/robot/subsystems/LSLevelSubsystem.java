@@ -6,8 +6,8 @@ import frc.robot.LimitSwitch;
 public abstract class LSLevelSubsystem extends Subsystem {
     private final LimitSwitch[] LSLevels;
     private int location;
-    private double speed;
     private final double awayFromEdgeSpeed = 0.2;
+
     public LSLevelSubsystem(String name, int[] levels) {
         super(name);
         LSLevels = new LimitSwitch[levels.length];

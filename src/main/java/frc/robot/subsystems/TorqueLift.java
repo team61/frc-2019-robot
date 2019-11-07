@@ -22,8 +22,21 @@ public class TorqueLift extends Subsystem {
     private Solenoid sPTOB = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOB);
     private AHRS ahrs;
 
-    public static FrontLift frontlift = new FrontLift();
-    public static RearLift rearlift = new RearLift();
+    private static LSLevelSubsystem m_frontlift = new LSLevelSubsystem("Front Lift", RobotMap.LSFront) {
+        @Override
+        protected void setSpeed(double speed) { Robot.drivetrain.moveLeftMotorStack(-speed); }
+
+        @Override
+        protected void initDefaultCommand() { }
+    };
+
+    private static LSLevelSubsystem m_rearlift = new LSLevelSubsystem("Rear Lift", RobotMap.LSRear) {
+        @Override
+        protected void setSpeed(double speed) { Robot.drivetrain.moveRightMotorStack(-speed); }
+
+        @Override
+        protected void initDefaultCommand() { }
+    };
 
     public TorqueLift() {
     	super("TorqueLift");
@@ -52,11 +65,11 @@ public class TorqueLift extends Subsystem {
     }
 
     public void moveFront(double speed) {
-        frontlift.move(speed);
+        m_frontlift.move(speed);
     }
 
     public void moveRear(double speed) {
-        rearlift.move(speed);
+        m_rearlift.move(speed);
     }
 
     public void move(double frontSpeed, double rearSpeed) {
@@ -70,11 +83,11 @@ public class TorqueLift extends Subsystem {
     }
 
     public void stopFront() {
-        frontlift.stop();
+        m_frontlift.stop();
     }
 
     public void stopRear() {
-        rearlift.stop();
+        m_rearlift.stop();
     }
 
     public void stop() {

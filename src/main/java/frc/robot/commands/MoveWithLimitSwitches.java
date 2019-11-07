@@ -8,6 +8,7 @@ public abstract class MoveWithLimitSwitches extends Command {
     private int destination;
     protected boolean reachedDestination;
     private final double speed = 0.5;
+
     public MoveWithLimitSwitches(int destination) {
         this.destination = destination;
     }
