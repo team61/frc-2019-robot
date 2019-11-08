@@ -1,15 +1,17 @@
-package frc.robot.commands.TorqueLift;
+package frc.robot.commands.Lift;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 
-public class MoveFront extends Command {
+import static frc.robot.Robot.m_lift;
+
+public class MoveLift extends Command {
+
     private final int destination;
     private boolean reachedDestination;
     private final double speed = 0.5;
 
-    public MoveFront(int destination) {
-        requires(Robot.m_robotbase);
+    public MoveLift(int destination) {
+        requires(m_lift);
         this.destination = destination;
     }
 
@@ -20,11 +22,11 @@ public class MoveFront extends Command {
 
     @Override
     protected void execute() {
-        Robot.m_robotbase.frontLevels.checkLocation();
-        if (Robot.m_robotbase.frontLevels.getLocation() < destination) {
-            Robot.m_robotbase.moveFront(speed);
-        } else if (Robot.m_robotbase.frontLevels.getLocation() > destination) {
-            Robot.m_robotbase.moveFront(-speed);
+        m_lift.armLevels.checkLocation();
+        if (m_lift.armLevels.getLocation() < destination) {
+            m_lift.moveLift(speed);
+        } else if (m_lift.armLevels.getLocation() > destination) {
+            m_lift.moveLift(-speed);
         } else {
             reachedDestination = true;
         }
@@ -37,7 +39,7 @@ public class MoveFront extends Command {
 
     @Override
     protected void end() {
-        Robot.m_robotbase.stopFront();
+        m_lift.stopLift();
     }
 
     @Override

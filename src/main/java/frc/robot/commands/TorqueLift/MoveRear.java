@@ -1,22 +1,48 @@
 package frc.robot.commands.TorqueLift;
 
-import frc.robot.commands.MoveWithLimitSwitches;
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
-import static frc.robot.subsystems.TorqueLift.rearlift;
-import static frc.robot.Robot.torquelift;
+public class MoveRear extends Command {
 
-public class MoveRear extends MoveWithLimitSwitches {
+    private final int destination;
+    private boolean reachedDestination;
+    private final double speed = 0.5;
 
     public MoveRear(int destination) {
-        // Use requires() here to declare subsystem dependencies
-        super(destination);
-        requires(torquelift); // requires has to be declared here, if declared in it's abstract class then requires will read null
-        m_lslevelsubsystem = rearlift;
+        requires(Robot.m_robotbase);
+        this.destination = destination;
     }
 
-    // Called just before this Command runs the first time
+    @Override
     protected void initialize() {
-        torquelift.setPTOState(true);
         reachedDestination = false;
+    }
+
+    @Override
+    protected void execute() {
+        Robot.m_robotbase.rearLevels.checkLocation();
+        if (Robot.m_robotbase.rearLevels.getLocation() < destination) {
+            Robot.m_robotbase.moveRear(speed);
+        } else if (Robot.m_robotbase.rearLevels.getLocation() > destination) {
+            Robot.m_robotbase.moveRear(-speed);
+        } else {
+            reachedDestination = true;
+        }
+    }
+
+    @Override
+    protected boolean isFinished() {
+        return reachedDestination;
+    }
+
+    @Override
+    protected void end() {
+        Robot.m_robotbase.stopRear();
+    }
+
+    @Override
+    protected void interrupted() {
+        end();
     }
 }

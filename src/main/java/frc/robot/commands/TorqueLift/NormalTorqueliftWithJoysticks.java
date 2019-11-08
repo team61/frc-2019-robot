@@ -1,38 +1,34 @@
 package frc.robot.commands.TorqueLift;
 
 import edu.wpi.first.wpilibj.command.Command;
-
-import static frc.robot.Robot.*;
+import frc.robot.Robot;
 
 public class NormalTorqueliftWithJoysticks extends Command {
+
     public NormalTorqueliftWithJoysticks() {
-        // Use requires() here to declare subsystem dependencies
-        requires(torquelift);
+        requires(Robot.m_robotbase);
     }
 
-    // Called just before this Command runs the first time
+    @Override
     protected void initialize() {
-        System.out.println("NormalTorqueLiftWithJoysticks is ON");
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    @Override
     protected void execute() {
-        torquelift.move(oi.getLeftSpeed(), oi.getRightSpeed());
+        Robot.m_robotbase.torqueLiftDrive(Robot.m_oi.getLeftSpeed(), Robot.m_oi.getRightSpeed());
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    @Override
     protected boolean isFinished() {
         return false;
     }
 
-    // Called once after isFinished returns true
+    @Override
     protected void end() {
-        System.out.println("NormalTorqueLiftWithJoysticks is OFF");
-        torquelift.stop();
+        Robot.m_robotbase.stopTorqueLiftDrive();
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    @Override
     protected void interrupted() {
         end();
     }

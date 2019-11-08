@@ -1,37 +1,43 @@
 package frc.robot.commands.Lift;
 
 import edu.wpi.first.wpilibj.command.Command;
-
-import static frc.robot.Robot.lift;
-import static frc.robot.Robot.oi;
+import frc.robot.Robot;
 
 public class NormalLiftWithJoysticks extends Command {
+
     public NormalLiftWithJoysticks() {
-        requires(lift);
+        requires(Robot.m_lift);
     }
 
+    @Override
     protected void initialize() {
-        System.out.println("NormalLiftWithJoysticks is ON");
-        lift.resetEncoder(); // this will have to be removed so that the encoder does not reset after autonomous is complete
     }
 
+    @Override
     protected void execute() {
-            lift.moveLift(oi.getLiftSpeed());
+        Robot.m_lift.armLevels.checkLocation();
+
+        // These if statements prevent the arm from traveling past the end limit switches
+        if (Robot.m_lift.armLevels.checkBottomLimitSwitch()) {
+            Robot.m_lift.moveLift(Robot.m_oi.getPositiveLiftSpeed());
+        } else if (Robot.m_lift.armLevels.checkTopLimitSwitch()) {
+            Robot.m_lift.moveLift(Robot.m_oi.getNegativeLiftSpeed());
+        } else {
+            Robot.m_lift.moveLift(Robot.m_oi.getLiftSpeed());
+        }
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    @Override
     protected boolean isFinished() {
         return false;
     }
 
-    // Called once after isFinished returns true
+    @Override
     protected void end() {
-        System.out.println("NormalLiftWithJoysticks is OFF");
-        lift.stop();
+        Robot.m_lift.stopLift();
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    @Override
     protected void interrupted() {
         end();
     }

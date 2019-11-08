@@ -1,41 +1,34 @@
 package frc.robot.commands.Drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
-
-import static frc.robot.Robot.drivetrain;
-import static frc.robot.Robot.oi;
+import frc.robot.Robot;
 
 public class NormalDriveWithJoysticks extends Command {
 
     public NormalDriveWithJoysticks() {
-        // Use requires() here to declare subsystem dependencies
-        requires(drivetrain);
+        requires(Robot.m_robotbase);
     }
 
-    // Called just before this Command runs the first time
+    @Override
     protected void initialize() {
-        System.out.println("NormalDriveWithJoysticks is ON");
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    @Override
     protected void execute() {
-            drivetrain.tankDrive(oi.getLeftSpeed(), oi.getRightSpeed());
-            drivetrain.moveLiftWheelsMotor(oi.getLiftSpeed());
+        Robot.m_robotbase.tankDrive(Robot.m_oi.getLeftSpeed(), Robot.m_oi.getRightSpeed());
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    @Override
     protected boolean isFinished() {
         return false;
     }
 
-    // Called once after isFinished returns true
+    @Override
     protected void end() {
-        System.out.println("NormalDriveWithJoysticks is OFF");
-        drivetrain.stop();
+        Robot.m_robotbase.stopTankDrive();
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    @Override
     protected void interrupted() {
         end();
     }

@@ -3,9 +3,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
-/**
- *
- */
 public class DoDelay extends InstantCommand {
 
 	private double time;

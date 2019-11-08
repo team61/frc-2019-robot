@@ -1,33 +1,16 @@
-package frc.robot.subsystems;
+package frc.robot;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.LimitSwitch;
-
-public abstract class LSLevelSubsystem extends Subsystem {
+public class LSLevels {
     private final LimitSwitch[] LSLevels;
     private int location;
     private final double awayFromEdgeSpeed = 0.2;
 
-    public LSLevelSubsystem(String name, int[] levels) {
-        super(name);
+    public LSLevels(int[] levels) {
         LSLevels = new LimitSwitch[levels.length];
         for (int i = 0; i < LSLevels.length; i++) {
             LSLevels[i] = new LimitSwitch(levels[i]);
         }
         location = 0;
-    }
-
-    protected abstract void setSpeed(double speed);
-    public void stop() { setSpeed(0); }
-
-    public void move(double speed) {
-        if (checkBottomLimitSwitch()) {
-            setSpeed(awayFromEdgeSpeed);
-        } else if (checkTopLimitSwitch()) {
-            setSpeed(-awayFromEdgeSpeed);
-        } else {
-            setSpeed(speed);
-        }
     }
 
     public boolean checkBottomLimitSwitch() {

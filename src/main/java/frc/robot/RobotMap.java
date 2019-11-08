@@ -15,33 +15,33 @@ public class RobotMap {
 	public static int armStick = 3;
 
 	//Motor Ports
-	public static int mLeftA = 5;
-	public static int mLeftB = 6;
-	public static int mRightA = 1;
-	public static int mRightB = 2;
-	public static int mArm = 4;
-	public static int mLiftWheels = 3;
+	public static final int mLeftA = 5;
+	public static final int mLeftB = 6;
+	public static final int mRightA = 1;
+	public static final int mRightB = 2;
+	public static final int mArm = 4;
+	public static final int mLiftWheels = 3;
 	
 	//Encoder Ports
-	public static int eLeftA = 1;
-	public static int eLeftB = 2;
-	public static int eRightA = 7;
-	public static int eRightB = 8;
-	public static int eLiftA = 3;
-	public static int eLiftB= 4;
+	public static final int eLeftA = 1;
+	public static final int eLeftB = 2;
+	public static final int eRightA = 7;
+	public static final int eRightB = 8;
+	public static final int eLiftA = 3;
+	public static final int eLiftB= 4;
 	
 	//Solonoids 
-	public static int pcmModule = 7;
-	public static int sPTOA = 0;
-	public static int sPTOB = 1;
-	public static int sArmA = 2;
-	public static int sArmB = 3;
+	public static final int pcmModule = 7;
+	public static final int sPTOA = 0;
+	public static final int sPTOB = 1;
+	public static final int sArmA = 2;
+	public static final int sArmB = 3;
 
 	//Limit Switches
-	public final static int[] LSFront = {3, 4, 5}; // Levels 0 (lowest) to 2 (highest)
-	public final static int[] LSRear = {0, 1, 2}; // Levels 0 (lowest) to 2 (highest)
-	public final static int[] LSArm = {9, 8, 7, 6}; // Levels 0 (lowest) to 3 (highest)
+	public static final int[] LSFront = {3, 4, 5}; // Levels 0 (lowest) to 2 (highest)
+	public static final int[] LSRear = {0, 1, 2}; // Levels 0 (lowest) to 2 (highest)
+	public static final int[] LSArm = {9, 8, 7, 6}; // Levels 0 (lowest) to 3 (highest)
 
 	//Misc.
-	public static int armReleaseButton = 5;
+	public static final int armReleaseButton = 5;
 }

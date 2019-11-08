@@ -1,10 +1,6 @@
 package frc.robot;
 
-import frc.robot.commands.Arm.MoveArm;
-import frc.robot.commands.Drivetrain.MoveToTarget;
-import frc.robot.commands.Drivetrain.Test;
-import frc.robot.commands.TorqueLift.MoveFrontAndRear;
-import frc.robot.commands.TorqueLift.NormalTorqueliftWithJoysticks;
+import frc.robot.commands.Lift.MoveLift;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -12,8 +8,13 @@ import frc.robot.commands.TorqueLift.NormalTorqueliftWithJoysticks;
  */
 public class OI {
 
+
+    // TODO Test for joystick buffers, 0.7 is a rough estimate
 	private final double UPPER_JOYSTICK_BUFFER = .07;
-    private final double LOWER_JOYSTICK_BUFFER = .07;
+    private final double LOWER_JOYSTICK_BUFFER = -.07;
+
+    private final double RIGHT_JOYSTICK_BUFFER = .07;
+    private final double LEFT_JOYSTICK_BUFFER = -.07;
 
     // Declare Joysticks
     private LogitechJoystick jLeft = new LogitechJoystick(RobotMap.leftStick);
@@ -22,58 +23,39 @@ public class OI {
     private LogitechJoystick jArm = new LogitechJoystick(RobotMap.armStick);
 
 	public OI() {
-        jArm.btn_7.whenPressed(new MoveArm(1));
-        jArm.btn_9.whenPressed(new MoveArm(2));
-        jArm.btn_11.whenPressed(new MoveArm(3));
-        jRight.btn_3.whenPressed(new MoveArm(0));
-        jRight.btn_1.toggleWhenPressed(new NormalTorqueliftWithJoysticks());
+        jArm.btn_7.whenPressed(new MoveLift(1));
+        jArm.btn_9.whenPressed(new MoveLift(2));
+        jArm.btn_11.whenPressed(new MoveLift(3));
+        jRight.btn_3.whenPressed(new MoveLift(0));
 	}
 
-    /** 
-     * Gets the position of the jElev Y Axis
-     * @return joystick value scaled -1 to 1
-     */
-	public double getLiftSpeed() {
-		if ((jLift.getY() < UPPER_JOYSTICK_BUFFER) && (jLift.getY() > LOWER_JOYSTICK_BUFFER)) {
-			return 0;
-		} else {
-			return (jLift.getY());
-		}
-	}
+    public double getYJoystickValue(LogitechJoystick logitechjoystick) {
+        if ((logitechjoystick.getY() < UPPER_JOYSTICK_BUFFER) && (logitechjoystick.getY() > LOWER_JOYSTICK_BUFFER)) {
+            return 0;
+        } else {
+            return (logitechjoystick.getY());
+        }
+    }
 
-    /** 
-     * Gets the position of the jLeft Y Axis
-     * @return joystick value scaled -1 to 1
-     */
-	public double getLeftSpeed() {
-        if ((jLeft.getY() < UPPER_JOYSTICK_BUFFER) && (jLeft.getY() > LOWER_JOYSTICK_BUFFER)) {
+    public double getXJoystickValue(LogitechJoystick logitechjoystick) {
+        if ((logitechjoystick.getX() < RIGHT_JOYSTICK_BUFFER) && (logitechjoystick.getX() > LEFT_JOYSTICK_BUFFER)) {
             return 0;
         } else {
-            return (jLeft.getY());
+            return (logitechjoystick.getX());
         }
-	}
-	
-    /** 
-     * Gets the position of the jLeft Y Axis
-     * @return joystick value scaled -1 to 1
-     */
-	public double getRightSpeed() {
-        if ((jRight.getY() < UPPER_JOYSTICK_BUFFER) && (jRight.getY() > LOWER_JOYSTICK_BUFFER)) {
-            return 0;
-        } else {
-            return (jRight.getY());
-        }
-	}
-	
-    /** 
-     * Gets the position of the jClaw Y Axis
-     * @return joystick value scaled -1 to 1
-     */
-	public double getArmSpeed() {
-        if ((jArm.getY() < UPPER_JOYSTICK_BUFFER) && (jArm.getY() > LOWER_JOYSTICK_BUFFER)) {
-            return 0;
-        } else {
-            return (jArm.getY());
-        }
-	}
+    }
+
+	public double getLiftWheelsSpeed() { return getYJoystickValue(jLift); }
+
+	public double getLeftSpeed() { return getYJoystickValue(jLeft); }
+
+	public double getRightSpeed() { return getYJoystickValue(jRight); }
+
+	public double getLiftSpeed() { return getYJoystickValue(jArm); }
+
+	// These are for when the end limit switches for the lift are pressed and prevent the lift from moving past the edges
+	public double getPositiveLiftSpeed() { return (getLiftSpeed() > 0) ? getLiftSpeed() : 0; }
+
+    public double getNegativeLiftSpeed() { return (getLiftSpeed() < 0) ? getLiftSpeed() : 0; }
+
 }

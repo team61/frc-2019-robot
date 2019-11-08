@@ -5,21 +5,19 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.robot.subsystems.*;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Lift;
+import frc.robot.subsystems.RobotBase;
 
 /**
  * Main Robot class
  */
 public class Robot extends TimedRobot {
 
-    // Establishes all major subsystems and OI to provide basic functions to the robot
-    public static DriveTrain drivetrain = new DriveTrain();
-    public static Lift lift = new Lift();
-    public static Arm arm = new Arm();
-    public static TorqueLift torquelift = new TorqueLift();
-    public static VisionCam visioncam = new VisionCam();
-
-    public static OI oi;
+    public static Lift m_lift;
+    public static Arm m_arm;
+    public static RobotBase m_robotbase;
+    public static OI m_oi;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -28,7 +26,13 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         final String teamNo = "   61";
         final String versionNo = "4-5-2019";
-        oi = new OI();
+        m_lift = new Lift();
+        m_arm = new Arm();
+        m_robotbase = new RobotBase();
+
+        m_oi = new OI();
+
+        // Initialize all subsystems
 
         UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
         camera.setResolution(160, 120);
@@ -58,7 +62,11 @@ public class Robot extends TimedRobot {
      * This function is called initially when autonomous starts
      */
     public void autonomousInit() {
-        /*No autonomous period in the 2019 DEEP SPACE game*/
+        // instantiate the command used for the autonomous period (the chooser on the smart dashboard will pick this)
+//		autonomousCommand = new AutoGroup();
+
+        // schedule the autonomous command (example)
+//		if (autonomousCommand != null) autonomousCommand.start();
         System.out.println("Autonomous Initiated");
     }
 
@@ -95,4 +103,3 @@ public class Robot extends TimedRobot {
         TimedRobot.startRobot(Robot::new);
     }
 }
-//Baraka add this comment
