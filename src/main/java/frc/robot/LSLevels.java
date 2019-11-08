@@ -3,7 +3,6 @@ package frc.robot;
 public class LSLevels {
     private final LimitSwitch[] LSLevels;
     private int location;
-    private final double awayFromEdgeSpeed = 0.2;
 
     public LSLevels(int[] levels) {
         LSLevels = new LimitSwitch[levels.length];

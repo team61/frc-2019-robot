@@ -1,6 +1,7 @@
 package frc.robot;
 
 import frc.robot.commands.Lift.MoveLift;
+import frc.robot.commands.TorqueLift.NormalTorqueliftWithJoysticks;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -27,6 +28,7 @@ public class OI {
         jArm.btn_9.whenPressed(new MoveLift(2));
         jArm.btn_11.whenPressed(new MoveLift(3));
         jRight.btn_3.whenPressed(new MoveLift(0));
+        jRight.btn_1.whenPressed(new NormalTorqueliftWithJoysticks());
 	}
 
     public double getYJoystickValue(LogitechJoystick logitechjoystick) {

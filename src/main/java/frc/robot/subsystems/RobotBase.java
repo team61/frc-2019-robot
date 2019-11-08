@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.LSLevels;
+import frc.robot.RobotMap;
 import frc.robot.commands.Drivetrain.NormalDriveWithJoysticks;
 
 public class RobotBase extends Subsystem {
