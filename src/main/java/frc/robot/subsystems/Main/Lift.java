@@ -1,7 +1,7 @@
-package frc.robot.subsystems;
+package frc.robot.subsystems.Main;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.LSLevels;
 import frc.robot.RobotMap;
@@ -9,7 +9,7 @@ import frc.robot.commands.Lift.NormalLiftWithJoysticks;
 
 public class Lift extends Subsystem {
 
-    private TalonSRX liftMotor = new TalonSRX(RobotMap.mArm);
+    public WPI_TalonSRX liftMotor = new WPI_TalonSRX(RobotMap.mArm);
 
     public LSLevels armLevels = new LSLevels(RobotMap.LSArm);
 

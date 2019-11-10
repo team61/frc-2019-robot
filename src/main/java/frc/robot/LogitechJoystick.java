@@ -3,11 +3,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 
 public class LogitechJoystick extends Joystick {
 
-    public LogitechJoystick(final int port) {
+    private final double JOYSTICK_BUFFER = .07;
+
+    public LogitechJoystick(int port) {
         super(port);
     }
 
@@ -23,4 +24,20 @@ public class LogitechJoystick extends Joystick {
     public Button btn_10 = new JoystickButton(this, 10);
     public Button btn_11 = new JoystickButton(this, 11);
     public Button btn_12 = new JoystickButton(this, 12);
+
+    public double getAxis(double value) {
+        if (Math.abs(value) > JOYSTICK_BUFFER) {
+            return value;
+        } else {
+            return 0;
+        }
+    }
+
+    public double getYAxis() {
+        return getAxis(getY());
+    }
+
+    public double getXAxis() {
+        return getAxis(getX());
+    }
 }

@@ -1,33 +1,53 @@
-package frc.robot.subsystems;
+package frc.robot.subsystems.Main;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.LSLevels;
 import frc.robot.RobotMap;
 import frc.robot.commands.Drivetrain.NormalDriveWithJoysticks;
 
 public class RobotBase extends Subsystem {
 
-    private TalonSRX frontLeftMotor = new TalonSRX(RobotMap.mLeftA);
-    private TalonSRX rearLeftMotor = new TalonSRX(RobotMap.mLeftB);
-    private TalonSRX frontRightMotor = new TalonSRX(RobotMap.mRightA);
-    private TalonSRX rearRightMotor = new TalonSRX(RobotMap.mRightB);
-    private TalonSRX liftWheelsMotor = new TalonSRX(RobotMap.mLiftWheels); // These wheels help the robot get into the platform
+    public WPI_TalonSRX frontLeftMotor;
+    public WPI_TalonSRX rearLeftMotor;
+    public WPI_TalonSRX frontRightMotor;
+    public WPI_TalonSRX rearRightMotor;
+    public WPI_TalonSRX liftWheelsMotor; // These wheels help the robot get into the platform
 
    // private Encoder leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, CounterBase.EncodingType.k4X);
     //private Encoder rightEncoder = new Encoder(RobotMap.eRightA, RobotMap.eRightB, true, CounterBase.EncodingType.k4X);
 
-    private Solenoid sPTOA = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOA);
-    private Solenoid sPTOB = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOB);
+    private Solenoid sPTOA;
+    private Solenoid sPTOB;
 
-    public LSLevels frontLevels = new LSLevels(RobotMap.LSFront);
-    public LSLevels rearLevels = new LSLevels(RobotMap.LSRear);
+    public LSLevels frontLevels;
+    public LSLevels rearLevels;
+
+    public DifferentialDrive m_differentialDrive;
 
     public RobotBase() {
         super("RobotBase");
         setPTOState(false);
+        frontLeftMotor = new WPI_TalonSRX(RobotMap.mLeftA);
+        rearLeftMotor = new WPI_TalonSRX(RobotMap.mLeftB);
+        frontRightMotor = new WPI_TalonSRX(RobotMap.mRightA);
+        rearRightMotor = new WPI_TalonSRX(RobotMap.mRightB);
+
+        rearLeftMotor.follow(frontLeftMotor);
+        rearRightMotor.follow(frontRightMotor);
+
+        liftWheelsMotor = new WPI_TalonSRX(RobotMap.mLiftWheels);
+
+        sPTOA = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOA);
+        sPTOB = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOB);
+
+        frontLevels = new LSLevels(RobotMap.LSFront);
+        rearLevels = new LSLevels(RobotMap.LSRear);
+
+        m_differentialDrive = new DifferentialDrive(frontLeftMotor, frontRightMotor);
     }
 
     @Override
@@ -41,13 +61,11 @@ public class RobotBase extends Subsystem {
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed) {
-        moveLeftMotorStack(leftSpeed);
-        moveRightMotorStack(rightSpeed);
+        m_differentialDrive.tankDrive(leftSpeed, rightSpeed);
     }
 
     public void tankDrive(double speed) {
-        moveLeftMotorStack(speed);
-        moveRightMotorStack(speed);
+        tankDrive(speed, speed);
     }
 
     public void stopTankDrive() {
@@ -63,17 +81,7 @@ public class RobotBase extends Subsystem {
     }
 
     public void stopTorqueLiftDrive() {
-        stopTankDrive();
-    }
-
-    public void moveLeftMotorStack(double speed) {
-        frontLeftMotor.set(ControlMode.PercentOutput, speed);
-        rearLeftMotor.set(ControlMode.PercentOutput, speed);
-    }
-
-    public void moveRightMotorStack(double speed) {
-        frontRightMotor.set(ControlMode.PercentOutput, -speed);
-        rearRightMotor.set(ControlMode.PercentOutput, -speed);
+        torqueLiftDrive(0);
     }
 
     public void moveLiftWheels(double speed) {
@@ -84,21 +92,6 @@ public class RobotBase extends Subsystem {
         moveLiftWheels(0);
     }
 
-    public void moveFront(double speed) {
-        moveLeftMotorStack(speed);
-    }
-
-    public void moveRear(double speed) {
-        moveRightMotorStack(speed);
-    }
-
-    public void stopFront() {
-        moveFront(0);
-    }
-
-    public void stopRear() {
-        moveRear(0);
-    }
     /*
     public double getLeftEncoder() {
         return leftEncoder.getDistance();

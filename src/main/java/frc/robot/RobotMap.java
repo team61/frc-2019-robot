@@ -11,8 +11,8 @@ public class RobotMap {
 	//Stick Ports
 	public static int leftStick = 0;
 	public static int rightStick = 1;
-	public static int liftStick = 2;
-	public static int armStick = 3;
+	public static int liftWheelsStick = 2;
+	public static int liftStick = 3;
 
 	//Motor Ports
 	public static final int mLeftA = 5;

@@ -19,9 +19,9 @@ public class NormalLiftWithJoysticks extends Command {
 
         // These if statements prevent the arm from traveling past the end limit switches
         if (Robot.m_lift.armLevels.checkBottomLimitSwitch()) {
-            Robot.m_lift.moveLift(Robot.m_oi.getPositiveLiftSpeed());
+            Robot.m_lift.moveLift((Robot.m_oi.getLiftSpeed() > 0) ? Robot.m_oi.getLiftSpeed() : 0);
         } else if (Robot.m_lift.armLevels.checkTopLimitSwitch()) {
-            Robot.m_lift.moveLift(Robot.m_oi.getNegativeLiftSpeed());
+            Robot.m_lift.moveLift((Robot.m_oi.getLiftSpeed() < 0) ? Robot.m_oi.getLiftSpeed() : 0);
         } else {
             Robot.m_lift.moveLift(Robot.m_oi.getLiftSpeed());
         }

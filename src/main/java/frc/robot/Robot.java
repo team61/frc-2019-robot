@@ -5,9 +5,10 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Lift;
-import frc.robot.subsystems.RobotBase;
+import frc.robot.subsystems.Main.Arm;
+import frc.robot.subsystems.Main.Lift;
+import frc.robot.subsystems.Main.Navigation;
+import frc.robot.subsystems.Main.RobotBase;
 
 /**
  * Main Robot class
@@ -17,6 +18,8 @@ public class Robot extends TimedRobot {
     public static Lift m_lift;
     public static Arm m_arm;
     public static RobotBase m_robotbase;
+    public static Navigation m_navigation;
+
     public static OI m_oi;
 
     /**
@@ -29,6 +32,7 @@ public class Robot extends TimedRobot {
         m_lift = new Lift();
         m_arm = new Arm();
         m_robotbase = new RobotBase();
+        m_navigation = new Navigation();
 
         m_oi = new OI();
 

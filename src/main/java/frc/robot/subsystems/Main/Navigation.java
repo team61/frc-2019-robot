@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+package frc.robot.subsystems.Main;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -17,16 +17,19 @@ public class Navigation extends Subsystem {
         }
     }
 
+    /**
+     * @return The displacement in degrees from -180 to 180
+     * */
     public double getYaw() {
         return ahrs.getYaw();
     }
 
     public double getPitch() {
-        return ahrs.getPitch();
-    }
+        return ahrs.getRoll();
+    } // The gryo was inserted sideways into the robot
 
     public double getRoll() {
-        return ahrs.getRoll();
+        return ahrs.getPitch();
     }
 
     public double getAccelerationX() {
