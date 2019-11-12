@@ -20,7 +20,7 @@ public class LSLevels {
         return LSLevels[LSLevels.length - 1].isSwitchSet();
     }
 
-    public void checkLocation() {
+    public void updateLocation() {
         for (int i = 0; i < LSLevels.length; i++) {
             if (LSLevels[i].isSwitchSet()) {
                 setLocation(i);

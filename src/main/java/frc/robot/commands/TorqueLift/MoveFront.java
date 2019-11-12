@@ -20,7 +20,7 @@ public class MoveFront extends Command {
 
     @Override
     protected void execute() {
-        Robot.m_robotbase.frontLevels.checkLocation();
+        Robot.m_robotbase.frontLevels.updateLocation();
         if (Robot.m_robotbase.frontLevels.getLocation() < destination) {
             Robot.m_robotbase.moveFront(speed);
         } else if (Robot.m_robotbase.frontLevels.getLocation() > destination) {

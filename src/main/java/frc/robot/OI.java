@@ -1,10 +1,10 @@
 package frc.robot;
 
 import frc.robot.commands.Lift.MoveLift;
-import frc.robot.commands.Macro.Record;
+//import frc.robot.commands.Macro.Record;
 import frc.robot.commands.TorqueLift.NormalTorqueliftWithJoysticks;
 
-import java.io.IOException;
+//import java.io.IOException;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -24,11 +24,12 @@ public class OI {
         jLift.btn_11.whenPressed(new MoveLift(3));
         jRight.btn_3.whenPressed(new MoveLift(0));
         jRight.btn_1.whenPressed(new NormalTorqueliftWithJoysticks());
+        /*
         try {
             jLift.btn_1.toggleWhenPressed(new Record("Demo"));
         } catch (IOException exc) {
             System.out.println("Couldn't record");
-        }
+        }*/
 	}
 
 	public double getLiftWheelsSpeed() { return jLift.getYAxis(); }

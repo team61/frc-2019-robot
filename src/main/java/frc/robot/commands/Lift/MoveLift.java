@@ -22,7 +22,7 @@ public class MoveLift extends Command {
 
     @Override
     protected void execute() {
-        m_lift.armLevels.checkLocation();
+        m_lift.armLevels.updateLocation();
         if (m_lift.armLevels.getLocation() < destination) {
             m_lift.moveLift(speed);
         } else if (m_lift.armLevels.getLocation() > destination) {

@@ -21,7 +21,7 @@ public class MoveRear extends Command {
 
     @Override
     protected void execute() {
-        Robot.m_robotbase.rearLevels.checkLocation();
+        Robot.m_robotbase.rearLevels.updateLocation();
         if (Robot.m_robotbase.rearLevels.getLocation() < destination) {
             Robot.m_robotbase.moveRear(speed);
         } else if (Robot.m_robotbase.rearLevels.getLocation() > destination) {

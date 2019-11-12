@@ -15,7 +15,7 @@ public class NormalLiftWithJoysticks extends Command {
 
     @Override
     protected void execute() {
-        Robot.m_lift.armLevels.checkLocation();
+        Robot.m_lift.armLevels.updateLocation();
 
         // These if statements prevent the arm from traveling past the end limit switches
         if (Robot.m_lift.armLevels.checkBottomLimitSwitch()) {
