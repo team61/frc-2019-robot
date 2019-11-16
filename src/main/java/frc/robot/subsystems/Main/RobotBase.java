@@ -30,7 +30,7 @@ public class RobotBase extends Subsystem {
 
     public RobotBase() {
         super("RobotBase");
-        setPTOState(false);
+
         frontLeftMotor = new WPI_TalonSRX(RobotMap.mLeftA);
         rearLeftMotor = new WPI_TalonSRX(RobotMap.mLeftB);
         frontRightMotor = new WPI_TalonSRX(RobotMap.mRightA);
@@ -48,6 +48,8 @@ public class RobotBase extends Subsystem {
         rearLevels = new LSLevels(RobotMap.LSRear);
 
         m_differentialDrive = new DifferentialDrive(frontLeftMotor, frontRightMotor);
+
+        setPTOState(false);
     }
 
     @Override
@@ -70,6 +72,38 @@ public class RobotBase extends Subsystem {
 
     public void stopTankDrive() {
         tankDrive(0);
+    }
+
+    public void moveRight(double speed) {
+        frontRightMotor.set(ControlMode.PercentOutput, speed);
+    }
+
+    public void moveLeft(double speed) {
+        frontLeftMotor.set(ControlMode.PercentOutput, speed);
+    }
+
+    public void stopRight() {
+        moveRight(0);
+    }
+
+    public void stopLeft() {
+        moveLeft(0);
+    }
+
+    public void moveFront(double speed) {
+        moveLeft(speed);
+    }
+
+    public void moveRear(double speed) {
+        moveRight(speed);
+    }
+
+    public void stopFront() {
+        stopLeft();
+    }
+
+    public void stopRear() {
+        stopRight();
     }
 
     public void torqueLiftDrive(double frontSpeed, double rearSpeed) {

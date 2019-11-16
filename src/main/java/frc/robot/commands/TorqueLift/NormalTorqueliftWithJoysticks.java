@@ -16,6 +16,7 @@ public class NormalTorqueliftWithJoysticks extends Command {
     @Override
     protected void execute() {
         Robot.m_robotbase.torqueLiftDrive(Robot.m_oi.getLeftSpeed(), Robot.m_oi.getRightSpeed());
+        Robot.m_robotbase.moveLiftWheels(Robot.m_oi.getLiftWheelsSpeed());
     }
 
     @Override
