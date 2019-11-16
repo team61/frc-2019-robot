@@ -11,13 +11,15 @@ import frc.robot.commands.Drivetrain.NormalDriveWithJoysticks;
 
 public class RobotBase extends Subsystem {
 
-    public WPI_TalonSRX frontLeftMotor;
-    public WPI_TalonSRX rearLeftMotor;
-    public WPI_TalonSRX frontRightMotor;
-    public WPI_TalonSRX rearRightMotor;
-    public WPI_TalonSRX liftWheelsMotor; // These wheels help the robot get into the platform
+    private WPI_TalonSRX frontLeftMotor;
+    private WPI_TalonSRX rearLeftMotor;
+    private WPI_TalonSRX frontRightMotor;
+    private WPI_TalonSRX rearRightMotor;
+    private WPI_TalonSRX liftWheelsMotor; //These wheels help the robot get into the platform
 
-   // private Encoder leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, CounterBase.EncodingType.k4X);
+
+    //TODO add encoders
+    //private Encoder leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, CounterBase.EncodingType.k4X);
     //private Encoder rightEncoder = new Encoder(RobotMap.eRightA, RobotMap.eRightB, true, CounterBase.EncodingType.k4X);
 
     private Solenoid sPTOA;
