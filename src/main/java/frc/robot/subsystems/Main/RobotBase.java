@@ -11,12 +11,13 @@ import frc.robot.commands.Drivetrain.NormalDriveWithJoysticks;
 
 public class RobotBase extends Subsystem {
 
+    //TODO add description to what robotbase is
+
     private WPI_TalonSRX frontLeftMotor;
     private WPI_TalonSRX rearLeftMotor;
     private WPI_TalonSRX frontRightMotor;
     private WPI_TalonSRX rearRightMotor;
     private WPI_TalonSRX liftWheelsMotor; //These wheels help the robot get into the platform
-
 
     //TODO add encoders
     //private Encoder leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, CounterBase.EncodingType.k4X);
@@ -63,6 +64,8 @@ public class RobotBase extends Subsystem {
         sPTOA.set(bool);
         sPTOB.set(!bool);
     }
+
+    //TODO organize and label the following code:
 
     public void tankDrive(double leftSpeed, double rightSpeed) {
         m_differentialDrive.tankDrive(leftSpeed, rightSpeed);
