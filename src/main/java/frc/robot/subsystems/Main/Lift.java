@@ -9,7 +9,7 @@ import frc.robot.commands.Lift.NormalLiftWithJoysticks;
 
 public class Lift extends Subsystem {
 
-    public WPI_TalonSRX liftMotor = new WPI_TalonSRX(RobotMap.mArm);
+    private WPI_TalonSRX liftMotor = new WPI_TalonSRX(RobotMap.mArm);
 
     public LSLevels armLevels = new LSLevels(RobotMap.LSArm);
 
@@ -22,5 +22,9 @@ public class Lift extends Subsystem {
     public void moveLift(double speed) { liftMotor.set(ControlMode.PercentOutput, speed); }
 
     public void stopLift() { moveLift(0); }
+
+    public double getLiftOutput() {
+        return liftMotor.getMotorOutputPercent();
+    }
 }
 

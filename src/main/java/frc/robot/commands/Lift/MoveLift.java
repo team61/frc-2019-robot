@@ -1,8 +1,7 @@
 package frc.robot.commands.Lift;
 
 import edu.wpi.first.wpilibj.command.Command;
-
-import static frc.robot.Robot.m_lift;
+import frc.robot.Robot;
 
 public class MoveLift extends Command {
 
@@ -11,7 +10,7 @@ public class MoveLift extends Command {
     private final double speed = 0.5;
 
     public MoveLift(int destination) {
-        requires(m_lift);
+        requires(Robot.m_lift);
         this.destination = destination;
     }
 
@@ -22,11 +21,11 @@ public class MoveLift extends Command {
 
     @Override
     protected void execute() {
-        m_lift.armLevels.updateLocation();
-        if (m_lift.armLevels.getLocation() < destination) {
-            m_lift.moveLift(speed);
-        } else if (m_lift.armLevels.getLocation() > destination) {
-            m_lift.moveLift(-speed);
+        Robot.m_lift.armLevels.updateLocation();
+        if (Robot.m_lift.armLevels.getLocation() < destination) {
+            Robot.m_lift.moveLift(speed);
+        } else if (Robot.m_lift.armLevels.getLocation() > destination) {
+            Robot.m_lift.moveLift(-speed);
         } else {
             reachedDestination = true;
         }
@@ -39,7 +38,7 @@ public class MoveLift extends Command {
 
     @Override
     protected void end() {
-        m_lift.stopLift();
+        Robot.m_lift.stopLift();
     }
 
     @Override
