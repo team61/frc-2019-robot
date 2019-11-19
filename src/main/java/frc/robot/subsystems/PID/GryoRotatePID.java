@@ -5,7 +5,7 @@ import frc.robot.Robot;
 
 public class GryoRotatePID extends PIDSubsystem {
 
-    private double rotateSpeed;
+    private double turnSpeed;
 
     public GryoRotatePID() {
         super(.0055, 0, 0);
@@ -22,6 +22,6 @@ public class GryoRotatePID extends PIDSubsystem {
 
     @Override
     protected void usePIDOutput(double output) {
-        rotateSpeed = output;
+        turnSpeed = output;
     }
 }

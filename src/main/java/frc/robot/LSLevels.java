@@ -21,7 +21,8 @@ public class LSLevels {
     }
 
     public void updateLocation() {
-        for (int i = 0; i < LSLevels.length; i++) {
+
+        for (int i = getLocation() - 1; i <= getLocation() + 1; i++) {
             if (LSLevels[i].isSwitchSet()) {
                 setLocation(i);
             }

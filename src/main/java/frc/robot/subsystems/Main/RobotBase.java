@@ -2,6 +2,9 @@ package frc.robot.subsystems.Main;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.CounterBase;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -17,10 +20,8 @@ public class RobotBase extends Subsystem {
     private WPI_TalonSRX rearRightMotor;
     private WPI_TalonSRX liftWheelsMotor; //These wheels help the robot get into the platform
 
-
-    //TODO add encoders
-    //private Encoder leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, CounterBase.EncodingType.k4X);
-    //private Encoder rightEncoder = new Encoder(RobotMap.eRightA, RobotMap.eRightB, true, CounterBase.EncodingType.k4X);
+    private Encoder leftEncoder;
+    private Encoder rightEncoder;
 
     private Solenoid sPTOA;
     private Solenoid sPTOB;
@@ -46,12 +47,19 @@ public class RobotBase extends Subsystem {
         sPTOA = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOA);
         sPTOB = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOB);
 
-        frontLevels = new LSLevels(RobotMap.LSFront);
-        rearLevels = new LSLevels(RobotMap.LSRear);
-
+        try {
+            frontLevels = new LSLevels(RobotMap.LSFront);
+            rearLevels = new LSLevels(RobotMap.LSRear);
+        } catch (RuntimeException ex) {
+            DriverStation.reportError(ex.getMessage(), true);
+        }
         m_differentialDrive = new DifferentialDrive(frontLeftMotor, frontRightMotor);
 
+        leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, CounterBase.EncodingType.k4X);
+        rightEncoder = new Encoder(RobotMap.eRightA, RobotMap.eRightB, true, CounterBase.EncodingType.k4X);
+
         setPTOState(false);
+        m_differentialDrive.setSafetyEnabled(false);
     }
 
     @Override
@@ -76,20 +84,20 @@ public class RobotBase extends Subsystem {
         tankDrive(0);
     }
 
-    public void moveRight(double speed) {
-        frontRightMotor.set(ControlMode.PercentOutput, speed);
-    }
-
     public void moveLeft(double speed) {
         frontLeftMotor.set(ControlMode.PercentOutput, speed);
     }
 
-    public void stopRight() {
-        moveRight(0);
+    public void moveRight(double speed) {
+        frontRightMotor.set(ControlMode.PercentOutput, speed);
     }
 
     public void stopLeft() {
         moveLeft(0);
+    }
+
+    public void stopRight() {
+        moveRight(0);
     }
 
     public void moveFront(double speed) {
@@ -128,7 +136,6 @@ public class RobotBase extends Subsystem {
         moveLiftWheels(0);
     }
 
-    /*
     public double getLeftEncoder() {
         return leftEncoder.getDistance();
     }
@@ -149,6 +156,10 @@ public class RobotBase extends Subsystem {
         leftEncoder.reset();
     }
 
+    public void resetRearEncoder() {
+        resetRightEncoder();
+    }
+
     public void resetFrontEncoder() {
         resetLeftEncoder();
     }
@@ -157,7 +168,4 @@ public class RobotBase extends Subsystem {
         rightEncoder.reset();
     }
 
-    public void resetRearEncoder() {
-        resetRightEncoder();
-    }*/
 }
