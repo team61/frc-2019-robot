@@ -23,10 +23,10 @@ public class RobotMap {
 	public static final int mLiftWheels = 3;
 	
 	//Encoder Ports
-	public static final int eLeftA = 1;
-	public static final int eLeftB = 2;
-	public static final int eRightA = 7;
-	public static final int eRightB = 8;
+	public static final int eLeftA = 2;
+	public static final int eLeftB = 3;
+	public static final int eRightA = 0;
+	public static final int eRightB = 1;
 	public static final int eLiftA = 3;
 	public static final int eLiftB= 4;
 	

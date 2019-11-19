@@ -21,10 +21,12 @@ public class LSLevels {
     }
 
     public void updateLocation() {
-
-        for (int i = getLocation() - 1; i <= getLocation() + 1; i++) {
-            if (LSLevels[i].isSwitchSet()) {
-                setLocation(i);
+        if (getLocation() != 0 && getLocation() != LSLevels.length - 1) {
+            if (LSLevels[getLocation() - 1].isSwitchSet()) {
+                setLocation(getLocation() - 1);
+            }
+            if (LSLevels[getLocation() + 1].isSwitchSet()) {
+                setLocation(getLocation() + 1);
             }
         }
     }

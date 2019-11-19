@@ -1,5 +1,6 @@
 package frc.robot;
 
+import frc.robot.commands.Drivetrain.DriveStaight;
 import frc.robot.commands.Lift.MoveLift;
 //import frc.robot.commands.Macro.Record;
 import frc.robot.commands.TorqueLift.NormalTorqueliftWithJoysticks;
@@ -23,7 +24,8 @@ public class OI {
         jLift.btn_9.whenPressed(new MoveLift(2));
         jLift.btn_11.whenPressed(new MoveLift(3));
         jRight.btn_3.whenPressed(new MoveLift(0));
-        jRight.btn_1.whenPressed(new NormalTorqueliftWithJoysticks());
+        jRight.btn_2.whenPressed(new DriveStaight(5));
+        //jRight.btn_1.whenPressed(new NormalTorqueliftWithJoysticks());
 
         /*
         try {

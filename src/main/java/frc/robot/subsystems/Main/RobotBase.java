@@ -26,10 +26,17 @@ public class RobotBase extends Subsystem {
     private Solenoid sPTOA;
     private Solenoid sPTOB;
 
-    public LSLevels frontLevels;
-    public LSLevels rearLevels;
+//    public LSLevels frontLevels;
+//    public LSLevels rearLevels;
 
     public DifferentialDrive m_differentialDrive;
+
+    public static final double WHEEL_DIAMETER = 8;
+    public static final double PULSE_PER_REVOLUTION = 1440;
+    public static final double ENCODER_GEAR_RATIO = 1;
+    public static final double GEAR_RATIO = 12.75;
+    public static final double FUDGE_FACTOR = 1; // this is changed to accurately get a measure from our encoder
+    //.84
 
     public RobotBase() {
         super("RobotBase");
@@ -47,12 +54,12 @@ public class RobotBase extends Subsystem {
         sPTOA = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOA);
         sPTOB = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOB);
 
-        try {
-            frontLevels = new LSLevels(RobotMap.LSFront);
-            rearLevels = new LSLevels(RobotMap.LSRear);
-        } catch (RuntimeException ex) {
-            DriverStation.reportError(ex.getMessage(), true);
-        }
+//        try {
+//            frontLevels = new LSLevels(RobotMap.LSFront);
+//            rearLevels = new LSLevels(RobotMap.LSRear);
+//        } catch (RuntimeException ex) {
+//            DriverStation.reportError(ex.getMessage(), true);
+//        }
         m_differentialDrive = new DifferentialDrive(frontLeftMotor, frontRightMotor);
 
         leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, CounterBase.EncodingType.k4X);
@@ -60,6 +67,10 @@ public class RobotBase extends Subsystem {
 
         setPTOState(false);
         m_differentialDrive.setSafetyEnabled(false);
+
+        final double distancePerPulse = Math.PI * WHEEL_DIAMETER / PULSE_PER_REVOLUTION / ENCODER_GEAR_RATIO / GEAR_RATIO * FUDGE_FACTOR;
+        leftEncoder.setDistancePerPulse(distancePerPulse);
+        rightEncoder.setDistancePerPulse(distancePerPulse);
     }
 
     @Override

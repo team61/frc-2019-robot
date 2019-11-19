@@ -11,10 +11,14 @@ public class NormalDriveWithJoysticks extends Command {
 
     @Override
     protected void initialize() {
+        Robot.m_robotbase.resetLeftEncoder();
+        Robot.m_robotbase.resetRightEncoder();
+
     }
 
     @Override
     protected void execute() {
+        System.out.println(Robot.m_oi.getLeftSpeed());
         Robot.m_robotbase.tankDrive(Robot.m_oi.getLeftSpeed(), Robot.m_oi.getRightSpeed());
     }
 
@@ -26,6 +30,8 @@ public class NormalDriveWithJoysticks extends Command {
     @Override
     protected void end() {
         Robot.m_robotbase.stopTankDrive();
+        Robot.m_robotbase.resetLeftEncoder();
+        Robot.m_robotbase.resetRightEncoder();
     }
 
     @Override
