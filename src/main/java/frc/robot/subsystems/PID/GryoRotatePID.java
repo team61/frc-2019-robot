@@ -8,7 +8,9 @@ public class GryoRotatePID extends PIDSubsystem {
     private double turnSpeed;
 
     public GryoRotatePID() {
-        super(.0055, 0, 0);
+        super(.0023, 0, 0);
+        setOutputRange(-0.5, 0.5);
+        setAbsoluteTolerance(5);
     }
 
     @Override
@@ -23,5 +25,9 @@ public class GryoRotatePID extends PIDSubsystem {
     @Override
     protected void usePIDOutput(double output) {
         turnSpeed = output;
+    }
+
+    public double getTurnSpeed() {
+        return turnSpeed;
     }
 }

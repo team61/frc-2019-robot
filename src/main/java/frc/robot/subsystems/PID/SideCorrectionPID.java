@@ -9,6 +9,8 @@ public class SideCorrectionPID extends PIDSubsystem {
 
     public SideCorrectionPID() {
         super(0, 0, 0);
+        setOutputRange(-0.2, 0.2);
+        setAbsoluteTolerance(0.1);
 
     }
 

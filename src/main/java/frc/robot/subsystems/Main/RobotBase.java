@@ -54,12 +54,6 @@ public class RobotBase extends Subsystem {
         sPTOA = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOA);
         sPTOB = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOB);
 
-//        try {
-//            frontLevels = new LSLevels(RobotMap.LSFront);
-//            rearLevels = new LSLevels(RobotMap.LSRear);
-//        } catch (RuntimeException ex) {
-//            DriverStation.reportError(ex.getMessage(), true);
-//        }
         m_differentialDrive = new DifferentialDrive(frontLeftMotor, frontRightMotor);
 
         leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, CounterBase.EncodingType.k4X);
