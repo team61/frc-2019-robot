@@ -2,9 +2,8 @@ package frc.robot;
 
 import frc.robot.commands.Drivetrain.DriveStaight;
 import frc.robot.commands.Drivetrain.TurnWithGyro;
-import frc.robot.commands.Lift.MoveLift;
 //import frc.robot.commands.Macro.Record;
-import frc.robot.commands.TorqueLift.NormalTorqueliftWithJoysticks;
+
 
 //import java.io.IOException;
 
@@ -21,10 +20,10 @@ public class OI {
     private LogitechJoystick jLift = new LogitechJoystick(RobotMap.liftWheelsStick);
 
 	public OI() {
-        jLift.btn_7.whenPressed(new MoveLift(1));
-        jLift.btn_9.whenPressed(new MoveLift(2));
-        jLift.btn_11.whenPressed(new MoveLift(3));
-        jRight.btn_3.whenPressed(new MoveLift(0));
+//        jLift.btn_7.whenPressed(new MoveLift(1));
+//        jLift.btn_9.whenPressed(new MoveLift(2));
+//        jLift.btn_11.whenPressed(new MoveLift(3));
+//        jRight.btn_3.whenPressed(new MoveLift(0));
         jRight.btn_2.toggleWhenPressed(new DriveStaight(5));
         jRight.btn_1.toggleWhenPressed(new TurnWithGyro(30));
         //jRight.btn_1.whenPressed(new NormalTorqueliftWithJoysticks());

@@ -1,5 +1,7 @@
 package frc.robot.subsystems.Main;
 
+import edu.wpi.first.wpilibj.CounterBase;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;

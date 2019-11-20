@@ -27,8 +27,8 @@ public class RobotMap {
 	public static final int eLeftB = 3;
 	public static final int eRightA = 0;
 	public static final int eRightB = 1;
-	public static final int eLiftA = 3;
-	public static final int eLiftB= 4;
+	public static final int eLiftA = 4;
+	public static final int eLiftB= 5;
 	
 	//Solonoids 
 	public static final int pcmModule = 7;
