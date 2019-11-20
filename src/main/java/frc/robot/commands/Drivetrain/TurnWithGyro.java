@@ -17,14 +17,12 @@ public class TurnWithGyro extends Command {
 
     @Override
     protected void initialize() {
-        Robot.m_robotbase.resetLeftEncoder();
-        Robot.m_robotbase.resetRightEncoder();
-
         gryoRotatePID.enable();
     }
 
     @Override
     protected void execute() {
+        System.out.println(Robot.m_navigation.getYaw());
         double leftSpeed = gryoRotatePID.getTurnSpeed();
         double rightSpeed = -gryoRotatePID.getTurnSpeed();
 
