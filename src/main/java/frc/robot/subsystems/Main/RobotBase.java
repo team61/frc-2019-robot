@@ -83,8 +83,11 @@ public class RobotBase extends Subsystem {
         sPTOB.set(!bool);
     }
 
+    public void tankDrive(double leftSpeed, double rightSpeed, boolean squaredInputs) {
+        m_differentialDrive.tankDrive(leftSpeed, rightSpeed, squaredInputs);
+    }
     public void tankDrive(double leftSpeed, double rightSpeed) {
-        m_differentialDrive.tankDrive(leftSpeed, rightSpeed);
+        tankDrive(leftSpeed, rightSpeed, false);
     }
 
     public void tankDrive(double speed) {

@@ -35,6 +35,7 @@ public class DriveStaight extends Command {
         double leftSpeed = driveSpeed - turnSpeed;
         double rightSpeed = driveSpeed + turnSpeed;
         System.out.println(driveSpeed);
+        System.out.println(Robot.m_robotbase.getRightEncoder());
         Robot.m_robotbase.tankDrive(driveSpeed, driveSpeed);
     }
 

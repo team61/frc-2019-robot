@@ -8,9 +8,9 @@ public class DrivetrainDistancePID extends PIDSubsystem {
     private double driveSpeed;
 
     public DrivetrainDistancePID() {
-        super(0.1, 0, 0);
-        setOutputRange(-1, 1);
-        setPercentTolerance(2);
+        super(0.2, 0, 0);
+        setOutputRange(-0.5, 0.5);
+        setAbsoluteTolerance(0.1);
     }
 
     @Override

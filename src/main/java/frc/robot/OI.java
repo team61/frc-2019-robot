@@ -24,7 +24,7 @@ public class OI {
         jLift.btn_9.whenPressed(new MoveLift(2));
         jLift.btn_11.whenPressed(new MoveLift(3));
         jRight.btn_3.whenPressed(new MoveLift(0));
-        jRight.btn_2.whenPressed(new DriveStaight(5));
+        jRight.btn_2.toggleWhenPressed(new DriveStaight(5));
         //jRight.btn_1.whenPressed(new NormalTorqueliftWithJoysticks());
 
         /*
