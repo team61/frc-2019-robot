@@ -3,51 +3,49 @@ package frc.robot.commands.Drivetrain;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.PID.DrivetrainDistancePID;
-import frc.robot.subsystems.PID.SideCorrectionPID;
+import frc.robot.subsystems.PID.GyroRotatePID;
 
 public class DriveStaight extends Command {
 
     private DrivetrainDistancePID drivetrainDistancePID;
-    //private SideCorrectionPID sideCorrectionPID;
+    private GyroRotatePID gyroRotatePID;
 
     public DriveStaight(double distance) {
         requires(Robot.m_robotbase);
-        drivetrainDistancePID = new DrivetrainDistancePID();
-        //sideCorrectionPID = new SideCorrectionPID();
+        requires(Robot.m_navigation);
 
+        drivetrainDistancePID = new DrivetrainDistancePID();
         drivetrainDistancePID.setSetpoint(distance);
-        //sideCorrectionPID.setSetpoint(0);
+
+        gyroRotatePID = new GyroRotatePID();
+        gyroRotatePID.setSetpoint(Robot.m_navigation.getYaw());
     }
 
     @Override
     protected void initialize() {
-        Robot.m_robotbase.resetLeftEncoder();
-        Robot.m_robotbase.resetRightEncoder();
-
+        gyroRotatePID.enable();
         drivetrainDistancePID.enable();
-        //sideCorrectionPID.enable();
     }
 
     @Override
     protected void execute() {
         double driveSpeed = -drivetrainDistancePID.getDriveSpeed();
-        double turnSpeed = 0; //sideCorrectionPID.getTurnSpeed();
+        double turnSpeed = gyroRotatePID.getTurnSpeed();
         double leftSpeed = driveSpeed - turnSpeed;
         double rightSpeed = driveSpeed + turnSpeed;
-        System.out.println(driveSpeed);
-        System.out.println(Robot.m_robotbase.getRightEncoder());
-        Robot.m_robotbase.tankDrive(driveSpeed, driveSpeed);
+        Robot.m_robotbase.tankDrive(leftSpeed, rightSpeed);
     }
 
     @Override
     protected boolean isFinished() {
-
-        return drivetrainDistancePID.onTarget(); //&& sideCorrectionPID.onTarget();
+        return drivetrainDistancePID.onTarget() && gyroRotatePID.onTarget();
     }
 
     @Override
     protected void end() {
         Robot.m_robotbase.stopTankDrive();
+        gyroRotatePID.disable();
+        drivetrainDistancePID.disable();
     }
 
     @Override

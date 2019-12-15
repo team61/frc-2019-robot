@@ -21,7 +21,7 @@ public class RobotBase extends Subsystem {
     private Solenoid sPTOA;
     private Solenoid sPTOB;
 
-    public DifferentialDrive m_differentialDrive;
+    private DifferentialDrive m_differentialDrive;
 
     public RobotBase() {
         super("RobotBase");

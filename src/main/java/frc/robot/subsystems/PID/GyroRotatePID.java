@@ -3,11 +3,11 @@ package frc.robot.subsystems.PID;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import frc.robot.Robot;
 
-public class GryoRotatePID extends PIDSubsystem {
+public class GyroRotatePID extends PIDSubsystem {
 
     private double turnSpeed;
 
-    public GryoRotatePID() {
+    public GyroRotatePID() {
         super(.02, 0, 0);
         setOutputRange(-0.5, 0.5);
         setAbsoluteTolerance(5);

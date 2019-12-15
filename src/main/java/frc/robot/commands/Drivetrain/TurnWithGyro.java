@@ -2,15 +2,15 @@ package frc.robot.commands.Drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.PID.GryoRotatePID;
+import frc.robot.subsystems.PID.GyroRotatePID;
 
 public class TurnWithGyro extends Command {
 
-    private GryoRotatePID gryoRotatePID;
+    private GyroRotatePID gryoRotatePID;
 
     public TurnWithGyro(double angle) {
         requires(Robot.m_robotbase);
-        gryoRotatePID = new GryoRotatePID();
+        gryoRotatePID = new GyroRotatePID();
 
         gryoRotatePID.setSetpoint(angle);
     }

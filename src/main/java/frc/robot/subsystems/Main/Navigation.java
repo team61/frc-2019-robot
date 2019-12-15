@@ -52,7 +52,7 @@ public class Navigation extends Subsystem {
 
     public double getRoll() {
         return ahrs.getPitch();
-    }
+    } // The gyro was inserted sideways into the robot
 
     public double getAccelerationX() {
         return ahrs.getRawAccelX();
