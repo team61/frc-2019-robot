@@ -3,12 +3,10 @@ package frc.robot.subsystems.Main;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.CounterBase;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.LSLevels;
 import frc.robot.RobotMap;
 import frc.robot.commands.Drivetrain.NormalDriveWithJoysticks;
 
@@ -20,23 +18,10 @@ public class RobotBase extends Subsystem {
     private WPI_TalonSRX rearRightMotor;
     private WPI_TalonSRX liftWheelsMotor; //These wheels help the robot get into the platform
 
-    private Encoder leftEncoder;
-    private Encoder rightEncoder;
-
     private Solenoid sPTOA;
     private Solenoid sPTOB;
 
-//    public LSLevels frontLevels;
-//    public LSLevels rearLevels;
-
     public DifferentialDrive m_differentialDrive;
-
-    public static final double WHEEL_DIAMETER = 8;
-    public static final double PULSE_PER_REVOLUTION = 1440;
-    public static final double ENCODER_GEAR_RATIO = 1;
-    public static final double GEAR_RATIO = 12.75;
-    public static final double FUDGE_FACTOR = 1; // this is changed to accurately get a measure from our encoder
-    //.84
 
     public RobotBase() {
         super("RobotBase");
@@ -56,15 +41,8 @@ public class RobotBase extends Subsystem {
 
         m_differentialDrive = new DifferentialDrive(frontLeftMotor, frontRightMotor);
 
-        leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, CounterBase.EncodingType.k4X);
-        rightEncoder = new Encoder(RobotMap.eRightA, RobotMap.eRightB, true, CounterBase.EncodingType.k4X);
-
         setPTOState(false);
         m_differentialDrive.setSafetyEnabled(false);
-
-        final double distancePerPulse = Math.PI * WHEEL_DIAMETER / PULSE_PER_REVOLUTION / ENCODER_GEAR_RATIO / GEAR_RATIO * FUDGE_FACTOR;
-        leftEncoder.setDistancePerPulse(distancePerPulse);
-        rightEncoder.setDistancePerPulse(distancePerPulse);
     }
 
     @Override
@@ -76,6 +54,8 @@ public class RobotBase extends Subsystem {
         sPTOA.set(bool);
         sPTOB.set(!bool);
     }
+
+    /* Drive Train Commands */
 
     public void tankDrive(double leftSpeed, double rightSpeed, boolean squaredInputs) {
         m_differentialDrive.tankDrive(leftSpeed, rightSpeed, squaredInputs);
@@ -108,6 +88,19 @@ public class RobotBase extends Subsystem {
         moveRight(0);
     }
 
+    /* Tork Lift Commands*/
+
+    public void torkLiftDrive(double frontSpeed, double rearSpeed) {
+        tankDrive(frontSpeed, rearSpeed);
+    }
+
+    public void torkLiftDrive(double speed) {
+        tankDrive(speed);
+    }
+
+    public void stopTorqueLiftDrive() {
+        torkLiftDrive(0);
+    }
     public void moveFront(double speed) {
         moveLeft(speed);
     }
@@ -124,18 +117,6 @@ public class RobotBase extends Subsystem {
         stopRight();
     }
 
-    public void torqueLiftDrive(double frontSpeed, double rearSpeed) {
-        tankDrive(frontSpeed, rearSpeed);
-    }
-
-    public void torqueLiftDrive(double speed) {
-        tankDrive(speed);
-    }
-
-    public void stopTorqueLiftDrive() {
-        torqueLiftDrive(0);
-    }
-
     public void moveLiftWheels(double speed) {
         liftWheelsMotor.set(ControlMode.PercentOutput, speed);
     }
@@ -143,37 +124,4 @@ public class RobotBase extends Subsystem {
     public void stopLiftWheels() {
         moveLiftWheels(0);
     }
-
-    public double getLeftEncoder() {
-        return leftEncoder.getDistance();
-    }
-
-    public double getFrontEncoder() {
-        return getLeftEncoder();
-    }
-
-    public double getRightEncoder() {
-        return rightEncoder.getDistance();
-    }
-
-    public double getRearEncoder() {
-        return getRightEncoder();
-    }
-
-    public void resetLeftEncoder() {
-        leftEncoder.reset();
-    }
-
-    public void resetRearEncoder() {
-        resetRightEncoder();
-    }
-
-    public void resetFrontEncoder() {
-        resetLeftEncoder();
-    }
-
-    public void resetRightEncoder() {
-        rightEncoder.reset();
-    }
-
 }

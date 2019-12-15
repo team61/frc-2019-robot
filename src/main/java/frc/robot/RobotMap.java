@@ -38,9 +38,9 @@ public class RobotMap {
 	public static final int sArmB = 3;
 
 	//Limit Switches
-	public static final int[] LSFront = {3, 4, 5}; // Levels 0 (lowest) to 2 (highest)
-	public static final int[] LSRear = {0, 1, 2}; // Levels 0 (lowest) to 2 (highest)
-	public static final int[] LSArm = {9, 8, 7, 6}; // Levels 0 (lowest) to 3 (highest)
+	public static final int LSFront = 8;
+	public static final int LSRear = 7;
+	public static final int LSLift = 6;
 
 	//Misc.
 	public static final int armReleaseButton = 5;

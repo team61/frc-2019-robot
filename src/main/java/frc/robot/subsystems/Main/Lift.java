@@ -5,33 +5,50 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.LSLevels;
+import frc.robot.LimitSwitch;
 import frc.robot.RobotMap;
 import frc.robot.commands.Lift.NormalLiftWithJoysticks;
 
 public class Lift extends Subsystem {
 
-    public WPI_TalonSRX liftMotor = new WPI_TalonSRX(RobotMap.mArm);
-
-    //public LSLevels armLevels = new LSLevels(RobotMap.LSArm);
+    private WPI_TalonSRX liftMotor;
+    private LimitSwitch LSLift;
 
     private Encoder eLift;
 
+    private static final int MAX_HEIGHT = 600; // Max height that the lift can reach without breaking
 
     public Lift() {
     	super("Lift");
+        liftMotor = new WPI_TalonSRX(RobotMap.mArm);
+
+        LSLift = new LimitSwitch(RobotMap.LSLift);
+
         eLift = new Encoder(RobotMap.eLiftA, RobotMap.eLiftB, false, CounterBase.EncodingType.k4X);
+        eLift.setDistancePerPulse(3);
         eLift.reset();
     }
 
     public void initDefaultCommand() { setDefaultCommand(new NormalLiftWithJoysticks()); }
 
-    public void moveLift(double speed) { liftMotor.set(ControlMode.PercentOutput, speed); }
+    private void setLiftSpeed(double speed) { liftMotor.set(ControlMode.PercentOutput, speed); }
 
-    public void stopLift() { moveLift(0); }
+    public void stopLift() { setLiftSpeed(0); }
 
-    public double getLiftEncoder() {
-        return eLift.get();
+    public void moveLift(double speed) {
+        if (!LSLift.isSwitchSet() && getHeight() < MAX_HEIGHT) {
+            setLiftSpeed(speed);
+        } else if (LSLift.isSwitchSet() && speed >= 0) {
+            setLiftSpeed(speed);
+        } else if (getHeight() >= MAX_HEIGHT && speed <= 0) {
+            setLiftSpeed(speed);
+        } else {
+            stopLift();
+        }
+    }
+
+    public double getHeight() {
+        return eLift.getDistance();
     }
 }
 
