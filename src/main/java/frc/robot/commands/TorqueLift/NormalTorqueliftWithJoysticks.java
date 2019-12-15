@@ -11,7 +11,6 @@ public class NormalTorqueliftWithJoysticks extends Command {
 
     @Override
     protected void initialize() {
-        requires(Robot.m_robotbase);
         Robot.m_robotbase.setPTOState(true);
     }
 

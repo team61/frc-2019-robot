@@ -6,25 +6,24 @@ import frc.robot.subsystems.PID.GyroRotatePID;
 
 public class TurnWithGyro extends Command {
 
-    private GyroRotatePID gryoRotatePID;
+    private GyroRotatePID gyroRotatePID;
 
     public TurnWithGyro(double angle) {
         requires(Robot.m_robotbase);
-        gryoRotatePID = new GyroRotatePID();
+        gyroRotatePID = new GyroRotatePID();
 
-        gryoRotatePID.setSetpoint(angle);
+        gyroRotatePID.setSetpoint(angle);
     }
 
     @Override
     protected void initialize() {
-        gryoRotatePID.enable();
+        gyroRotatePID.enable();
     }
 
     @Override
     protected void execute() {
-        System.out.println(Robot.m_navigation.getYaw());
-        double leftSpeed = gryoRotatePID.getTurnSpeed();
-        double rightSpeed = -gryoRotatePID.getTurnSpeed();
+        double leftSpeed = gyroRotatePID.getTurnSpeed();
+        double rightSpeed = -gyroRotatePID.getTurnSpeed();
 
         Robot.m_robotbase.tankDrive(leftSpeed, rightSpeed);
     }
@@ -32,7 +31,7 @@ public class TurnWithGyro extends Command {
     @Override
     protected boolean isFinished() {
 
-        return gryoRotatePID.onTarget();
+        return gyroRotatePID.onTarget();
     }
 
     @Override

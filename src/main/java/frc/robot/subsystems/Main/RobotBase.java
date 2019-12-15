@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.Drivetrain.NormalDriveWithJoysticks;
 
@@ -22,6 +23,22 @@ public class RobotBase extends Subsystem {
     private Solenoid sPTOB;
 
     private DifferentialDrive m_differentialDrive;
+
+    private Encoder leftEncoder;
+    private Encoder rightEncoder;
+
+    private double x;
+    private double y;
+
+    private static final double WHEEL_DIAMETER = 8;
+    private static final double PULSE_PER_REVOLUTION = 1440;
+    private static final double ENCODER_GEAR_RATIO = 1;
+    private static final double GEAR_RATIO = 12.75;
+    private static final double FUDGE_FACTOR = 1; // this is changed to accurately get a measure from our encoder
+
+    private static final double driveTrainDistancePerPulse = Math.PI * WHEEL_DIAMETER / PULSE_PER_REVOLUTION / ENCODER_GEAR_RATIO / GEAR_RATIO * FUDGE_FACTOR;
+    private static final double torkLiftDistancePerPulse = Math.PI * WHEEL_DIAMETER / PULSE_PER_REVOLUTION / ENCODER_GEAR_RATIO / GEAR_RATIO * FUDGE_FACTOR;
+    private double distancePerPulse;
 
     public RobotBase() {
         super("RobotBase");
@@ -40,9 +57,16 @@ public class RobotBase extends Subsystem {
         sPTOB = new Solenoid(RobotMap.pcmModule, RobotMap.sPTOB);
 
         m_differentialDrive = new DifferentialDrive(frontLeftMotor, frontRightMotor);
+        m_differentialDrive.setSafetyEnabled(false);
 
         setPTOState(false);
-        m_differentialDrive.setSafetyEnabled(false);
+
+        leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, CounterBase.EncodingType.k4X);
+        rightEncoder = new Encoder(RobotMap.eRightA, RobotMap.eRightB, true, CounterBase.EncodingType.k4X);
+
+        distancePerPulse = driveTrainDistancePerPulse;
+        leftEncoder.setDistancePerPulse(distancePerPulse);
+        rightEncoder.setDistancePerPulse(distancePerPulse);
     }
 
     @Override
@@ -50,15 +74,19 @@ public class RobotBase extends Subsystem {
         setDefaultCommand(new NormalDriveWithJoysticks());
     }
 
-    public void setPTOState(boolean bool) {
-        sPTOA.set(bool);
-        sPTOB.set(!bool);
+    public void setPTOState(boolean PTOState) {
+        sPTOA.set(PTOState);
+        sPTOB.set(!PTOState);
+        distancePerPulse = (!PTOState) ? driveTrainDistancePerPulse : torkLiftDistancePerPulse;
+        leftEncoder.setDistancePerPulse(distancePerPulse);
+        rightEncoder.setDistancePerPulse(distancePerPulse);
     }
 
     /* Drive Train Commands */
 
     public void tankDrive(double leftSpeed, double rightSpeed, boolean squaredInputs) {
         m_differentialDrive.tankDrive(leftSpeed, rightSpeed, squaredInputs);
+        setCords();
     }
     public void tankDrive(double leftSpeed, double rightSpeed) {
         tankDrive(leftSpeed, rightSpeed, false);
@@ -74,10 +102,12 @@ public class RobotBase extends Subsystem {
 
     public void moveLeft(double speed) {
         frontLeftMotor.set(ControlMode.PercentOutput, speed);
+        setCords();
     }
 
     public void moveRight(double speed) {
         frontRightMotor.set(ControlMode.PercentOutput, speed);
+        setCords();
     }
 
     public void stopLeft() {
@@ -123,5 +153,72 @@ public class RobotBase extends Subsystem {
 
     public void stopLiftWheels() {
         moveLiftWheels(0);
+    }
+
+    /* Methods for Encoder Data */
+
+    public double getLeftEncoder() {
+        return leftEncoder.getDistance();
+    }
+
+    public double getFrontEncoder() {
+        return getLeftEncoder();
+    }
+
+    public double getRightEncoder() {
+        return rightEncoder.getDistance();
+    }
+
+    public double getRearEncoder() {
+        return getRightEncoder();
+    }
+
+    public void resetLeftEncoder() {
+        leftEncoder.reset();
+    }
+
+    public void resetRightEncoder() {
+        rightEncoder.reset();
+    }
+
+    public void resetDriveTrainEncoders() {
+        resetRightEncoder();
+        resetLeftEncoder();
+    }
+
+    public void resetRearEncoder() {
+        resetRightEncoder();
+    }
+
+    public void resetFrontEncoder() {
+        resetLeftEncoder();
+    }
+
+    public void resetTorkLiftEncoders() {
+        resetDriveTrainEncoders();
+    }
+
+    /* Coordinate Data */
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    private void setX(double x) {
+        this.x = x;
+    }
+
+    private void setY(double y) {
+        this.y = y;
+    }
+
+    private void setCords() {
+        double distanceTraveled = (getLeftEncoder() + getRightEncoder()) / 2;
+        setX(getX() + distanceTraveled * Math.cos(Robot.m_navigation.getYaw()));
+        setY(getY() + distanceTraveled * Math.sin(Robot.m_navigation.getYaw()));
+        resetDriveTrainEncoders();
     }
 }

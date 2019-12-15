@@ -5,12 +5,20 @@ import frc.robot.Robot;
 import frc.robot.subsystems.PID.DrivetrainDistancePID;
 import frc.robot.subsystems.PID.GyroRotatePID;
 
-public class DriveStaight extends Command {
+public class DriveToDistance extends Command {
 
     private DrivetrainDistancePID drivetrainDistancePID;
     private GyroRotatePID gyroRotatePID;
 
-    public DriveStaight(double distance) {
+    public DriveToDistance(double distance, double angle) {
+        initializeDriveToDistance(distance, angle);
+    }
+
+    public DriveToDistance(double distance) {
+        initializeDriveToDistance(distance, Robot.m_navigation.getYaw());
+    }
+
+    private void initializeDriveToDistance(double distance, double angle) {
         requires(Robot.m_robotbase);
         requires(Robot.m_navigation);
 
@@ -18,7 +26,7 @@ public class DriveStaight extends Command {
         drivetrainDistancePID.setSetpoint(distance);
 
         gyroRotatePID = new GyroRotatePID();
-        gyroRotatePID.setSetpoint(Robot.m_navigation.getYaw());
+        gyroRotatePID.setSetpoint(angle);
     }
 
     @Override
@@ -31,8 +39,10 @@ public class DriveStaight extends Command {
     protected void execute() {
         double driveSpeed = -drivetrainDistancePID.getDriveSpeed();
         double turnSpeed = gyroRotatePID.getTurnSpeed();
+
         double leftSpeed = driveSpeed - turnSpeed;
         double rightSpeed = driveSpeed + turnSpeed;
+
         Robot.m_robotbase.tankDrive(leftSpeed, rightSpeed);
     }
 
