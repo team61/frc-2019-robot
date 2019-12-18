@@ -16,7 +16,9 @@ public class Lift extends Subsystem {
 
     private Encoder eLift;
 
-    private static final int MAX_HEIGHT = 600; // Max height that the lift can reach without breaking
+    private static final double MAX_HEIGHT = 600.0; // Max height that the lift can reach without breaking
+
+    private double height;
 
     public Lift() {
     	super("Lift");
@@ -45,10 +47,15 @@ public class Lift extends Subsystem {
         } else {
             stopLift();
         }
+        setHeight();
+    }
+
+    private void setHeight() {
+        height = eLift.getDistance();
     }
 
     public double getHeight() {
-        return eLift.getDistance();
+        height = eLift.getDistance();
+        return height;
     }
 }
-

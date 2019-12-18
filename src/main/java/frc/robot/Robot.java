@@ -5,6 +5,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.subsystems.Main.Map;
 import frc.robot.subsystems.Main.Arm;
 import frc.robot.subsystems.Main.Lift;
 import frc.robot.subsystems.Main.Navigation;
@@ -20,6 +21,8 @@ public class Robot extends TimedRobot {
     public static RobotBase m_robotbase;
     public static Navigation m_navigation;
 
+    public static Map m_map;
+
     public static OI m_oi;
 
     /**
@@ -34,8 +37,11 @@ public class Robot extends TimedRobot {
         m_robotbase = new RobotBase();
         m_navigation = new Navigation();
 
+        m_map = new Map();
+
         m_oi = new OI();
 
+        m_navigation.resetGryo();
         // Initialize all subsystems
 
         UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
@@ -68,7 +74,6 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         // instantiate the command used for the autonomous period (the chooser on the smart dashboard will pick this)
 //		autonomousCommand = new AutoGroup();
-
         // schedule the autonomous command (example)
 //		if (autonomousCommand != null) autonomousCommand.start();
         System.out.println("Autonomous Initiated");

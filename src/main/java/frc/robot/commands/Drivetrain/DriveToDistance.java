@@ -2,12 +2,12 @@ package frc.robot.commands.Drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.PID.DrivetrainDistancePID;
+import frc.robot.subsystems.PID.DriveTrainDistancePID;
 import frc.robot.subsystems.PID.GyroRotatePID;
 
 public class DriveToDistance extends Command {
 
-    private DrivetrainDistancePID drivetrainDistancePID;
+    private DriveTrainDistancePID drivetrainDistancePID;
     private GyroRotatePID gyroRotatePID;
 
     public DriveToDistance(double distance, double angle) {
@@ -20,9 +20,8 @@ public class DriveToDistance extends Command {
 
     private void initializeDriveToDistance(double distance, double angle) {
         requires(Robot.m_robotbase);
-        requires(Robot.m_navigation);
 
-        drivetrainDistancePID = new DrivetrainDistancePID();
+        drivetrainDistancePID = new DriveTrainDistancePID();
         drivetrainDistancePID.setSetpoint(distance);
 
         gyroRotatePID = new GyroRotatePID();
@@ -31,6 +30,7 @@ public class DriveToDistance extends Command {
 
     @Override
     protected void initialize() {
+        Robot.m_robotbase.resetEncoders();
         gyroRotatePID.enable();
         drivetrainDistancePID.enable();
     }
@@ -53,9 +53,9 @@ public class DriveToDistance extends Command {
 
     @Override
     protected void end() {
-        Robot.m_robotbase.stopTankDrive();
         gyroRotatePID.disable();
         drivetrainDistancePID.disable();
+        Robot.m_robotbase.stopTankDrive();
     }
 
     @Override

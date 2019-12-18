@@ -19,6 +19,7 @@ public class Navigation extends Subsystem {
         } catch (RuntimeException ex) {
             DriverStation.reportError("Error installing navX MXP: " + ex.getMessage(), true);
         }
+        resetGryo();
     }
     @Override
     public void initDefaultCommand() {

@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.Drivetrain.NormalDriveWithJoysticks;
 
@@ -40,6 +39,8 @@ public class RobotBase extends Subsystem {
     private static final double torkLiftDistancePerPulse = Math.PI * WHEEL_DIAMETER / PULSE_PER_REVOLUTION / ENCODER_GEAR_RATIO / GEAR_RATIO * FUDGE_FACTOR;
     private double distancePerPulse;
 
+    private boolean PTOState;
+
     public RobotBase() {
         super("RobotBase");
 
@@ -58,7 +59,7 @@ public class RobotBase extends Subsystem {
 
         m_differentialDrive = new DifferentialDrive(frontLeftMotor, frontRightMotor);
         m_differentialDrive.setSafetyEnabled(false);
-
+        PTOState = false;
         setPTOState(false);
 
         leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, CounterBase.EncodingType.k4X);
@@ -80,13 +81,17 @@ public class RobotBase extends Subsystem {
         distancePerPulse = (!PTOState) ? driveTrainDistancePerPulse : torkLiftDistancePerPulse;
         leftEncoder.setDistancePerPulse(distancePerPulse);
         rightEncoder.setDistancePerPulse(distancePerPulse);
+        this.PTOState = PTOState;
+    }
+
+    public boolean getPTOState() {
+        return PTOState;
     }
 
     /* Drive Train Commands */
 
     public void tankDrive(double leftSpeed, double rightSpeed, boolean squaredInputs) {
         m_differentialDrive.tankDrive(leftSpeed, rightSpeed, squaredInputs);
-        setCords();
     }
     public void tankDrive(double leftSpeed, double rightSpeed) {
         tankDrive(leftSpeed, rightSpeed, false);
@@ -102,12 +107,10 @@ public class RobotBase extends Subsystem {
 
     public void moveLeft(double speed) {
         frontLeftMotor.set(ControlMode.PercentOutput, speed);
-        setCords();
     }
 
     public void moveRight(double speed) {
         frontRightMotor.set(ControlMode.PercentOutput, speed);
-        setCords();
     }
 
     public void stopLeft() {
@@ -181,7 +184,7 @@ public class RobotBase extends Subsystem {
         rightEncoder.reset();
     }
 
-    public void resetDriveTrainEncoders() {
+    public void resetEncoders() {
         resetRightEncoder();
         resetLeftEncoder();
     }
@@ -194,31 +197,7 @@ public class RobotBase extends Subsystem {
         resetLeftEncoder();
     }
 
-    public void resetTorkLiftEncoders() {
-        resetDriveTrainEncoders();
-    }
-
-    /* Coordinate Data */
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    private void setX(double x) {
-        this.x = x;
-    }
-
-    private void setY(double y) {
-        this.y = y;
-    }
-
-    private void setCords() {
-        double distanceTraveled = (getLeftEncoder() + getRightEncoder()) / 2;
-        setX(getX() + distanceTraveled * Math.cos(Robot.m_navigation.getYaw()));
-        setY(getY() + distanceTraveled * Math.sin(Robot.m_navigation.getYaw()));
-        resetDriveTrainEncoders();
+    public double getDistanceTraveled() {
+        return (getLeftEncoder() + getRightEncoder()) / 2;
     }
 }

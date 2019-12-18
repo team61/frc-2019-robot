@@ -14,4 +14,3 @@ public class PunchArm extends InstantCommand {
         Robot.m_arm.setArmState(true);
     }
 }
-

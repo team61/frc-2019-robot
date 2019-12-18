@@ -3,11 +3,11 @@ package frc.robot.subsystems.PID;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import frc.robot.Robot;
 
-public class DrivetrainDistancePID extends PIDSubsystem {
+public class DriveTrainDistancePID extends PIDSubsystem {
 
     private double driveSpeed;
 
-    public DrivetrainDistancePID() {
+    public DriveTrainDistancePID() {
         super(0.2, 0, 0);
         setOutputRange(-0.5, 0.5);
         setAbsoluteTolerance(0.1);
@@ -15,7 +15,7 @@ public class DrivetrainDistancePID extends PIDSubsystem {
 
     @Override
     protected double returnPIDInput() {
-        return (Robot.m_robotbase.getLeftEncoder() + Robot.m_robotbase.getRightEncoder()) / 2;
+        return Robot.m_robotbase.getDistanceTraveled();
     }
 
     @Override

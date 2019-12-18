@@ -10,8 +10,8 @@ public class TurnWithGyro extends Command {
 
     public TurnWithGyro(double angle) {
         requires(Robot.m_robotbase);
-        gyroRotatePID = new GyroRotatePID();
 
+        gyroRotatePID = new GyroRotatePID();
         gyroRotatePID.setSetpoint(angle);
     }
 
@@ -30,7 +30,6 @@ public class TurnWithGyro extends Command {
 
     @Override
     protected boolean isFinished() {
-
         return gyroRotatePID.onTarget();
     }
 

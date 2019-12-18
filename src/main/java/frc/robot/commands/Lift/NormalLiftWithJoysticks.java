@@ -15,7 +15,7 @@ public class NormalLiftWithJoysticks extends Command {
 
     @Override
     protected void execute() {
-        System.out.println(Robot.m_lift.getHeight());
+        //System.out.println(Robot.m_lift.getHeight());
         Robot.m_lift.moveLift(Robot.m_oi.getLiftSpeed());
     }
 

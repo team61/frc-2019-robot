@@ -30,14 +30,14 @@ public class RobotMap {
 	public static final int eLiftA = 4;
 	public static final int eLiftB= 5;
 	
-	//Solonoids 
+	// Solenoids
 	public static final int pcmModule = 7;
 	public static final int sPTOA = 0;
 	public static final int sPTOB = 1;
 	public static final int sArmA = 2;
 	public static final int sArmB = 3;
 
-	//Limit Switches
+	// Limit Switches
 	public static final int LSFront = 8;
 	public static final int LSRear = 7;
 	public static final int LSLift = 6;

@@ -5,21 +5,20 @@ import frc.robot.Robot;
 
 public class NormalDriveWithJoysticks extends Command {
 
+    private double startDistance;
+
     public NormalDriveWithJoysticks() {
         requires(Robot.m_robotbase);
-        requires(Robot.m_navigation);
     }
 
     @Override
     protected void initialize() {
-        Robot.m_robotbase.resetDriveTrainEncoders();
+        Robot.m_robotbase.resetEncoders();
     }
 
     @Override
     protected void execute() {
-
         Robot.m_robotbase.tankDrive(Robot.m_oi.getLeftSpeed(), Robot.m_oi.getRightSpeed());
-
     }
 
     @Override
@@ -30,7 +29,6 @@ public class NormalDriveWithJoysticks extends Command {
     @Override
     protected void end() {
         Robot.m_robotbase.stopTankDrive();
-        Robot.m_robotbase.resetDriveTrainEncoders();
     }
 
     @Override
