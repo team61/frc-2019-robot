@@ -8,6 +8,7 @@ public class UpdatePlayerInfo extends Command {
     private double startDistance;
     private long startTime;
     public UpdatePlayerInfo() {
+        requires(Robot.m_map);
     }
 
     @Override
@@ -27,9 +28,10 @@ public class UpdatePlayerInfo extends Command {
                 Map.m_player.getCordsY() + distanceTraveled * Math.sin(Robot.m_navigation.getYaw()),
                 Map.m_player.getCordsZ() + ((Robot.m_robotbase.getPTOState()) ? distanceTraveled : 0));
 
-        System.out.println("X: " + Map.m_player.getCordsX());
-        System.out.println("Y: " + Map.m_player.getCordsY());
-        System.out.println("Z: " + Map.m_player.getCordsY());
+        System.out.print("X: " + Map.m_player.getCordsX());
+        System.out.print(", Y: " + Map.m_player.getCordsY());
+        System.out.print(", Z: " + Map.m_player.getCordsZ());
+        System.out.println(", Angle: " + Robot.m_navigation.getYaw());
 
         Map.m_player.setAccelerations(
                 Robot.m_navigation.getAccelerationX(),

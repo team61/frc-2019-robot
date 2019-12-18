@@ -59,8 +59,6 @@ public class RobotBase extends Subsystem {
 
         m_differentialDrive = new DifferentialDrive(frontLeftMotor, frontRightMotor);
         m_differentialDrive.setSafetyEnabled(false);
-        PTOState = false;
-        setPTOState(false);
 
         leftEncoder = new Encoder(RobotMap.eLeftA, RobotMap.eLeftB, false, CounterBase.EncodingType.k4X);
         rightEncoder = new Encoder(RobotMap.eRightA, RobotMap.eRightB, true, CounterBase.EncodingType.k4X);
@@ -68,6 +66,9 @@ public class RobotBase extends Subsystem {
         distancePerPulse = driveTrainDistancePerPulse;
         leftEncoder.setDistancePerPulse(distancePerPulse);
         rightEncoder.setDistancePerPulse(distancePerPulse);
+
+        PTOState = false;
+        //setPTOState(false);
     }
 
     @Override

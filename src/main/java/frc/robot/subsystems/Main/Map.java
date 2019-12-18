@@ -16,8 +16,6 @@ public class Map extends Subsystem {
         this.height = height;
         m_player = new Player(0, 0, 0);
     }
-    public Map() {
-    }
 
     @Override
     protected void initDefaultCommand() {

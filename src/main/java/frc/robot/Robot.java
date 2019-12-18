@@ -36,12 +36,12 @@ public class Robot extends TimedRobot {
         m_arm = new Arm();
         m_robotbase = new RobotBase();
         m_navigation = new Navigation();
+        m_navigation.resetGryo();
 
-        m_map = new Map();
+        m_map = new Map(200, 200);
 
         m_oi = new OI();
 
-        m_navigation.resetGryo();
         // Initialize all subsystems
 
         UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
